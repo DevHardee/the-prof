@@ -1,15 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import MaxWidthWrapper from '../components/MaxWidthWrapper'
-import './App.css'
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
+import Hero from '../components/sections/Hero';
+import Ticker from '../components/sections/Ticker';
+import Pillars from '../components/sections/Pillars';
+import Statement from '../components/sections/Statement';
+import Topics from '../components/sections/Topics';
+import JoinCTA from '../components/sections/JoinCTA';
 
-function Home() {
+export default function Home() {
     return (
-        <MaxWidthWrapper>
-            <div>Home</div>
-        </MaxWidthWrapper>
-    )
+        <>
+            <Navbar />
+            <main className="flex flex-col w-full overflow-hidden">
+                <Hero />
+                <Ticker />
+                <Pillars />
+                <Statement />
+                <Topics />
+                <JoinCTA />
+            </main>
+            <Footer />
+        </>
+    );
 }
-export default Home;
