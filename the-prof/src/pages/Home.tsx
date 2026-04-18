@@ -9,9 +9,9 @@ import JoinCTA from '../components/sections/JoinCTA';
 
 export default function Home() {
     return (
-        <>
+        <div className="w-full relative min-h-screen flex flex-col">
             <Navbar />
-            <main className="flex flex-col w-full overflow-hidden">
+            <main className="flex-grow w-full flex flex-col">
                 <Hero />
                 <Ticker />
                 <Pillars />
@@ -20,6 +20,6 @@ export default function Home() {
                 <JoinCTA />
             </main>
             <Footer />
-        </>
+        </div>
     );
 }
