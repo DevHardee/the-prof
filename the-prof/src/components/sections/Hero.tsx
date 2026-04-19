@@ -1,11 +1,7 @@
 import { motion, type Variants } from 'framer-motion';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 
-interface HeroProps {
-    heroImage?: string;
-}
-
-export default function Hero({ heroImage }: HeroProps) {
+export default function Hero() {
     const container: Variants = {
         hidden: { opacity: 0 },
         show: {
@@ -44,16 +40,16 @@ export default function Hero({ heroImage }: HeroProps) {
                         animate="show"
                         className="flex flex-col"
                     >
-                        <motion.p
+                        {/* <motion.p
                             variants={item}
                             className="font-display font-semibold uppercase tracking-[0.15em] text-muted text-sm mb-6"
                         >
                             Charge Your Brain
-                        </motion.p>
+                        </motion.p> */}
 
                         <motion.h1
                             variants={item}
-                            className="font-display font-black uppercase text-[5rem] sm:text-[6rem] lg:text-[7.5rem] leading-[0.85] text-ink"
+                            className="font-display font-black uppercase text-[4rem] md:text-[5rem] lg:text-[7.5rem] leading-[0.85] text-ink"
                         >
                             Think<br />
                             <span className="text-orange">Better</span><br />
@@ -64,19 +60,19 @@ export default function Hero({ heroImage }: HeroProps) {
 
                         <motion.p
                             variants={item}
-                            className="font-body text-muted text-lg max-w-md mt-8 mb-10 leading-relaxed"
+                            className="font-body text-muted text-lg md:text-xl max-w-md mt-10! mb-8! leading-relaxed"
                         >
                             Most people don't lack effort — they lack clarity. The Prof is here for those who seek genuine knowledge and are ready to take action to grow.
                         </motion.p>
 
                         <motion.div
                             variants={item}
-                            className="flex flex-col sm:flex-row gap-4"
+                            className="flex flex-col md:flex-row gap-6! mb-6!"
                         >
-                            <a href="#" className="bg-orange text-white font-display font-bold uppercase tracking-wider px-8 py-4 rounded-full hover:bg-ink transition-colors duration-300 ease-brand text-center">
+                            <a href="#" className="bg-orange text-white font-display font-bold uppercase tracking-wider px-8! py-4! rounded-full hover:bg-ink transition-colors duration-300 ease-brand text-center">
                                 Join Us Now
                             </a>
-                            <a href="#" className="bg-transparent text-ink border border-ink/20 font-display font-bold uppercase tracking-wider px-8 py-4 rounded-full hover:bg-ink hover:text-white transition-[color,background-color,border-color] duration-300 ease-brand text-center">
+                            <a href="#" className="bg-blue text-white border border-ink/20 font-display font-bold uppercase tracking-wider px-8! py-4! rounded-full hover:bg-ink hover:text-white transition-[color,background-color,border-color] duration-300 ease-brand text-center">
                                 Explore Topics
                             </a>
                         </motion.div>
@@ -87,9 +83,9 @@ export default function Hero({ heroImage }: HeroProps) {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="relative w-full max-w-[500px] mx-auto lg:mx-0 lg:ml-auto"
+                        className="hidden lg:block relative w-full max-w-[500px] mx-auto"
                     >
-                        <img src="/assets/brand-elements/Brand ELements-02.png" alt="The Prof" className="w-full h-full object-cover" />
+                        <img src="/assets/brand-elements/Brand ELements-13.png" alt="The Prof" className="w-full h-full object-cover" />
 
                         {/* Floating elements */}
                         <motion.span

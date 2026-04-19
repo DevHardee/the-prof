@@ -60,7 +60,7 @@ export default function Topics() {
     };
 
     return (
-        <section className="bg-white py-32 md:py-48 px-6 relative z-10 w-full overflow-hidden">
+        <section className="bg-white py-20! px-6 relative z-10 w-full overflow-hidden">
             <div className="absolute top-0 right-0 w-full h-[600px] opacity-[0.02] pointer-events-none">
                 <img src="/assets/brand-elements/Brand ELements-24.png" alt="" className="w-full h-full object-cover" />
             </div>
@@ -71,7 +71,7 @@ export default function Topics() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="font-display font-semibold uppercase tracking-[0.15em] text-muted text-sm mb-4"
+                    className="font-display font-semibold uppercase tracking-[0.15em] text-muted text-sm md:text-xl mb-4"
                 >
                     Core Topics
                 </motion.p>
@@ -80,7 +80,7 @@ export default function Topics() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                    className="font-display font-black uppercase text-4xl sm:text-5xl md:text-6xl text-ink mb-16"
+                    className="font-display font-black uppercase text-4xl md:text-5xl md:text-6xl text-ink mb-16!"
                 >
                     You Need Direction.
                 </motion.h2>
@@ -90,7 +90,7 @@ export default function Topics() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 md:grid-cols-2 gap-[1.5px] bg-border-solid border border-border-solid w-full"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8! md:gap-12! w-full"
                 >
                     {topics.map((t) => {
                         const isFeatured = t.featured;
@@ -99,21 +99,21 @@ export default function Topics() {
                             <motion.div
                                 key={t.title}
                                 variants={isFeatured ? featuredAnim : itemAnim}
-                                className={`group flex flex-col items-start p-10 md:p-14 lg:p-20 transition-[background-color] duration-500 ease-brand ${isFeatured
+                                className={`group flex flex-col items-start p-10! md:p-14! rounded-3xl shadow-lg border border-border-solid transition-all duration-500 ease-brand hover:-translate-y-2 ${isFeatured
                                     ? 'md:col-span-2 bg-blue text-white'
                                     : 'bg-white hover:bg-canvas text-ink'
                                     }`}
                             >
                                 <p
-                                    className={`font-display font-semibold uppercase tracking-[0.15em] text-[10px] sm:text-xs mb-6 ${isFeatured ? 'text-white/55' : 'text-orange'
+                                    className={`font-display font-semibold uppercase tracking-[0.15em] text-sm md:text-base mb-6 ${isFeatured ? 'text-white/55' : 'text-orange'
                                         }`}
                                 >
                                     {t.tag}
                                 </p>
-                                <h3 className={`font-display font-extrabold uppercase text-3xl sm:text-4xl md:text-5xl mb-6 ${isFeatured ? 'text-white' : 'text-ink'}`}>
+                                <h3 className={`font-display font-extrabold uppercase text-3xl md:text-4xl md:text-5xl mb-6! ${isFeatured ? 'text-white' : 'text-ink'}`}>
                                     {t.title}
                                 </h3>
-                                <p className={`font-body text-base md:text-lg max-w-2xl mb-16 ${isFeatured ? 'text-white/65' : 'text-muted'}`}>
+                                <p className={`font-body text-base md:text-lg max-w-2xl mb-16! ${isFeatured ? 'text-white/65' : 'text-muted'}`}>
                                     {t.desc}
                                 </p>
 
