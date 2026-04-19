@@ -3,19 +3,14 @@ import MaxWidthWrapper from '../MaxWidthWrapper';
 
 export default function JoinCTA() {
     return (
-        <section className="bg-orange py-40 px-6 relative z-10 text-center w-full">
-            <MaxWidthWrapper>
-                <div className="max-w-4xl mx-auto flex flex-col items-center">
-                    <motion.p
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6 }}
-                        className="font-display font-semibold uppercase tracking-[0.15em] text-white/50 text-sm mb-6"
-                    >
-                        The Prof Community
-                    </motion.p>
+        <section className="bg-orange py-40 md:py-56 px-6 relative z-10 text-center w-full overflow-hidden">
+            {/* Background decorative logos */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-6xl opacity-10 pointer-events-none">
+                <img src="/assets/brand-elements/Brand ELements-21.png" alt="" className="w-full h-auto object-cover" />
+            </div>
 
+            <MaxWidthWrapper className="relative z-10">
+                <div className="max-w-4xl mx-auto flex flex-col items-center">
                     <motion.h2
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}

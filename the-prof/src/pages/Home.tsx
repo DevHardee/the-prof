@@ -5,6 +5,7 @@ import Ticker from '../components/sections/Ticker';
 import Pillars from '../components/sections/Pillars';
 import Statement from '../components/sections/Statement';
 import Topics from '../components/sections/Topics';
+import Posters from '../components/sections/Posters';
 import JoinCTA from '../components/sections/JoinCTA';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
                 <Pillars />
                 <Statement />
                 <Topics />
+                <Posters />
                 <JoinCTA />
             </main>
             <Footer />

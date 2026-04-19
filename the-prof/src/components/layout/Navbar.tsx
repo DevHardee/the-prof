@@ -4,9 +4,9 @@ import MaxWidthWrapper from '../MaxWidthWrapper';
 function Logo() {
     return (
         <img
-            src="/assets/logos/The-Prof-Logo-02.jpg"
+            src="/assets/logos/The-Prof-Logo-01.jpg"
             alt="Prof Logo"
-            className="w-full h-20"
+            className="w-[80px] h-auto md:w-[120px] rounded-lg shadow-sm"
         />
     );
 }
@@ -23,9 +23,9 @@ export default function Navbar() {
             initial={{ y: '-100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="sticky top-0 z-50 bg-canvas border-b border-border-solid w-full"
+            className="sticky top-0 z-50 bg-canvas/90 backdrop-blur-md border-b border-border-solid w-full"
         >
-            <MaxWidthWrapper className="flex justify-between items-center py-4">
+            <MaxWidthWrapper className="flex justify-between items-center py-5 px-6 md:px-8">
                 <div className="flex items-center gap-3">
                     <Logo />
                 </div>

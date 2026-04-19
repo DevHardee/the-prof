@@ -40,7 +40,11 @@ export default function Pillars() {
     };
 
     return (
-        <section className="bg-canvas py-32 md:py-40 px-6 relative z-10 w-full overflow-hidden">
+        <section className="bg-canvas py-32 md:py-48 px-6 relative z-10 w-full overflow-hidden">
+            {/* Background Decoration */}
+            <div className="absolute top-0 right-0 w-full h-[500px] pointer-events-none opacity-[0.03]">
+                <img src="/assets/brand-elements/Brand ELements-22.png" alt="" className="w-full h-full object-cover" />
+            </div>
             <MaxWidthWrapper>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}

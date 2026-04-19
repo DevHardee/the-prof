@@ -60,8 +60,12 @@ export default function Topics() {
     };
 
     return (
-        <section className="bg-white py-32 md:py-40 px-6 relative z-10 w-full">
-            <MaxWidthWrapper>
+        <section className="bg-white py-32 md:py-48 px-6 relative z-10 w-full overflow-hidden">
+            <div className="absolute top-0 right-0 w-full h-[600px] opacity-[0.02] pointer-events-none">
+                <img src="/assets/brand-elements/Brand ELements-24.png" alt="" className="w-full h-full object-cover" />
+            </div>
+
+            <MaxWidthWrapper className="relative z-10">
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

@@ -15,8 +15,11 @@ const metaItems: MetaItem[] = [
 
 export default function Statement() {
     return (
-        <section className="bg-ink py-40 px-6 relative overflow-hidden text-center z-10 w-full">
+        <section className="bg-ink py-40 md:py-48 px-6 relative overflow-hidden text-center z-10 w-full">
             <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-blue/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.03] mix-blend-screen pointer-events-none">
+                <img src="/assets/brand-elements/Brand ELements-23.png" alt="" className="w-full h-full object-cover" />
+            </div>
 
             <MaxWidthWrapper>
                 <div className="relative z-10 w-full max-w-5xl mx-auto">

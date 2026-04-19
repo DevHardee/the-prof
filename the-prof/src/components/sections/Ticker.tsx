@@ -25,7 +25,7 @@ const tickerItems: TickerItem[] = [
 export default function Ticker() {
     return (
         <MaxWidthWrapper>
-            <div className="w-full bg-ink overflow-hidden py-4 flex" aria-hidden="true">
+            <div className="w-full bg-ink overflow-hidden py-8 md:py-12 flex rounded-2xl shadow-xl my-10 md:my-16" aria-hidden="true">
                 <div className="flex whitespace-nowrap animate-[ticker-scroll_28s_linear_infinite] hover:[animation-play-state:paused] w-max">
                     {[...tickerItems, ...tickerItems].map((item, i) => (
                         <span

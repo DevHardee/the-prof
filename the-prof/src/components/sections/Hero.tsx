@@ -30,12 +30,12 @@ export default function Hero({ heroImage }: HeroProps) {
     };
 
     return (
-        <section className="relative w-full overflow-hidden pt-24 pb-20 sm:pt-32 md:pt-40 lg:pb-32 bg-canvas">
+        <section className="relative w-full overflow-hidden pt-32 pb-24 sm:pt-40 md:pt-48 lg:pb-40 bg-canvas px-4 md:px-8">
             {/* Atmosphere */}
             <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
             <MaxWidthWrapper>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center relative z-10 w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-16 items-center relative z-10 w-full">
 
                     {/* Content */}
                     <motion.div
