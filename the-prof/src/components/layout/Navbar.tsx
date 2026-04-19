@@ -1,22 +1,13 @@
 import { motion } from 'framer-motion';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 
-function LogoMark({ className }: { className?: string }) {
+function Logo() {
     return (
-        <svg
-            className={className}
-            viewBox="0 0 80 80"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-        >
-            <circle cx="40" cy="40" r="40" fill="#000" />
-            <ellipse cx="30" cy="30" rx="16" ry="20" fill="#fff" />
-            <ellipse cx="30" cy="30" rx="8" ry="10" fill="#000" />
-            <rect x="44" y="26" width="7" height="20" rx="3.5" fill="#fff" />
-            <ellipse cx="47.5" cy="26" rx="3.5" ry="3.5" fill="#fff" />
-            <ellipse cx="47.5" cy="24" rx="2" ry="2" fill="#000" />
-        </svg>
+        <img
+            src="/assets/logos/The-Prof-Logo-02.jpg"
+            alt="Prof Logo"
+            className="w-full h-20"
+        />
     );
 }
 
@@ -36,12 +27,7 @@ export default function Navbar() {
         >
             <MaxWidthWrapper className="flex justify-between items-center py-4">
                 <div className="flex items-center gap-3">
-                    <LogoMark className="w-10 h-10" />
-                    <div className="flex flex-col">
-                        <span className="font-display text-sm leading-none uppercase text-ink">The</span>
-                        <span className="font-display font-bold text-xl leading-none uppercase text-ink">Prof</span>
-                        <span className="font-display text-[10px] text-muted tracking-wide mt-0.5 uppercase">Charge your brain</span>
-                    </div>
+                    <Logo />
                 </div>
 
                 <div className="flex items-center justify-end gap-5 md:gap-8 flex-wrap">

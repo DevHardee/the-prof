@@ -89,15 +89,7 @@ export default function Hero({ heroImage }: HeroProps) {
                         transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="relative w-full max-w-[500px] mx-auto lg:mx-0 lg:ml-auto"
                     >
-                        <div className="aspect-[3/4] w-full rounded-t-full rounded-b-3xl bg-ink overflow-hidden relative">
-                            {heroImage ? (
-                                <img src={heroImage} alt="The Prof" className="w-full h-full object-cover" />
-                            ) : (
-                                <div className="w-full h-full flex items-center justify-center">
-                                    <span className="font-display font-bold text-canvas/20 uppercase tracking-widest">Visual Placeholder</span>
-                                </div>
-                            )}
-                        </div>
+                        <img src="/assets/brand-elements/Brand ELements-02.png" alt="The Prof" className="w-full h-full object-cover" />
 
                         {/* Floating elements */}
                         <motion.span
