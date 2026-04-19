@@ -13,7 +13,9 @@ const posters = [
 
 export default function Posters() {
     return (
-        <section className="bg-canvas py-20! relative z-10 w-full overflow-hidden">
+        <section
+            id="resources"
+            className="bg-canvas py-20! relative z-10 w-full overflow-hidden">
             {/* Background elements */}
             <div className="absolute -top-40 -right-40 w-96 h-96 bg-orange/10 rounded-full blur-[100px] pointer-events-none" />
             <div className="absolute top-1/2 -left-40 w-96 h-96 bg-blue/10 rounded-full blur-[100px] pointer-events-none" />

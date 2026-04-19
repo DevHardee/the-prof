@@ -60,7 +60,9 @@ export default function Topics() {
     };
 
     return (
-        <section className="bg-white py-20! px-6 relative z-10 w-full overflow-hidden">
+        <section
+            id="topics"
+            className="bg-white py-20! px-6 relative z-10 w-full overflow-hidden">
             <div className="absolute top-0 right-0 w-full h-[600px] opacity-[0.02] pointer-events-none">
                 <img src="/assets/brand-elements/Brand ELements-24.png" alt="" className="w-full h-full object-cover" />
             </div>

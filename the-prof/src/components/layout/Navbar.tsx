@@ -2,27 +2,69 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import MaxWidthWrapper from '../MaxWidthWrapper';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function Logo() {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handleLogoClick = () => {
+        if (location.pathname !== '/') {
+            navigate('/');
+            setTimeout(() => {
+                const el = document.getElementById('hero');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        } else {
+            const el = document.getElementById('hero');
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    };
+
     return (
         <img
             src="/assets/logos/The Prof Logo-01.jpg"
             alt="Prof Logo"
-            className="w-[120px] h-auto md:w-[250px] rounded-lg shadow-sm"
+            onClick={handleLogoClick}
+            className="w-[120px] h-auto md:w-[250px] rounded-lg shadow-sm cursor-pointer"
         />
     );
 }
 
 const navLinks = [
-    { label: 'About' },
-    { label: 'Topics' },
-    { label: 'Community' },
+    { label: 'About', target: 'about' },
+    { label: 'Topics', target: 'topics' },
+    { label: 'Resources', target: 'resources' },
 ] as const;
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const toggleMenu = () => setIsOpen(!isOpen);
+
+    const handleNavigate = (target: string) => {
+        setIsOpen(false);
+        if (location.pathname !== '/') {
+            navigate('/');
+            setTimeout(() => {
+                const element = document.getElementById(target);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
+        } else {
+            const element = document.getElementById(target);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
 
     return (
         <motion.nav
@@ -39,11 +81,15 @@ export default function Navbar() {
                     {navLinks.map((link, idx) => (
                         <motion.a
                             key={link.label}
-                            href="#"
+                            href={`#${link.target}`}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                handleNavigate(link.target);
+                            }}
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 * (idx + 1), duration: 0.5, ease: 'easeOut' }}
-                            className="font-display font-semibold text-xs md:text-sm uppercase tracking-widest text-white hover:text-orange transition-colors"
+                            className="font-display font-semibold text-xs md:text-sm uppercase tracking-widest text-white hover:text-orange transition-colors cursor-pointer"
                         >
                             {link.label}
                         </motion.a>
@@ -83,9 +129,12 @@ export default function Navbar() {
                             {navLinks.map((link) => (
                                 <a
                                     key={link.label}
-                                    href="#"
-                                    onClick={() => setIsOpen(false)}
-                                    className="font-display font-semibold text-lg uppercase tracking-widest text-white hover:text-orange transition-colors w-full text-center py-2"
+                                    href={`#${link.target}`}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleNavigate(link.target);
+                                    }}
+                                    className="font-display font-semibold text-lg uppercase tracking-widest text-white hover:text-orange transition-colors w-full text-center py-2 cursor-pointer"
                                 >
                                     {link.label}
                                 </a>
