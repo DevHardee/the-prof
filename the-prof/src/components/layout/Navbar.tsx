@@ -6,7 +6,7 @@ import MaxWidthWrapper from '../MaxWidthWrapper';
 function Logo() {
     return (
         <img
-            src="/assets/logos/The-Prof-Logo-01.jpg"
+            src="/assets/logos/The Prof Logo-01.jpg"
             alt="Prof Logo"
             className="w-[120px] h-auto md:w-[250px] rounded-lg shadow-sm"
         />

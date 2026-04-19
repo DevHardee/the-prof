@@ -99,21 +99,21 @@ export default function Topics() {
                             <motion.div
                                 key={t.title}
                                 variants={isFeatured ? featuredAnim : itemAnim}
-                                className={`group flex flex-col items-start p-10! md:p-14! rounded-3xl shadow-lg border border-border-solid transition-all duration-500 ease-brand hover:-translate-y-2 ${isFeatured
+                                className={`group flex flex-col items-start w-full p-6! md:p-12! rounded-3xl shadow-lg border border-border-solid transition-all duration-500 ease-brand hover:-translate-y-2 overflow-hidden break-words ${isFeatured
                                     ? 'md:col-span-2 bg-blue text-white'
                                     : 'bg-white hover:bg-canvas text-ink'
                                     }`}
                             >
                                 <p
-                                    className={`font-display font-semibold uppercase tracking-[0.15em] text-sm md:text-base mb-6 ${isFeatured ? 'text-white/55' : 'text-orange'
+                                    className={`font-display w-full font-semibold uppercase tracking-[0.15em] text-xs sm:text-sm md:text-base mb-6 ${isFeatured ? 'text-white/55' : 'text-orange'
                                         }`}
                                 >
                                     {t.tag}
                                 </p>
-                                <h3 className={`font-display font-extrabold uppercase text-3xl md:text-4xl md:text-5xl mb-6! ${isFeatured ? 'text-white' : 'text-ink'}`}>
+                                <h3 className={`font-display w-full break-words font-extrabold uppercase text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-6! ${isFeatured ? 'text-white' : 'text-ink'}`}>
                                     {t.title}
                                 </h3>
-                                <p className={`font-body text-base md:text-lg max-w-2xl mb-16! ${isFeatured ? 'text-white/65' : 'text-muted'}`}>
+                                <p className={`font-body w-full break-words text-sm sm:text-base md:text-lg max-w-2xl mb-12! md:mb-16! ${isFeatured ? 'text-white/65' : 'text-muted'}`}>
                                     {t.desc}
                                 </p>
 
