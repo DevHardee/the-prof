@@ -49,7 +49,7 @@ export default function Hero() {
 
                         <motion.h1
                             variants={item}
-                            className="font-display font-black uppercase text-[4rem] md:text-[5rem] lg:text-[7.5rem] leading-[0.85] text-ink"
+                            className="font-display font-black uppercase text-[4rem] md:text-[5rem] lg:text-[6.5rem] leading-[0.85] text-ink"
                         >
                             Think<br />
                             <span className="text-orange">Better</span><br />
