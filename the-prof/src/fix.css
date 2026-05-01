@@ -1,9 +1,0 @@
-html,
-body,
-#root {
-    background-color: red !important;
-    width: 100vw !important;
-    min-width: 100vw !important;
-    margin: 0 !important;
-    display: block !important;
-}
