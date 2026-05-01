@@ -12,29 +12,29 @@ interface Topic {
 const topics: Topic[] = [
     {
         tag: 'Featured',
-        title: 'Think Clearly',
-        desc: "You don't need more random information — you need to understand what actually matters. Most people don't lack effort, they lack clarity.",
+        title: 'Think clearly',
+        desc: 'Frameworks that turn complex ideas into simple, actionable understanding.',
         href: '#',
         featured: true,
     },
     {
         tag: 'Vision',
-        title: 'See Opportunities',
-        desc: "Opportunities are everywhere but only visible to a trained mind. If you can't see it, you can't take it.",
+        title: 'See opportunities',
+        desc: 'Notice openings in careers, business, and tech early.',
         href: '#',
         featured: false,
     },
     {
         tag: 'Execution',
-        title: 'Move With Intention',
-        desc: 'Random actions lead to random results. When your thinking is clear, your moves become precise and effective.',
+        title: 'Move with intention',
+        desc: 'Turn clear thinking into precise, effective action.',
         href: '#',
         featured: false,
     },
     {
         tag: 'Value',
-        title: 'Build Real Value',
-        desc: "It's not about knowing more — it's about knowing what works. Focus on skills that translate into real-life results.",
+        title: 'Build real value',
+        desc: 'Skills that translate directly into real-world results.',
         href: '#',
         featured: false,
     },
@@ -73,19 +73,28 @@ export default function Topics() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="font-display font-semibold uppercase tracking-[0.15em] text-muted text-sm md:text-xl mb-4"
+                    className="font-display font-semibold uppercase tracking-[0.15em] text-blue text-sm md:text-base mb-4"
                 >
-                    Core Topics
+                    Explore The HQ
                 </motion.p>
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                    className="font-display font-black uppercase text-4xl md:text-5xl md:text-6xl text-ink mb-16!"
+                    className="font-display font-black uppercase text-4xl md:text-5xl lg:text-6xl text-ink mb-4!"
                 >
-                    You Need Direction.
+                    Four pillars. One outcome<br />— clarity in motion.
                 </motion.h2>
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+                    className="font-body text-muted text-lg max-w-2xl mb-16!"
+                >
+                    Every section of the HQ feeds one mission: help you think, see, decide, and move better.
+                </motion.p>
 
                 <motion.div
                     variants={container}

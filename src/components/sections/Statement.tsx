@@ -1,62 +1,101 @@
 import { motion } from 'framer-motion';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 
-interface MetaItem {
-    label: string;
-    value: string;
-}
-
-const metaItems: MetaItem[] = [
-    { label: 'The Truth', value: '1 Idea' },
-    { label: 'The Problem', value: '1 Decision' },
-    { label: 'The Shift', value: '1 Shift' },
-    { label: 'The Result', value: 'Clarity Creates Confidence' },
+const profCards = [
+    {
+        label: 'Vision',
+        desc: 'A generation that thinks independently, sees opportunities early, and moves with intention in work, business, and life.',
+    },
+    {
+        label: 'Mission',
+        desc: 'Turn scattered information into clear, useful insight that helps people make sharper decisions and create real value.',
+    },
+    {
+        label: 'Brand values',
+        desc: 'Clarity over noise. Depth over surface. Direction over drift. Access over gatekeeping. Growth over motivation.',
+    },
+    {
+        label: 'Brand message',
+        desc: 'One idea. One decision. One shift. Clarity creates confidence, and confidence changes movement.',
+    },
 ];
 
 export default function Statement() {
     return (
-        <section className="bg-ink py-20! relative overflow-hidden text-center z-10 w-full">
+        <section className="bg-ink py-24! relative overflow-hidden z-10 w-full">
             <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-blue/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.10] mix-blend-screen pointer-events-none">
                 <img src="/assets/brand-elements/Brand ELements-23.png" alt="" className="w-full h-full object-cover" />
             </div>
 
             <MaxWidthWrapper>
-                <div className="relative z-10 w-full max-w-6xl mx-auto">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="font-display font-black uppercase text-center text-5xl md:text-6xl md:text-8xl text-canvas leading-[0.9] mb-20!"
-                    >
-                        KNOWLEDGE IS <span className="bg-orange text-white px-3 pb-1 inline-block">FREE.</span>
-                        <br />
-                        GROWTH IS EARNED
-                    </motion.h2>
+                <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-12! lg:gap-20! items-start">
+                    {/* Left */}
+                    <div>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6, ease: "easeOut" }}
+                            className="font-display font-semibold uppercase tracking-[0.15em] text-blue text-sm mb-6"
+                        >
+                            This Is The Prof
+                        </motion.p>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                            className="font-display font-black uppercase text-4xl md:text-5xl lg:text-6xl text-canvas leading-[0.9] mb-8!"
+                        >
+                            Not a school. Not a course.{' '}
+                            <span className="text-blue">A Standard.</span>
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                            className="font-body text-canvas/60 text-base md:text-lg leading-relaxed max-w-md mb-4!"
+                        >
+                            TheProfHQ is a knowledge headquarters for people who want to think bigger, build smarter, and grow faster. A place where minds are sharpened, perspectives are challenged, and clarity is unlocked.
+                        </motion.p>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+                            className="font-body text-canvas/60 text-base md:text-lg leading-relaxed max-w-md"
+                        >
+                            Built on four pillars — vision, mission, values, message — the HQ exists to remove confusion and replace it with direction.
+                        </motion.p>
+                    </div>
 
+                    {/* Right — 2x2 grid of cards */}
                     <motion.div
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, margin: "-50px" }}
-                        variants={{ show: { transition: { staggerChildren: 0.15 } } }}
-                        className="flex flex-col md:flex-row justify-between w-full gap-8 md:gap-16 lg:gap-24"
+                        variants={{ show: { transition: { staggerChildren: 0.12 } } }}
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-6!"
                     >
-                        {metaItems.map((item) => (
+                        {profCards.map((card) => (
                             <motion.div
-                                key={item.label}
+                                key={card.label}
                                 variants={{
                                     hidden: { opacity: 0, y: 30 },
-                                    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+                                    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
                                 }}
-                                className="flex flex-col flex-1 w-full text-center md:text-left"
+                                className="bg-canvas/5 border border-canvas/10 rounded-2xl p-6! flex flex-col gap-3 hover:bg-canvas/10 transition-colors duration-300"
                             >
-                                <div className="w-full h-[1px] bg-canvas/25 mb-6" />
-                                <p className="font-display font-semibold uppercase tracking-[0.15em] text-canvas/50 text-[10px] sm:text-xs mb-2">
-                                    {item.label}
-                                </p>
-                                <p className="font-display font-bold uppercase tracking-wider text-canvas text-base sm:text-xl lg:text-2xl">
-                                    {item.value}
+                                <div className="w-8 h-8 rounded-lg bg-blue/20 flex items-center justify-center text-blue text-lg flex-shrink-0">
+                                    ✳
+                                </div>
+                                <h3 className="font-display font-bold text-canvas text-lg uppercase tracking-wide">
+                                    {card.label}
+                                </h3>
+                                <p className="font-body text-canvas/55 text-sm leading-relaxed">
+                                    {card.desc}
                                 </p>
                             </motion.div>
                         ))}

@@ -29,6 +29,12 @@ export default function Hero() {
         transition: { duration: 3.5, repeat: Infinity, repeatType: "mirror" as const, ease: "easeInOut" as const }
     };
 
+    const miniCards = [
+        { label: 'STANDARD', value: 'A standard for thinking, not a school.' },
+        { label: 'HEADQUARTERS', value: 'A command center for clarity and growth.' },
+        { label: 'MOVEMENT', value: 'A generation that refuses to stay average.' },
+    ];
+
     return (
         <>
             <SplashScreen onComplete={() => setSplashDone(true)} />
@@ -49,41 +55,53 @@ export default function Hero() {
                             animate="show"
                             className="flex flex-col"
                         >
-                            {/* <motion.p
-                            variants={item}
-                            className="font-display font-semibold uppercase tracking-[0.15em] text-muted text-sm mb-6"
-                        >
-                            Charge Your Brain
-                        </motion.p> */}
+                            {/* Eyebrow tag */}
+                            <motion.div variants={item} className="mb-6 inline-flex items-center gap-2 self-start">
+                                <span className="font-display font-semibold uppercase tracking-[0.15em] text-blue text-xs border border-blue/30 rounded-full px-3 py-1">
+                                    ✳ A Standard. Not A School.
+                                </span>
+                            </motion.div>
 
                             <motion.h1
                                 variants={item}
-                                className="font-display font-black uppercase text-[4rem] md:text-[5rem] lg:text-[6.5rem] leading-[0.85] text-ink"
+                                className="font-display font-black uppercase text-[3rem] md:text-[4.5rem] lg:text-[5.5rem] leading-[0.88] text-ink"
                             >
-                                Think<br />
-                                <span className="text-orange">Better</span><br />
-                                See Clearly<br />
-                                Move<br />
-                                Differently
+                                You're not stuck.<br />
+                                <span className="text-blue">You're just not clear.</span>
                             </motion.h1>
 
                             <motion.p
                                 variants={item}
                                 className="font-body text-muted text-lg md:text-xl max-w-md mt-10! mb-8! leading-relaxed"
                             >
-                                Most people don't lack effort — they lack clarity. The Prof is here for those who seek genuine knowledge and are ready to take action to grow.
+                                The difference between where you are and where you want to be is knowledge — the right knowledge, in the right order. TheProfHQ is the headquarters built to deliver it.
                             </motion.p>
 
                             <motion.div
                                 variants={item}
-                                className="flex flex-col md:flex-row gap-6! mb-6!"
+                                className="flex flex-col md:flex-row gap-6! mb-10!"
                             >
-                                <a href="#" className="bg-orange text-white font-display font-bold uppercase tracking-wider px-8! py-4! rounded-full hover:bg-ink transition-colors duration-300 ease-brand text-center">
-                                    Join Us Now
+                                <a href="#" className="bg-blue text-white font-display font-bold uppercase tracking-wider px-8! py-4! rounded-full hover:bg-ink transition-colors duration-300 ease-brand text-center flex items-center justify-center gap-2">
+                                    Charge Your Brain ⚡
                                 </a>
-                                <a href="#" className="bg-blue text-white border border-ink/20 font-display font-bold uppercase tracking-wider px-8! py-4! rounded-full hover:bg-ink hover:text-white transition-[color,background-color,border-color] duration-300 ease-brand text-center">
-                                    Explore Topics
+                                <a href="#" className="bg-transparent text-ink border border-ink/30 font-display font-bold uppercase tracking-wider px-8! py-4! rounded-full hover:bg-ink hover:text-white transition-[color,background-color,border-color] duration-300 ease-brand text-center">
+                                    Enter The HQ →
                                 </a>
+                            </motion.div>
+
+                            {/* Mini cards */}
+                            <motion.div
+                                variants={item}
+                                className="grid grid-cols-1 sm:grid-cols-3 gap-3! mt-2!"
+                            >
+                                {miniCards.map((card) => (
+                                    <div key={card.label} className="border border-ink/15 rounded-xl p-4! bg-canvas/50">
+                                        <p className="font-display font-semibold uppercase tracking-[0.12em] text-muted text-[10px] mb-1">
+                                            {card.label}
+                                        </p>
+                                        <p className="font-body text-ink text-sm leading-snug">{card.value}</p>
+                                    </div>
+                                ))}
                             </motion.div>
                         </motion.div>
 
