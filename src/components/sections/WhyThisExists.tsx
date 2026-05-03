@@ -12,7 +12,7 @@ export default function WhyThisExists() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue! text-sm! mb-8!"
+                    className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue-mid! text-sm! mb-8!"
                 >
                     Why This Exists
                 </motion.p>

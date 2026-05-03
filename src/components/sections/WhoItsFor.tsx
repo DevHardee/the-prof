@@ -23,7 +23,7 @@ export default function WhoItsFor() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.6, ease: "easeOut" }}
-                            className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue! text-sm! mb-6!"
+                            className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue-mid! text-sm! mb-6!"
                         >
                             Who It's For
                         </motion.p>
@@ -63,7 +63,7 @@ export default function WhoItsFor() {
                                     hidden: { opacity: 0, x: 20 },
                                     show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
                                 }}
-                                className="flex! items-center! gap-4! bg-white! border! border-ink/10! rounded-xl! p-5! hover:border-blue/30! transition-colors! duration-300!"
+                                className="flex! items-center! gap-4! bg-white! border! border-ink/10! rounded-xl! p-5! hover:border-blue! hover:-translate-y-1! transition-all! duration-300! ease-brand!"
                             >
                                 <div className="flex-shrink-0! w-6! h-6! rounded-full! bg-blue/20! flex! items-center! justify-center!">
                                     <Check size={14} className="text-blue" />

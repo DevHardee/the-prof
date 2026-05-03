@@ -30,7 +30,7 @@ function Logo() {
             src="/assets/logos/The Prof Logo-01.jpg"
             alt="Prof Logo"
             onClick={handleLogoClick}
-            className="w-[120px] h-auto md:w-[250px] rounded-lg shadow-sm cursor-pointer"
+            className="w-[150px] h-auto md:w-[200px] rounded-lg shadow-sm cursor-pointer"
         />
     );
 }
@@ -82,7 +82,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Center: Desktop Menu */}
-                <div className="hidden! md:flex! flex-1! justify-center! gap-8!">
+                <div className="hidden! lg:flex! flex-1! justify-center! gap-8!">
                     {navLinks.map((link, idx) => (
                         <motion.a
                             key={link.label}
@@ -102,13 +102,13 @@ export default function Navbar() {
                 </div>
 
                 {/* Right: CTA Buttons */}
-                <div className="hidden! md:flex! flex-1! justify-end! items-center! gap-4!">
+                <div className="hidden! lg:flex! flex-1! justify-end! items-center! gap-4!">
                     <motion.a
                         href="#"
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4, duration: 0.5, ease: 'easeOut' }}
-                        className="bg-transparent! text-canvas! border! border-canvas/20! hover:bg-canvas! hover:text-ink! font-display font-bold! uppercase! tracking-wider! px-5! py-2.5! rounded-full! transition-all! duration-300! text-xs! md:text-sm!"
+                        className="bg-transparent! text-canvas! border! border-orange! hover:text-orange! font-display font-bold! uppercase! tracking-wider! px-5! py-2.5! rounded-full! transition-all! duration-300! text-xs! md:text-sm!"
                     >
                         Enter the HQ
                     </motion.a>
@@ -126,7 +126,7 @@ export default function Navbar() {
 
                 {/* Mobile Menu Toggle Button */}
                 <button
-                    className="md:hidden! text-white! hover:text-orange! transition-colors! p-2! z-50!"
+                    className="lg:hidden! text-white! hover:text-orange! transition-colors! p-2! z-50!"
                     onClick={toggleMenu}
                     aria-label="Toggle Menu"
                 >
@@ -142,7 +142,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="md:hidden! bg-ink! border-b! border-border-solid overflow-hidden!"
+                        className="lg:hidden! bg-ink! border-b! border-border-solid overflow-hidden!"
                     >
                         <div className="flex! flex-col! items-center! py-8! px-6! gap-6!">
                             {navLinks.map((link) => (
@@ -163,7 +163,7 @@ export default function Navbar() {
                                 <a
                                     href="#"
                                     onClick={() => setIsOpen(false)}
-                                    className="bg-transparent! text-canvas! border! border-canvas/20! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-full! hover:bg-canvas! hover:text-ink! transition-all! duration-300! w-full! text-center!"
+                                    className="bg-transparent! text-canvas! border! border-orange! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-full! hover:text-orange! transition-all! duration-300! w-full! text-center!"
                                 >
                                     Enter the HQ
                                 </a>

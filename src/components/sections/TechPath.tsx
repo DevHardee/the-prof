@@ -63,7 +63,7 @@ export default function TechPath() {
                         className="inline-flex! items-center! gap-2! bg-blue/10! border! border-blue/20! rounded-full! px-4! py-1.5! mb-6!"
                     >
                         <Sparkles className="w-4 h-4 text-blue" />
-                        <span className="font-display font-bold! uppercase! tracking-widest! text-blue! text-[10px]!">
+                        <span className="font-display font-bold! uppercase! tracking-widest! text-blue-mid! text-sm!">
                             TechPath
                         </span>
                     </motion.div>
@@ -97,9 +97,19 @@ export default function TechPath() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="lg:col-span-7! bg-white/5! backdrop-blur-sm! border! border-white/10! rounded-3xl! p-8! md:p-12!"
+                        className="lg:col-span-7! relative! rounded-3xl!"
                     >
-                        <div className="space-y-8!">
+                        {/* Animated glow border */}
+                        <motion.div
+                            className="absolute! -inset-[2px]! bg-gradient-to-r! from-blue! via-blue/50! to-blue! rounded-3xl! opacity-70!"
+                            animate={{
+                                opacity: [0.4, 0.8, 0.4],
+                                filter: ["blur(4px)", "blur(12px)", "blur(4px)"]
+                            }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        />
+
+                        <div className="relative! h-full! bg-ink! backdrop-blur-xl! border! border-white/10! rounded-3xl! p-8! md:p-12! space-y-8!">
                             {/* Search */}
                             <div>
                                 <label className="block! font-display font-semibold! text-canvas/80! text-sm! md:text-base! mb-4!">
@@ -133,7 +143,7 @@ export default function TechPath() {
                                     Who should we personalise this for?
                                 </label>
                                 <div className="relative!">
-                                    <select className="w-full! appearance-none! bg-white/5! border! border-white/10! rounded-xl! py-4! px-4! text-canvas! focus:outline-none! focus:border-blue/50! transition-all!">
+                                    <select className="w-full! appearance-none! bg-ink/95! border! border-white/10! rounded-xl! py-4! px-4! text-canvas! focus:outline-none! focus:border-blue/50! transition-all!">
                                         <option>Scholar</option>
                                         <option>Professional</option>
                                         <option>Entrepreneur</option>
@@ -143,7 +153,7 @@ export default function TechPath() {
                             </div>
 
                             {/* CTA */}
-                            <button className="bg-blue! hover:bg-blue-mid! text-white! font-display font-bold! uppercase! tracking-widest! px-10! py-5! rounded-xl! transition-all! duration-300! flex! items-center! gap-3! w-full! md:w-auto! justify-center!">
+                            <button className="bg-blue-mid! hover:bg-blue! text-white! font-display font-bold! uppercase! tracking-widest! px-10! py-5! rounded-xl! transition-all! duration-300! flex! items-center! gap-3! w-full! md:w-auto! justify-center!">
                                 Reveal my path
                                 <Zap className="fill-current!" size={18} />
                             </button>

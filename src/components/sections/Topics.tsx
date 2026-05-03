@@ -64,7 +64,7 @@ export default function Topics() {
             id="topics"
             className="bg-white! py-20! px-6! relative! z-10! w-full! overflow-hidden!">
             <div className="absolute! top-0! right-0! w-full! h-[600px] opacity-[0.02] pointer-events-none">
-                <img src="/assets/brand-elements/Brand ELements-24.png" alt="" className="w-full! h-full! object-cover!" />
+                <img src="/assets/brand-elements/Brand ELements-24.png" alt="background image" className="w-full! h-full! object-cover!" />
             </div>
 
             <MaxWidthWrapper className="relative! z-10!">
@@ -73,7 +73,7 @@ export default function Topics() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue! text-sm! md:text-base! mb-4!"
+                    className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue-mid! text-sm! md:text-base! mb-4!"
                 >
                     Explore The HQ
                 </motion.p>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import MaxWidthWrapper from '../MaxWidthWrapper';
+import { Zap } from 'lucide-react';
 
 export default function JoinCTA() {
     return (
@@ -17,7 +18,7 @@ export default function JoinCTA() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue! text-sm! mb-8!"
+                        className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue-mid! text-sm! mb-8!"
                     >
                         The Next Move
                     </motion.p>
@@ -54,7 +55,8 @@ export default function JoinCTA() {
                             href="#"
                             className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-10! py-4! rounded-full! hover:bg-canvas! hover:text-ink! transition-all! duration-300! ease-brand flex! items-center! gap-2!"
                         >
-                            Charge Your Brain ⚡
+                            Charge Your Brain
+                            <Zap size={14} className="fill-current" />
                         </a>
                         <a
                             href="#"

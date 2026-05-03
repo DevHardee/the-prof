@@ -41,7 +41,7 @@ export default function Voices() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue! text-sm! mb-4!"
+                        className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue-mid! text-sm! mb-4!"
                     >
                         Voices From The HQ
                     </motion.p>
@@ -67,7 +67,7 @@ export default function Voices() {
                         <motion.div
                             key={t.author}
                             variants={item}
-                            className="bg-white! border! border-ink/10! rounded-2xl! p-8! flex! flex-col! gap-6! hover:border-blue/20! hover:-translate-y-1! transition-all! duration-300!"
+                            className="bg-white! border! border-ink/10! rounded-2xl! p-8! flex! flex-col! gap-6! hover:border-blue! hover:-translate-y-1! transition-all! duration-300!"
                         >
                             <span className="text-blue! text-3xl! font-display font-black! leading-none!">"</span>
                             <p className="font-body text-ink! text-base! leading-relaxed! flex-1!">

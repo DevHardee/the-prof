@@ -22,7 +22,7 @@ export default function TheMovement() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.6, ease: "easeOut" }}
-                            className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue! text-sm! mb-6!"
+                            className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue-mid! text-sm! mb-6!"
                         >
                             The Movement
                         </motion.p>

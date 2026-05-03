@@ -19,16 +19,6 @@ export default function Hero() {
         show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
     };
 
-    // const floatAnim = {
-    //     y: [-8, 8],
-    //     transition: { duration: 3, repeat: Infinity, repeatType: "mirror" as const, ease: "easeInOut" as const }
-    // };
-
-    // const floatAnimDelayed = {
-    //     y: [8, -8],
-    //     transition: { duration: 3.5, repeat: Infinity, repeatType: "mirror" as const, ease: "easeInOut" as const }
-    // };
-
     const miniCards = [
         { label: 'STANDARD', value: 'A standard for thinking, not a school.' },
         { label: 'HEADQUARTERS', value: 'A command center for clarity and growth.' },
@@ -41,7 +31,7 @@ export default function Hero() {
 
             <section
                 id='hero'
-                className="relative! w-full! overflow-hidden! pt-32! pb-24! sm:pt-40! md:pt-48! lg:pb-40! bg-canvas! px-4! md:px-8!">
+                className="relative! w-full! overflow-hidden! pt-10! md:pt-14! pb-14! mb:pb-20! bg-canvas! px-4! md:px-8!">
                 {/* Atmosphere */}
                 <div className="absolute! top-0! right-0! w-[800px] h-[800px] bg-blue/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
 
@@ -57,7 +47,7 @@ export default function Hero() {
                         >
                             {/* Eyebrow tag */}
                             <motion.div variants={item} className="mb-6! inline-flex! items-center! gap-2! self-start!">
-                                <span className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue! border! border-blue/30 rounded-full! px-3! py-1!">
+                                <span className="font-display text-xs md:text-base font-semibold! uppercase! tracking-[0.15em]! text-blue-mid! border! border-blue/30 rounded-full! px-3! py-1!">
                                     ✳ A Standard. Not A School.
                                 </span>
                             </motion.div>
@@ -84,7 +74,7 @@ export default function Hero() {
                                 <a href="#" className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-full! hover:bg-ink! transition-colors! duration-300! ease-brand text-center! flex! items-center! justify-center! gap-2!">
                                     Charge Your Brain ⚡
                                 </a>
-                                <a href="#" className="bg-transparent! text-ink! border! border-ink/30 font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-full! hover:bg-ink! hover:text-white! transition-all! duration-300! ease-brand text-center!">
+                                <a href="#" className="bg-orange! text-canvas! border! border-orange/30 font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-full! hover:bg-ink! hover:text-white! transition-all! duration-300! ease-brand text-center!">
                                     Enter The HQ →
                                 </a>
                             </motion.div>
@@ -92,14 +82,14 @@ export default function Hero() {
                             {/* Mini cards */}
                             <motion.div
                                 variants={item}
-                                className="grid! grid-cols-1! sm:grid-cols-3! gap-3! mt-2!"
+                                className="grid! grid-cols-1! md:grid-cols-3! gap-3! mt-8!"
                             >
                                 {miniCards.map((card) => (
-                                    <div key={card.label} className="border! border-ink/15! rounded-xl! p-4! bg-white/50!">
-                                        <p className="font-display font-semibold! uppercase! tracking-[0.12em]! text-muted! text-[10px]! mb-1!">
+                                    <div key={card.label} className="border! border-ink/15! hover:border-orange! hover:-translate-y-7 transition-all! duration-300! ease-brand rounded-xl! p-4! bg-white/50!">
+                                        <p className="font-display font-semibold! uppercase! tracking-[0.12em]! text-ink! text-[10px]! md:text-xs! mb-1!">
                                             {card.label}
                                         </p>
-                                        <p className="font-body text-ink! text-sm! leading-snug!">{card.value}</p>
+                                        <p className="font-body text-ink! text-sm! md:text-base! leading-snug!">{card.value}</p>
                                     </div>
                                 ))}
                             </motion.div>
