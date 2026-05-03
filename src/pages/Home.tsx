@@ -11,6 +11,7 @@ import WhyThisExists from '../components/sections/WhyThisExists';
 import Voices from '../components/sections/Voices';
 import TheMovement from '../components/sections/TheMovement';
 import JoinCTA from '../components/sections/JoinCTA';
+import TechPath from '../components/sections/TechPath';
 
 export default function Home() {
     return (
@@ -24,6 +25,7 @@ export default function Home() {
                 <Pillars />
                 {/* This Is The Prof: "Not a school. Not a course. A Standard." */}
                 <Statement />
+                <TechPath />
                 {/* What You Get: "What happens when you plug in." — 6 shifts */}
                 <Posters />
                 {/* Who It's For: "For everyone ready to move forward." */}

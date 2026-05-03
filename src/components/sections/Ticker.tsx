@@ -25,12 +25,12 @@ const tickerItems: TickerItem[] = [
 export default function Ticker() {
     return (
         <MaxWidthWrapper>
-            <div className="w-full bg-ink overflow-hidden py-4! flex rounded-2xl shadow-xl my-8!" aria-hidden="true">
-                <div className="flex whitespace-nowrap animate-[ticker-scroll_28s_linear_infinite] hover:[animation-play-state:paused] w-max">
+            <div className="w-full! bg-ink! overflow-hidden! py-4! flex! rounded-2xl! shadow-xl! my-8!" aria-hidden="true">
+                <div className="flex! whitespace-nowrap! animate-[ticker-scroll_28s_linear_infinite] hover:[animation-play-state:paused] w-max!">
                     {[...tickerItems, ...tickerItems].map((item, i) => (
                         <span
                             key={i}
-                            className={`font-display font-bold uppercase tracking-[0.18em] text-xs px-4 flex-shrink-0 ${item.accent === 'orange' ? 'text-orange' : item.accent === 'blue' ? 'text-blue-mid' : 'text-canvas'
+                            className={`font-display font-bold! uppercase! tracking-[0.18em]! text-xs! px-4! flex-shrink-0! ${item.accent === 'orange' ? 'text-orange!' : item.accent === 'blue' ? 'text-blue-mid!' : 'text-canvas!'
                                 }`}
                         >
                             {item.text}

@@ -31,17 +31,17 @@ export default function Voices() {
     };
 
     return (
-        <section className="bg-canvas py-24! relative z-10 w-full overflow-hidden">
-            <div className="absolute -top-40 right-0 w-[600px] h-[600px] bg-blue/5 rounded-full blur-3xl pointer-events-none" />
+        <section id="voices" className="bg-canvas! py-24! relative! z-10! w-full! overflow-hidden!">
+            <div className="absolute! -top-40! right-0! w-[600px] h-[600px] bg-blue/5 rounded-full blur-3xl pointer-events-none" />
 
-            <MaxWidthWrapper className="relative z-10">
-                <div className="flex flex-col items-center text-center mb-16!">
+            <MaxWidthWrapper className="relative! z-10!">
+                <div className="flex! flex-col! items-center! text-center! mb-16!">
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="font-display font-semibold uppercase tracking-[0.15em] text-blue text-sm mb-4"
+                        className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue! text-sm! mb-4!"
                     >
                         Voices From The HQ
                     </motion.p>
@@ -50,7 +50,7 @@ export default function Voices() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                        className="font-display font-black uppercase text-4xl md:text-5xl lg:text-6xl text-ink max-w-2xl"
+                        className="font-display font-black! uppercase! text-4xl! md:text-5xl! lg:text-6xl! text-ink! max-w-2xl!"
                     >
                         Proof that clarity changes movement.
                     </motion.h2>
@@ -61,19 +61,19 @@ export default function Voices() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-6! w-full"
+                    className="grid! grid-cols-1! md:grid-cols-3! gap-6! w-full!"
                 >
                     {testimonials.map((t) => (
                         <motion.div
                             key={t.author}
                             variants={item}
-                            className="bg-canvas border border-ink/10 rounded-2xl p-8! flex flex-col gap-6 hover:border-blue/20 hover:-translate-y-1 transition-all duration-300"
+                            className="bg-white! border! border-ink/10! rounded-2xl! p-8! flex! flex-col! gap-6! hover:border-blue/20! hover:-translate-y-1! transition-all! duration-300!"
                         >
-                            <span className="text-blue text-3xl font-display font-black leading-none">"</span>
-                            <p className="font-body text-ink text-base leading-relaxed flex-1">
+                            <span className="text-blue! text-3xl! font-display font-black! leading-none!">"</span>
+                            <p className="font-body text-ink! text-base! leading-relaxed! flex-1!">
                                 {t.quote}
                             </p>
-                            <p className="font-display font-semibold uppercase tracking-[0.1em] text-muted text-xs">
+                            <p className="font-display font-semibold! uppercase! tracking-[0.1em]! text-muted! text-xs!">
                                 {t.author}
                             </p>
                         </motion.div>
