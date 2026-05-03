@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Zap } from 'lucide-react';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -30,15 +30,17 @@ function Logo() {
             src="/assets/logos/The Prof Logo-01.jpg"
             alt="Prof Logo"
             onClick={handleLogoClick}
-            className="w-[120px] h-auto md:w-[250px] rounded-lg shadow-sm cursor-pointer"
+            className="w-[150px] h-auto md:w-[200px] rounded-lg shadow-sm cursor-pointer"
         />
     );
 }
 
 const navLinks = [
-    { label: 'About', target: 'about' },
-    { label: 'Topics', target: 'topics' },
-    { label: 'Resources', target: 'resources' },
+    { label: 'The Truth', target: 'about' },
+    { label: 'The Prof', target: 'pillars' },
+    { label: 'TechPath', target: 'techpath' },
+    { label: 'Voices', target: 'voices' },
+    { label: 'Explore', target: 'topics' },
 ] as const;
 
 export default function Navbar() {
@@ -71,13 +73,16 @@ export default function Navbar() {
             initial={{ y: '-100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="sticky top-0 z-50 bg-black backdrop-blur-md border-b border-border-solid w-full"
+            className="sticky top-0 z-50 bg-ink! backdrop-blur-md border-b! border-border-solid w-full!"
         >
-            <MaxWidthWrapper className="flex justify-between items-center py-5 px-1! md:px-8">
-                <Logo />
+            <MaxWidthWrapper className="flex! justify-between! items-center! py-5! px-4! md:px-8!">
+                {/* Left: Logo */}
+                <div className="flex-1! flex! justify-start!">
+                    <Logo />
+                </div>
 
-                {/* Desktop Menu */}
-                <div className="hidden md:flex items-center justify-end gap-5 md:gap-8">
+                {/* Center: Desktop Menu */}
+                <div className="hidden! lg:flex! flex-1! justify-center! gap-8!">
                     {navLinks.map((link, idx) => (
                         <motion.a
                             key={link.label}
@@ -89,25 +94,39 @@ export default function Navbar() {
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 * (idx + 1), duration: 0.5, ease: 'easeOut' }}
-                            className="font-display font-semibold text-xs md:text-sm uppercase tracking-widest text-white hover:text-orange transition-colors cursor-pointer"
+                            className="font-display font-semibold text-xs! md:text-sm! uppercase! tracking-widest! text-canvas! hover:text-orange! transition-colors! cursor-pointer! whitespace-nowrap!"
                         >
                             {link.label}
                         </motion.a>
                     ))}
+                </div>
+
+                {/* Right: CTA Buttons */}
+                <div className="hidden! lg:flex! flex-1! justify-end! items-center! gap-4!">
                     <motion.a
                         href="#"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.4, duration: 0.5, ease: 'easeOut' }}
-                        className="bg-orange text-white hover:bg-black hover:text-orange font-display font-bold uppercase tracking-wider px-5 md:px-6! py-3! rounded-full hover:bg-ink transition-[background-color]"
+                        className="bg-transparent! text-canvas! border! border-orange! hover:text-orange! font-display font-bold! uppercase! tracking-wider! px-5! py-2.5! rounded-full! transition-all! duration-300! text-xs! md:text-sm!"
                     >
-                        Join Now
+                        Enter the HQ
+                    </motion.a>
+                    <motion.a
+                        href="#"
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5, duration: 0.5, ease: 'easeOut' }}
+                        className="bg-blue! text-white! hover:bg-white! hover:text-blue! font-display font-bold! uppercase! tracking-wider! px-5! py-2.5! rounded-full! transition-all! duration-300! text-xs! md:text-sm! flex! items-center! gap-2!"
+                    >
+                        Charge Your Brain
+                        <Zap size={14} className="fill-current" />
                     </motion.a>
                 </div>
 
                 {/* Mobile Menu Toggle Button */}
                 <button
-                    className="md:hidden text-white hover:text-orange transition-colors p-2 z-50"
+                    className="lg:hidden! text-white! hover:text-orange! transition-colors! p-2! z-50!"
                     onClick={toggleMenu}
                     aria-label="Toggle Menu"
                 >
@@ -123,9 +142,9 @@ export default function Navbar() {
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="md:hidden bg-black border-b border-border-solid overflow-hidden"
+                        className="lg:hidden! bg-ink! border-b! border-border-solid overflow-hidden!"
                     >
-                        <div className="flex flex-col items-center py-6 px-6 gap-6">
+                        <div className="flex! flex-col! items-center! py-8! px-6! gap-6!">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.label}
@@ -134,18 +153,29 @@ export default function Navbar() {
                                         e.preventDefault();
                                         handleNavigate(link.target);
                                     }}
-                                    className="font-display font-semibold text-lg uppercase tracking-widest text-white hover:text-orange transition-colors w-full text-center py-2 cursor-pointer"
+                                    className="font-display font-semibold! text-lg! uppercase! tracking-widest! text-canvas! hover:text-orange! transition-colors! w-full! text-center! py-2! cursor-pointer!"
                                 >
                                     {link.label}
                                 </a>
                             ))}
-                            <a
-                                href="#"
-                                onClick={() => setIsOpen(false)}
-                                className="bg-orange text-white font-display font-bold uppercase tracking-wider px-8 py-3 rounded-full hover:bg-ink transition-[background-color] w-full text-center mt-2"
-                            >
-                                Join Now
-                            </a>
+
+                            <div className="flex! flex-col! w-full! gap-3! mt-4!">
+                                <a
+                                    href="#"
+                                    onClick={() => setIsOpen(false)}
+                                    className="bg-transparent! text-canvas! border! border-orange! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-full! hover:text-orange! transition-all! duration-300! w-full! text-center!"
+                                >
+                                    Enter the HQ
+                                </a>
+                                <a
+                                    href="#"
+                                    onClick={() => setIsOpen(false)}
+                                    className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-full! hover:bg-white! hover:text-blue! transition-all! duration-300! w-full! text-center! flex! items-center! justify-center! gap-2!"
+                                >
+                                    Charge Your Brain
+                                    <Zap size={16} className="fill-current" />
+                                </a>
+                            </div>
                         </div>
                     </motion.div>
                 )}
