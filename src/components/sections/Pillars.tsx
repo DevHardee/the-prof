@@ -42,7 +42,7 @@ export default function Pillars() {
     return (
         <section
             id='about'
-            className="bg-canvas! py-10! md:py-14! relative! z-10! w-full! overflow-hidden!">
+            className="bg-ink! py-10! md:py-14! relative! z-10! w-full! overflow-hidden!">
             {/* Background Decoration */}
             <div className="absolute! top-0! right-0! w-full! h-[500px] pointer-events-none opacity-[0.03]">
                 <img src="/assets/brand-elements/Brand ELements-22.png" alt="background image" className="w-full! h-full! object-cover!" />
@@ -62,7 +62,7 @@ export default function Pillars() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                    className="font-display font-black! uppercase! text-4xl! md:text-5xl! lg:text-6xl! text-ink! mb-4!"
+                    className="font-display font-black! uppercase! text-4xl! md:text-5xl! lg:text-6xl! text-white! mb-4!"
                 >
                     It's not about effort.<br />It's about direction.
                 </motion.h2>
@@ -71,7 +71,7 @@ export default function Pillars() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-                    className="font-body text-ink/70! text-lg! max-w-2xl! mb-14!"
+                    className="font-body text-white/70! text-lg! max-w-2xl! mb-14!"
                 >
                     Not lazy. Not incapable. Just unclear. That's the gap most people never name — and it's the <em>only</em> one that matters.
                 </motion.p>
@@ -87,7 +87,7 @@ export default function Pillars() {
                         <motion.div
                             key={p.num}
                             variants={item}
-                            className="group! bg-white! p-10! md:p-12! rounded-3xl! shadow-xl! flex! flex-col! items-start! text-ink/70! hover:text-canvas! transition-all! duration-500! ease-brand hover:-translate-y-2! hover:bg-ink! w-full!"
+                            className="group! border border-white bg-ink! p-10! md:p-12! rounded-3xl! shadow-xl! flex! flex-col! items-start! text-white/70! hover:text-ink! transition-all! duration-500! ease-brand hover:-translate-y-2! hover:bg-white! w-full!"
                         >
                             <div className="font-display font-black! text-[72px]! lg:text-[88px]! leading-none! transition-colors! duration-300! ease-brand mb-6!">
                                 {p.num}

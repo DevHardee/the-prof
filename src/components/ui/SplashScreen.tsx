@@ -47,53 +47,66 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
                         className="absolute w-[700px] h-[700px] rounded-full bg-blue pointer-events-none"
                     />
 
-                    {/* Word-by-word reveal: CHARGE YOUR BRAIN */}
-                    <div className="relative z-10 flex flex-col items-center gap-0 select-none">
-
-                        {/* CHARGE */}
-                        <motion.span
-                            initial={{ opacity: 0, y: 40, skewX: -4 }}
-                            animate={{ opacity: 1, y: 0, skewX: 0 }}
-                            transition={{ delay: 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                            className="font-display font-black uppercase text-canvas leading-none"
-                            style={{ fontSize: 'clamp(4rem, 14vw, 10rem)', letterSpacing: '-0.02em' }}
+                    {/* Single line with heart rate monitor effect */}
+                    <div className="relative z-10 flex items-center gap-3 select-none">
+                        {/* Heart rate line before text */}
+                        <motion.svg
+                            width="80"
+                            height="40"
+                            viewBox="0 0 80 40"
+                            className="text-orange"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: phase === 'exit' ? 0 : 1 }}
                         >
-                            CHARGE
-                        </motion.span>
+                            <motion.path
+                                d="M 0,20 L 20,20 L 25,10 L 30,30 L 35,15 L 40,20 L 80,20"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                fill="none"
+                                initial={{ pathLength: 0 }}
+                                animate={{ pathLength: 1 }}
+                                transition={{ duration: 0.8, ease: "easeInOut" }}
+                            />
+                        </motion.svg>
 
-                        {/* YOUR */}
+                        {/* CHARGE YOUR BRAIN */}
                         <motion.span
-                            initial={{ opacity: 0, y: 40, skewX: -4 }}
-                            animate={{ opacity: 1, y: 0, skewX: 0 }}
-                            transition={{ delay: 0.45, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                            className="font-display font-black uppercase text-canvas leading-none"
-                            style={{ fontSize: 'clamp(4rem, 14vw, 10rem)', letterSpacing: '-0.02em' }}
-                        >
-                            YOUR
-                        </motion.span>
-
-                        {/* BRAIN — orange on entry */}
-                        <motion.span
-                            initial={{ opacity: 0, y: 40, skewX: -4 }}
+                            initial={{ opacity: 0, scaleX: 0.8 }}
                             animate={{
                                 opacity: 1,
-                                y: 0,
-                                skewX: 0,
-                                color: phase === 'slogan' || phase === 'exit'
-                                    ? '#ff6700'
-                                    : '#f5f2ea',
+                                scaleX: 1,
+                                color: phase === 'slogan' || phase === 'exit' ? '#ff6700' : '#f5f2ea'
                             }}
                             transition={{
-                                delay: 0.8,
-                                duration: 0.7,
-                                ease: [0.16, 1, 0.3, 1],
+                                opacity: { delay: 0.3, duration: 0.6 },
+                                scaleX: { delay: 0.3, duration: 0.6, ease: [0.16, 1, 0.3, 1] },
                                 color: { delay: 1.0, duration: 0.5 }
                             }}
                             className="font-display font-black uppercase leading-none"
-                            style={{ fontSize: 'clamp(4rem, 14vw, 10rem)', letterSpacing: '-0.02em' }}
+                            style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', letterSpacing: '0.05em' }}
                         >
-                            BRAIN
+                            CHARGE YOUR BRAIN
                         </motion.span>
+
+                        {/* Heart rate line after text */}
+                        <motion.svg
+                            width="80"
+                            height="40"
+                            viewBox="0 0 80 40"
+                            className="text-orange"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: phase === 'exit' ? 0 : 1 }}
+                        >
+                            <motion.path
+                                d="M 0,20 L 40,20 L 45,15 L 50,30 L 55,10 L 60,20 L 80,20"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                fill="none"
+                                initial={{ pathLength: 0 }}
+                                animate={{ pathLength: 1 }}
+                                transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
+                            />
+                        </motion.svg>
                     </div>
 
                     {/* Tagline under the slogan */}
@@ -103,11 +116,9 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
                         transition={{ duration: 0.5, ease: 'easeOut' }}
                         className="relative z-10 mt-6 flex items-center gap-3"
                     >
-                        <span className="font-display font-black text-orange text-2xl">✳</span>
                         <span className="font-display font-semibold uppercase tracking-[0.3em] text-canvas/50 text-xs md:text-sm">
                             The Prof
                         </span>
-                        <span className="font-display font-black text-blue-mid text-2xl">⚡</span>
                     </motion.div>
 
                     {/* Bottom progress bar */}
