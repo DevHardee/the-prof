@@ -62,7 +62,7 @@ export default function Topics() {
     return (
         <section
             id="topics"
-            className="bg-white! py-20! px-6! relative! z-10! w-full! overflow-hidden!">
+            className="bg-ink! py-20! px-6! relative! z-10! w-full! overflow-hidden!">
             <div className="absolute! top-0! right-0! w-full! h-[600px] opacity-[0.02] pointer-events-none">
                 <img src="/assets/brand-elements/Brand ELements-24.png" alt="background image" className="w-full! h-full! object-cover!" />
             </div>
@@ -82,7 +82,7 @@ export default function Topics() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                    className="font-display font-black! uppercase! text-4xl! md:text-5xl! lg:text-6xl! text-ink! mb-4!"
+                    className="font-display font-black! uppercase! text-4xl! md:text-5xl! lg:text-6xl! text-white! mb-4!"
                 >
                     Four pillars. One outcome<br />— clarity in motion.
                 </motion.h2>
@@ -91,7 +91,7 @@ export default function Topics() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-                    className="font-body text-ink/70! text-lg! max-w-2xl! mb-16!"
+                    className="font-body text-white/70! text-lg! max-w-2xl! mb-16!"
                 >
                     Every section of the HQ feeds one mission: help you think, see, decide, and move better.
                 </motion.p>
@@ -110,27 +110,27 @@ export default function Topics() {
                             <motion.div
                                 key={t.title}
                                 variants={isFeatured ? featuredAnim : itemAnim}
-                                className={`group! flex! flex-col! items-start! w-full! p-6! md:p-12! rounded-3xl! shadow-lg! border! border-border-solid! transition-all! duration-500! ease-brand hover:-translate-y-2! overflow-hidden! break-words! ${isFeatured
-                                    ? 'md:col-span-2! bg-blue! text-white!'
-                                    : 'bg-white! hover:bg-canvas! text-ink!'
+                                className={`group flex! flex-col! items-start! w-full! p-6! md:p-12! rounded-3xl! shadow-lg! border! border-border-solid! transition-all! duration-500! ease-brand hover:-translate-y-2! overflow-hidden! break-words! ${isFeatured
+                                    ? 'md:col-span-2! bg-blue-mid! text-ink!'
+                                    : 'bg-ink! hover:bg-canvas! text-white! group-hover:text-ink!'
                                     }`}
                             >
                                 <p
-                                    className={`font-display! w-full! font-semibold! uppercase! tracking-[0.15em]! text-xs! sm:text-sm! md:text-base! mb-6! ${isFeatured ? 'text-white/55!' : 'text-orange!'
+                                    className={`font-display! w-full! font-semibold! uppercase! tracking-[0.15em]! text-sm! md:text-base! mb-6! ${isFeatured ? 'text-ink/55!' : 'text-orange!'
                                         }`}
                                 >
                                     {t.tag}
                                 </p>
-                                <h3 className={`font-display! w-full! break-words! font-extrabold! uppercase! text-2xl! sm:text-3xl! md:text-4xl! lg:text-5xl! mb-6! ${isFeatured ? 'text-white!' : 'text-ink!'}`}>
+                                <h3 className={`font-display! w-full! break-words! font-extrabold! uppercase! text-2xl! sm:text-3xl! md:text-4xl! lg:text-5xl! mb-6! ${isFeatured ? 'text-ink!' : 'text-white! group-hover:text-ink!'}`}>
                                     {t.title}
                                 </h3>
-                                <p className={`font-body! w-full! break-words! text-sm! sm:text-base! md:text-lg! max-w-2xl! mb-12! md:mb-16! ${isFeatured ? 'text-white/65!' : 'text-muted!'}`}>
+                                <p className={`font-body! w-full! break-words! text-base! md:text-lg! max-w-2xl! mb-12! md:mb-16! ${isFeatured ? 'text-ink/65!' : 'text-canvas/80! group-hover:text-ink/65!'}`}>
                                     {t.desc}
                                 </p>
 
                                 <a
                                     href={t.href}
-                                    className={`mt-auto! inline-flex! items-center! gap-3! font-display! font-bold! uppercase! tracking-wider! text-base! md:text-lg! ${isFeatured ? 'text-white!' : 'text-ink!'}`}
+                                    className={`mt-auto! inline-flex! items-center! gap-3! font-display! font-bold! uppercase! tracking-wider! text-base! md:text-lg! ${isFeatured ? 'text-ink!' : 'text-white! group-hover:text-ink!'}`}
                                 >
                                     {isFeatured ? 'Start Here' : 'Explore'}
                                     <span className="transition-transform! duration-200! ease-brand! group-hover:translate-x-2! flex-shrink-0!">

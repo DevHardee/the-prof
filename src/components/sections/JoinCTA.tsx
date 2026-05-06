@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import MaxWidthWrapper from '../MaxWidthWrapper';
-import { Zap } from 'lucide-react';
 
 export default function JoinCTA() {
     return (
@@ -44,27 +43,32 @@ export default function JoinCTA() {
                         Start seeing clearly. Start moving differently. The HQ is open.
                     </motion.p>
 
-                    <motion.div
+                    <motion.form
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-                        className="flex! flex-col! sm:flex-row! gap-4! items-center!"
+                        onSubmit={(e) => e.preventDefault()}
+                        className="w-full! max-w-lg!"
                     >
-                        <a
-                            href="#"
-                            className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-10! py-4! rounded-full! hover:bg-canvas! hover:text-ink! transition-all! duration-300! ease-brand flex! items-center! gap-2!"
-                        >
-                            Charge Your Brain
-                            <Zap size={14} className="fill-current" />
-                        </a>
-                        <a
-                            href="#"
-                            className="bg-transparent! text-canvas! border! border-canvas/30! font-display font-bold! uppercase! tracking-wider! px-10! py-4! rounded-full! hover:bg-canvas! hover:text-ink! transition-all! duration-300! ease-brand"
-                        >
-                            Enter The HQ →
-                        </a>
-                    </motion.div>
+                        <div className="relative! flex! flex-col! sm:flex-row! gap-3! p-2! bg-white/5! border! border-white/10! rounded-2xl! focus-within:border-blue/50! transition-all! duration-300!">
+                            <input
+                                type="email"
+                                placeholder="Enter your email address"
+                                className="flex-1! bg-transparent! border-none! outline-none! px-6! py-4! text-canvas! font-body! placeholder:text-canvas/80!"
+                                required
+                            />
+                            <button
+                                type="submit"
+                                className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-xl! hover:bg-canvas! hover:text-ink! transition-all! duration-300! ease-brand whitespace-nowrap!"
+                            >
+                                Join The Community
+                            </button>
+                        </div>
+                        {/* <p className="mt-6! font-display text-[10px] md:text-xs! uppercase! tracking-widest! text-canvas/40! text-center!">
+                            Direct inquiries: <span className="text-canvas/60!">community@theprofhq.com</span>
+                        </p> */}
+                    </motion.form>
                 </div>
             </MaxWidthWrapper>
         </section>

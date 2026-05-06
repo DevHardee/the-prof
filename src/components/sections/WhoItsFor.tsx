@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import { Check } from 'lucide-react';
 
@@ -9,9 +10,19 @@ const audienceItems = [
     'Creating something bigger than yourself',
 ];
 
+const cyclingPhrases = ['move forward.', 'charge their brain.'];
+
 export default function WhoItsFor() {
+    const [phraseIndex, setPhraseIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setPhraseIndex((prev) => (prev + 1) % cyclingPhrases.length);
+        }, 2500);
+        return () => clearInterval(interval);
+    }, []);
     return (
-        <section className="bg-canvas! py-24! relative! z-10! w-full! overflow-hidden!">
+        <section className="bg-ink! py-24! relative! z-10! w-full! overflow-hidden!">
             <div className="absolute! top-0! left-0! w-[600px] h-[600px] bg-blue/5 rounded-full blur-3xl pointer-events-none" />
 
             <MaxWidthWrapper className="relative! z-10!">
@@ -32,17 +43,30 @@ export default function WhoItsFor() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="font-display font-black! uppercase! text-4xl! md:text-5xl! lg:text-6xl! text-ink! leading-[0.9]! mb-8!"
+                            className="font-display font-black! uppercase! text-4xl! md:text-5xl! lg:text-6xl! text-white! leading-[0.9]! mb-8!"
                         >
                             For everyone ready to{' '}
-                            <span className="text-blue!">move forward.</span>
+                            <span className="inline-block! relative! overflow-hidden! align-bottom!" style={{ minWidth: '7ch' }}>
+                                <AnimatePresence mode="wait">
+                                    <motion.span
+                                        key={phraseIndex}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                                        className="text-blue! inline-block! whitespace-nowrap!"
+                                    >
+                                        {cyclingPhrases[phraseIndex]}
+                                    </motion.span>
+                                </AnimatePresence>
+                            </span>
                         </motion.h2>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                            className="font-body text-ink/70! text-lg! leading-relaxed! max-w-md!"
+                            className="font-body text-white/70! text-lg! leading-relaxed! max-w-md!"
                         >
                             No gatekeeping. No barriers. No limits. The HQ is your access point — whether you're starting from zero or scaling something already in motion.
                         </motion.p>
@@ -63,12 +87,12 @@ export default function WhoItsFor() {
                                     hidden: { opacity: 0, x: 20 },
                                     show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
                                 }}
-                                className="flex! items-center! gap-4! bg-white! border! border-ink/10! rounded-xl! p-5! hover:border-blue! hover:-translate-y-1! transition-all! duration-300! ease-brand!"
+                                className="flex! items-center! gap-4! bg-ink! border! border-canvas! rounded-xl! p-5! hover:border-blue! hover:-translate-y-1! transition-all! duration-300! ease-brand!"
                             >
                                 <div className="flex-shrink-0! w-6! h-6! rounded-full! bg-blue/20! flex! items-center! justify-center!">
                                     <Check size={14} className="text-blue" />
                                 </div>
-                                <p className="font-body text-ink! text-base!">{item}</p>
+                                <p className="font-body text-white! text-base!">{item}</p>
                             </motion.div>
                         ))}
                     </motion.div>

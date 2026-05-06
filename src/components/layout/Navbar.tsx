@@ -38,9 +38,9 @@ function Logo() {
 const navLinks = [
     { label: 'The Truth', target: 'about' },
     { label: 'The Prof', target: 'pillars' },
-    { label: 'TechPath', target: 'techpath' },
-    { label: 'Voices', target: 'voices' },
-    { label: 'Explore', target: 'topics' },
+    { label: 'TechPath', target: '/techpath' },
+    { label: 'Testimonials', target: 'testimonials' },
+    { label: 'Events', target: '/events' }
 ] as const;
 
 export default function Navbar() {
@@ -52,6 +52,12 @@ export default function Navbar() {
 
     const handleNavigate = (target: string) => {
         setIsOpen(false);
+        if (target.startsWith('/')) {
+            navigate(target);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
         if (location.pathname !== '/') {
             navigate('/');
             setTimeout(() => {
@@ -73,7 +79,7 @@ export default function Navbar() {
             initial={{ y: '-100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="sticky top-0 z-50 bg-ink! backdrop-blur-md border-b! border-border-solid w-full!"
+            className="sticky top-0 z-50 bg-ink! backdrop-blur-md border-b! border-ink! w-full!"
         >
             <MaxWidthWrapper className="flex! justify-between! items-center! py-5! px-4! md:px-8!">
                 {/* Left: Logo */}
@@ -86,7 +92,7 @@ export default function Navbar() {
                     {navLinks.map((link, idx) => (
                         <motion.a
                             key={link.label}
-                            href={`#${link.target}`}
+                            href={link.target.startsWith('/') ? link.target : `#${link.target}`}
                             onClick={(e) => {
                                 e.preventDefault();
                                 handleNavigate(link.target);
@@ -148,7 +154,7 @@ export default function Navbar() {
                             {navLinks.map((link) => (
                                 <a
                                     key={link.label}
-                                    href={`#${link.target}`}
+                                    href={link.target.startsWith('/') ? link.target : `#${link.target}`}
                                     onClick={(e) => {
                                         e.preventDefault();
                                         handleNavigate(link.target);
