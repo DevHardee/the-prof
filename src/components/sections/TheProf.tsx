@@ -54,7 +54,7 @@ const brandValues = [
     }
 ];
 
-export default function Statement() {
+export default function TheProf() {
     return (
         <section id="pillars" className="bg-ink py-24! relative overflow-hidden z-10 w-full overflow-x-hidden">
             {/* Background elements */}

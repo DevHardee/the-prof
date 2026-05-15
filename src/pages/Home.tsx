@@ -2,10 +2,10 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Hero from '../components/sections/Hero';
 //import Ticker from '../components/sections/Ticker';
-import Pillars from '../components/sections/Pillars';
-import Statement from '../components/sections/Statement';
+import TheTruth from '../components/sections/TheTruth';
+import TheProf from '../components/sections/TheProf';
 //import Topics from '../components/sections/Topics';
-import Posters from '../components/sections/Posters';
+import WhatYouGet from '../components/sections/WhatYouGet';
 import WhoItsFor from '../components/sections/WhoItsFor';
 import WhyThisExists from '../components/sections/WhyThisExists';
 import Testimonials from '../components/sections/Testimonials';
@@ -20,11 +20,11 @@ export default function Home() {
                 {/* Hero: "You're not stuck. You're just not clear." */}
                 <Hero />
                 {/* The Truth: "It's not about effort. It's about direction." */}
-                <Pillars />
+                <TheTruth />
                 {/* This Is The Prof: "Not a school. Not a course. A Standard." */}
-                <Statement />
+                <TheProf />
                 {/* What You Get: "What happens when you plug in." — 6 shifts */}
-                <Posters />
+                <WhatYouGet />
                 {/* Who It's For: "For everyone ready to move forward." */}
                 <WhoItsFor />
                 {/* Why This Exists: "Because knowledge is power..." */}

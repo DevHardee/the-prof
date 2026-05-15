@@ -25,7 +25,7 @@ const pillars: Pillar[] = [
     },
 ];
 
-export default function Pillars() {
+export default function TheTruth() {
     const container: Variants = {
         hidden: { opacity: 0 },
         show: {

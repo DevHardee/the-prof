@@ -41,7 +41,7 @@ const shifts = [
     },
 ];
 
-export default function Posters() {
+export default function WhatYouGet() {
     const container: Variants = {
         hidden: { opacity: 0 },
         show: {
