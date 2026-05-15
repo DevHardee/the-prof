@@ -6,32 +6,38 @@ const shifts = [
     {
         icon: Lightbulb,
         title: 'Clarity',
-        desc: 'See what matters. Ignore what doesn\'t.',
+        label: 'Cut through the noise',
+        desc: 'Most people are drowning in information but starving for understanding. When you plug into The Prof, the fog lifts. You stop consuming everything and start knowing exactly what matters, what to ignore, and what to act on – right now.',
     },
     {
         icon: Telescope,
         title: 'Perspective',
-        desc: 'Think beyond your current environment and rooms.',
+        label: 'See what people around you can\t see yet',
+        desc: 'Your environment shapes your ceiling – until your thinking breaks it. The Prof expands your frame of reference beyond your street, your city, and your current room. You start seeing the world the way people three levels ahead of you see it.',
     },
     {
         icon: Compass,
         title: 'Direction',
-        desc: 'Know your next move — and why it matters.',
+        label: 'Stop guessing. Start moving with intention',
+        desc: 'Confusion is expensive. Every day without direction is a day of wasted motion. The Prof gives you a map, not a motivational quote. You will know where you are, where you\'re going, and exactly what your next move is.',
     },
     {
         icon: Flame,
         title: 'Mindset',
-        desc: 'Build the mental strength to actually execute.',
+        label: 'Build the discipline to finish what you start',
+        desc: 'Ideas are common. Execution is rare. The gap between where you are and where you want to be isn\'t talent, it\'s mental structure. We build that structure. You bring the willingness. Together, you become someone who actually follows through.',
     },
     {
         icon: TrendingUp,
         title: 'Growth',
-        desc: 'Move faster than you thought possible, with intention.',
+        label: 'Progress that compounds - not a sprint, a system',
+        desc: 'Random effort produces random results. Intentional growth produces momentum. The Prof doesn\'t just motivate you; it installs a system of thinking that keeps working long after you close the tab.',
     },
     {
         icon: Zap,
         title: 'Edge',
-        desc: 'Spot openings in careers, business, and tech early.',
+        label: 'Arrive before the crowd does',
+        desc: 'The people winning right now aren\'t smarter than you – they\'re earlier. They spotted the opportunity before it became obvious. The Prof trains you to read signals, spot openings in careers, business, and tech, and move while everyone else is still catching up.',
     },
 ];
 
@@ -93,25 +99,49 @@ export default function Posters() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid! grid-cols-1! md:grid-cols-2! lg:grid-cols-3! gap-6! w-full!"
+                    className="grid! grid-cols-1! md:grid-cols-2! lg:grid-cols-3! gap-8! w-full!"
                 >
-                    {shifts.map((shift) => {
+                    {shifts.map((shift, idx) => {
                         const Icon = shift.icon;
                         return (
                             <motion.div
                                 key={shift.title}
                                 variants={item}
-                                className="group bg-ink! border! border-canvas/10! rounded-2xl! p-8! flex! flex-col! gap-3! hover:border-blue! hover:-translate-y-1! transition-all! duration-300! ease-brand!"
+                                whileHover={{
+                                    y: -8,
+                                    backgroundColor: "rgba(255, 255, 255, 0.04)"
+                                }}
+                                className="group! relative! flex! flex-col! bg-white/[0.02]! border! border-white/5! rounded-[32px]! p-10! transition-all! duration-500! ease-brand! overflow-hidden! hover:border-blue/30!"
                             >
-                                <span className="text-2xl! text-blue-mid! mb-1! transition-all! duration-300! group-hover:scale-110! group-hover:text-ink! group-hover:bg-blue-mid group-hover:p-1! group-hover:rounded-full! group-hover:w-fit origin-left!">
-                                    {typeof Icon === 'string' ? Icon : <Icon />}
-                                </span>
-                                <h3 className="font-display font-bold! text-canvas! text-xl! uppercase! tracking-wide!">
-                                    {shift.title}
-                                </h3>
-                                <p className="font-body text-canvas/60! text-sm! leading-relaxed!">
-                                    {shift.desc}
-                                </p>
+                                {/* Decorative Number/Index */}
+                                <div className="absolute! top-8! right-10! font-display font-black! text-6xl! text-white/5! group-hover:text-blue/10! transition-colors!">
+                                    0{idx + 1}
+                                </div>
+
+                                {/* Icon Wrapper */}
+                                <div className="mb-8! relative! w-fit!">
+                                    <div className="absolute! inset-0! bg-blue/20! blur-[20px]! opacity-0! group-hover:opacity-100! transition-opacity!" />
+                                    <div className="relative! w-14! h-14! rounded-2xl! bg-blue/10! flex! items-center! justify-center! text-blue! group-hover:bg-blue! group-hover:text-white! transition-all! duration-500!">
+                                        <Icon size={28} strokeWidth={2.5} />
+                                    </div>
+                                </div>
+
+                                {/* Labels & Content */}
+                                <div className="flex! flex-col! gap-3!">
+                                    <span className="font-display font-black! uppercase! tracking-[0.2em]! text-blue! text-[10px]! md:text-xs!">
+                                        {shift.label}
+                                    </span>
+                                    <h3 className="font-display font-black! text-white! text-2xl! uppercase! tracking-tighter!">
+                                        {shift.title}
+                                    </h3>
+                                    <div className="w-8! h-[2px]! bg-blue/30! group-hover:w-16! group-hover:bg-blue! transition-all! duration-500! mt-1! mb-2!" />
+                                    <p className="font-body text-canvas/50! text-sm! md:text-base! leading-relaxed! group-hover:text-canvas/80! transition-colors!">
+                                        {shift.desc}
+                                    </p>
+                                </div>
+
+                                {/* Bottom Glow */}
+                                <div className="absolute! bottom-0! left-0! w-full! h-[2px]! bg-gradient-to-r! from-transparent! via-blue/50! to-transparent! opacity-0! group-hover:opacity-100! transition-opacity!" />
                             </motion.div>
                         );
                     })}

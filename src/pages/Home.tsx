@@ -4,14 +4,13 @@ import Hero from '../components/sections/Hero';
 //import Ticker from '../components/sections/Ticker';
 import Pillars from '../components/sections/Pillars';
 import Statement from '../components/sections/Statement';
-import Topics from '../components/sections/Topics';
+//import Topics from '../components/sections/Topics';
 import Posters from '../components/sections/Posters';
 import WhoItsFor from '../components/sections/WhoItsFor';
 import WhyThisExists from '../components/sections/WhyThisExists';
 import Testimonials from '../components/sections/Testimonials';
-import TheMovement from '../components/sections/TheMovement';
+import TheRevolution from '../components/sections/TheRevolution';
 import JoinCTA from '../components/sections/JoinCTA';
-import Ecosystem from '../components/sections/Ecosystem';
 
 export default function Home() {
     return (
@@ -20,7 +19,6 @@ export default function Home() {
             <main className="flex-grow w-full flex flex-col">
                 {/* Hero: "You're not stuck. You're just not clear." */}
                 <Hero />
-                {/* <Ticker /> */}
                 {/* The Truth: "It's not about effort. It's about direction." */}
                 <Pillars />
                 {/* This Is The Prof: "Not a school. Not a course. A Standard." */}
@@ -29,16 +27,12 @@ export default function Home() {
                 <Posters />
                 {/* Who It's For: "For everyone ready to move forward." */}
                 <WhoItsFor />
-                {/* The Ecosystem: TechPath and Events */}
-                <Ecosystem />
                 {/* Why This Exists: "Because knowledge is power..." */}
                 <WhyThisExists />
                 {/* Testimonials From The HQ: "Proof that clarity changes movement." */}
                 <Testimonials />
-                {/* The Movement: "This is bigger than you think." */}
-                <TheMovement />
-                {/* Explore The HQ: "Four pillars. One outcome." */}
-                <Topics />
+                {/* The Revolution: "This is bigger than you think." */}
+                <TheRevolution />
                 {/* CTA: "You don't need more time. You need the right knowledge." */}
                 <JoinCTA />
             </main>
