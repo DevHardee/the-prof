@@ -49,20 +49,16 @@ export default function JoinCTA() {
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                         onSubmit={(e) => e.preventDefault()}
-                        className="w-full! max-w-lg!"
+                        className="w-fit! mx-auto!"
                     >
-                        <p className="font-body text-lg! md:text-xl! text-canvas/60! max-w-md! mb-12!">No sign-ups. No inbox. Just drop in.</p>
-                        <div className="relative! flex! flex-col! sm:flex-row! gap-3! p-2! bg-white/5! border! border-white/10! rounded-2xl! focus-within:border-blue/50! transition-all! duration-300!">
+                        <div className="relative! gap-3! p-2! bg-white/5! border! border-white/10! rounded-2xl! focus-within:border-blue/50! transition-all! duration-300!">
                             <button
                                 type="submit"
-                                className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-xl! hover:bg-canvas! hover:text-ink! transition-all! duration-300! ease-brand whitespace-nowrap!"
+                                className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-xl! hover:bg-canvas! hover:text-blue! transition-all! duration-300! ease-brand whitespace-nowrap!"
                             >
                                 Join The Community
                             </button>
                         </div>
-                        {/* <p className="mt-6! font-display text-[10px] md:text-xs! uppercase! tracking-widest! text-canvas/40! text-center!">
-                            Direct inquiries: <span className="text-canvas/60!">community@theprofhq.com</span>
-                        </p> */}
                     </motion.form>
                 </div>
             </MaxWidthWrapper>

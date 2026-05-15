@@ -83,7 +83,7 @@ export default function TheTruth() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid! grid-cols-1! md:grid-cols-3! gap-8! md:gap-10! w-full!"
+                    className="grid! grid-cols-1! lg:grid-cols-3! gap-8! md:gap-10! w-full!"
                 >
                     {pillars.map((p) => (
                         <motion.div
@@ -120,9 +120,9 @@ export default function TheTruth() {
                     transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                     className="mt-12! text-center!"
                 >
-                    <a href="#" className="font-display font-bold! text-orange/80! hover:text-orange! transition-colors! duration-200! text-lg! tracking-wide!">
+                    <p className="font-display font-bold! text-orange/80! hover:text-orange! transition-colors! duration-200! text-lg! tracking-wide!">
                         That changes here. →
-                    </a>
+                    </p>
                 </motion.div>
             </MaxWidthWrapper>
         </section>

@@ -15,7 +15,7 @@ export default function WhyThisExists() {
             <MaxWidthWrapper className="relative z-10">
                 <div className="space-y-16!">
                     {/* Header Section */}
-                    <div className="text-center max-w-5xl mx-auto space-y-8!">
+                    <div className="text-center max-w-7xl mx-auto space-y-8!">
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}

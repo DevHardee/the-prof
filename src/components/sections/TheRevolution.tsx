@@ -37,11 +37,11 @@ export default function TheRevolution() {
             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-orange/5 rounded-full blur-3xl pointer-events-none" />
 
             <MaxWidthWrapper className="relative z-10">
-                <div className="space-y-16!">
-                    {/* Header Section */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12! lg:gap-20! items-center">
+                <div className="space-y-24! md:space-y-32!">
+                    {/* Content Section — Text Left, Categories Right */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12! lg:gap-20! items-start">
                         {/* Left — Title & Description */}
-                        <div className="space-y-8!">
+                        <div className="lg:col-span-5 space-y-8! lg:sticky lg:top-2">
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export default function TheRevolution() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                                className="font-display font-black uppercase text-4xl md:text-5xl lg:text-6xl text-white leading-[0.9]"
+                                className="font-display font-black uppercase text-4xl md:text-5xl lg:text-7xl text-white leading-[0.9]"
                             >
                                 This is bigger than{' '}
                                 <span className="text-blue">you think.</span>
@@ -68,89 +68,64 @@ export default function TheRevolution() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                                className="space-y-4!"
+                                className="space-y-6!"
                             >
-                                <p className="font-body text-white/70 text-lg leading-relaxed max-w-lg">
+                                <p className="font-body text-white/70 text-lg md:text-xl leading-relaxed max-w-lg">
                                     Not a person. Not a trend. A growing standard for people who refuse to stay average – a generation of thinkers, builders, and doers who decided to charge their brains instead of waiting for life to change.
                                 </p>
 
-                                <p className="font-body text-blue font-semibold text-lg">
+                                <p className="font-body text-blue font-semibold text-lg md:text-xl">
                                     The movement has already started. And you're early.
                                 </p>
                             </motion.div>
                         </div>
 
-                        {/* Right — Visual accent */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                            className="relative bg-gradient-to-br from-blue/10 via-orange/5 to-transparent backdrop-blur-xl border border-blue/20 rounded-3xl p-10! md:p-12! overflow-hidden"
-                        >
-                            <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue/20 rounded-full blur-3xl" />
-                            <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-orange/20 rounded-full blur-3xl" />
+                        {/* Right — Categories Grid */}
+                        <div className="lg:col-span-7 relative">
+                            {/* Decorative background glows */}
+                            <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue/10 rounded-full blur-3xl pointer-events-none" />
+                            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-orange/10 rounded-full blur-3xl pointer-events-none" />
 
-                            <div className="relative z-10 space-y-6!">
-                                <div className="flex items-center gap-4!">
-                                    <div className="w-16 h-16 rounded-2xl bg-blue/20 flex items-center justify-center">
-                                        <Brain size={32} className="text-blue" strokeWidth={2.5} />
-                                    </div>
-                                    <div className="h-[1px] flex-1 bg-gradient-to-r from-blue/50 to-transparent" />
-                                </div>
-
-                                <h3 className="font-display font-black text-white text-3xl md:text-4xl uppercase leading-tight">
-                                    A new standard is rising.
-                                </h3>
-
-                                <p className="font-body text-white/70 text-base leading-relaxed">
-                                    Thinkers who question. Builders who persist. Doers who execute. Visionaries who lead. This is the generation that charges their brain.
-                                </p>
-                            </div>
-                        </motion.div>
-                    </div>
-
-                    {/* Movement Categories Grid */}
-                    <motion.div
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={{ once: true, margin: "-50px" }}
-                        variants={{ show: { transition: { staggerChildren: 0.1 } } }}
-                        className="grid grid-cols-1 md:grid-cols-2 gap-6!"
-                    >
-                        {movementCategories.map((item) => (
                             <motion.div
-                                key={item.category}
-                                variants={{
-                                    hidden: { opacity: 0, y: 30 },
-                                    show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
-                                }}
-                                className="group bg-white/[0.02] backdrop-blur-sm border border-canvas/10 rounded-2xl p-8! hover:border-blue/50 hover:bg-blue/5 transition-all duration-500"
+                                initial="hidden"
+                                whileInView="show"
+                                viewport={{ once: true, margin: "-50px" }}
+                                variants={{ show: { transition: { staggerChildren: 0.15 } } }}
+                                className="grid grid-cols-1 md:grid-cols-2 gap-4! md:gap-6! relative z-10"
                             >
-                                {/* Header */}
-                                <div className="flex items-center justify-between mb-6!">
-                                    <div className="flex items-center gap-4!">
-                                        <div className="w-12 h-12 rounded-xl bg-blue/10 flex items-center justify-center text-blue group-hover:scale-110 group-hover:bg-blue/20 transition-all duration-300">
-                                            <item.icon size={24} strokeWidth={2.5} />
+                                {movementCategories.map((item) => (
+                                    <motion.div
+                                        key={item.category}
+                                        variants={{
+                                            hidden: { opacity: 0, scale: 0.95, y: 20 },
+                                            show: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+                                        }}
+                                        className="group bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-3xl p-6! md:p-8! hover:border-blue/50 hover:bg-blue/5 transition-all duration-500"
+                                    >
+                                        {/* Icon & Label */}
+                                        <div className="flex flex-col gap-4! mb-6!">
+                                            <div className="w-14 h-14 rounded-2xl bg-blue/10 flex items-center justify-center text-blue group-hover:scale-110 group-hover:bg-blue/20 transition-all duration-500">
+                                                <item.icon size={28} strokeWidth={2.5} />
+                                            </div>
+                                            <div>
+                                                <p className="font-display font-bold uppercase tracking-[0.2em] text-blue/60 text-[10px] mb-1!">
+                                                    {item.category}
+                                                </p>
+                                                <h4 className="font-display font-black uppercase text-white text-2xl group-hover:text-blue transition-colors">
+                                                    {item.value}
+                                                </h4>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p className="font-display font-semibold uppercase tracking-[0.12em] text-white/50 text-xs group-hover:text-blue transition-colors">
-                                                {item.category}
-                                            </p>
-                                            <p className="font-display font-black uppercase text-white text-2xl md:text-3xl">
-                                                {item.value}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                {/* Description */}
-                                <p className="font-body text-white/70 text-base leading-relaxed group-hover:text-white/90 transition-colors">
-                                    {item.description}
-                                </p>
+                                        {/* Description */}
+                                        <p className="font-body text-white/50 text-sm md:text-base leading-relaxed group-hover:text-white/80 transition-colors">
+                                            {item.description}
+                                        </p>
+                                    </motion.div>
+                                ))}
                             </motion.div>
-                        ))}
-                    </motion.div>
+                        </div>
+                    </div>
 
                     {/* Closing CTA */}
                     <motion.div
@@ -165,7 +140,7 @@ export default function TheRevolution() {
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue/10 rounded-full blur-3xl" />
 
                         {/* Content */}
-                        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8!">
+                        <div className="relative z-10 max-w-6xl mx-auto text-center space-y-8!">
                             <h3 className="font-display font-black text-white text-3xl md:text-5xl uppercase leading-tight">
                                 The movement has already started.<br />
                                 <span className="text-blue">The only question is whether you're in it.</span>
@@ -174,17 +149,13 @@ export default function TheRevolution() {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-sm tracking-[0.15em] shadow-2xl shadow-blue/30 group"
+                                className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.15em] shadow-2xl shadow-blue/30 group"
                             >
                                 <span className="flex items-center gap-3!">
                                     Join free. Charge your brain
                                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                 </span>
                             </motion.button>
-
-                            <p className="font-body text-white/60 text-sm">
-                                No cost. No catch. Just clarity.
-                            </p>
                         </div>
                     </motion.div>
                 </div>

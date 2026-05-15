@@ -68,8 +68,8 @@ export default function Testimonials() {
             {/* Marquee Row */}
             <div className="relative! w-full! overflow-hidden! py-8!">
                 {/* Enhanced Gradient Masks with glow */}
-                <div className="absolute! inset-y-0! left-0! w-32! md:w-48! bg-gradient-to-r! from-ink! via-ink/80! to-transparent! z-20! pointer-events-none!" />
-                <div className="absolute! inset-y-0! right-0! w-32! md:w-48! bg-gradient-to-l! from-ink! via-ink/80! to-transparent! z-20! pointer-events-none!" />
+                <div className="hidden lg:block absolute! inset-y-0! left-0! w-32! md:w-48! bg-gradient-to-r! from-ink! via-ink/80! to-transparent! z-20! pointer-events-none!" />
+                <div className="hidden lg:block absolute! inset-y-0! right-0! w-32! md:w-48! bg-gradient-to-l! from-ink! via-ink/80! to-transparent! z-20! pointer-events-none!" />
 
                 <motion.div
                     animate={{ x: [0, -1920] }} // Approximated width, works well with items

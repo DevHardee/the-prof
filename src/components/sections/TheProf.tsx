@@ -253,18 +253,32 @@ export default function TheProf() {
                                 The path is already built.<br />
                                 <span className="text-blue">You just need to walk it.</span>
                             </h2>
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-sm tracking-[0.2em] shadow-2xl shadow-blue/20 group"
-                            >
-                                <span
-                                    onClick={() => navigate('/techpath')}
-                                    className="flex items-center gap-3!">
-                                    Find Your Tech Path
-                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                </span>
-                            </motion.button>
+                            <div className="flex flex-col md:flex-row gap-4! justify-center!">
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.2em] shadow-2xl shadow-blue/20 group"
+                                >
+                                    <span
+                                        onClick={() => navigate('/techpath')}
+                                        className="flex items-center gap-3!">
+                                        Find Your Tech Path
+                                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                    </span>
+                                </motion.button>
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.2em] shadow-2xl shadow-blue/20 group"
+                                >
+                                    <span
+                                        onClick={() => navigate('/events')}
+                                        className="flex items-center gap-3!">
+                                        View Upcoming Events
+                                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                    </span>
+                                </motion.button>
+                            </div>
                         </div>
                     </motion.div>
                 </div>

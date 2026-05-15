@@ -84,7 +84,7 @@ export default function Hero() {
                                 {/* Blue background glow */}
                                 <div className="absolute! inset-0! bg-blue/20! rounded-3xl! blur-2xl! scale-110! pointer-events-none!" />
 
-                                <div className="hidden md:block relative! w-full! max-w-[550px]! overflow-hidden! rounded-2xl! border! border-orange/20!">
+                                <div className="hidden lg:block relative! w-full! max-w-[550px]! overflow-hidden! rounded-2xl! border! border-orange/20!">
                                     <img
                                         src="/assets/homepage.png"
                                         alt="The Prof"
@@ -126,7 +126,7 @@ export default function Hero() {
                             initial="hidden"
                             whileInView="show"
                             viewport={{ once: true }}
-                            className="grid! grid-cols-1! md:grid-cols-3! gap-6! w-full!"
+                            className="grid! grid-cols-1! lg:grid-cols-3! gap-6! w-full!"
                         >
                             {miniCards.map((card) => (
                                 <motion.div
