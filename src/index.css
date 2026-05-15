@@ -11,8 +11,8 @@
   --color-muted: #5a5850;
   --color-border-solid: #e0ddd6;
 
-  --font-display: 'Barlow Condensed', sans-serif;
-  --font-body: 'Poppins', sans-serif;
+  --font-display: sans-serif;
+  --font-body: sans-serif;
 
   --ease-brand: cubic-bezier(0.16, 1, 0.3, 1);
 }

@@ -19,7 +19,7 @@ export default function JoinCTA() {
                         transition={{ duration: 0.6, ease: "easeOut" }}
                         className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue-mid! text-sm! mb-8!"
                     >
-                        The Next Move
+                        Your Move
                     </motion.p>
 
                     <motion.h2
@@ -40,7 +40,7 @@ export default function JoinCTA() {
                         transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                         className="font-body text-lg! md:text-xl! text-canvas/60! max-w-md! mb-12!"
                     >
-                        Start seeing clearly. Start moving differently. The HQ is open.
+                        You've read the truth. You know what's missing. You've seen what's possible. Now there's only one thing left.The HQ is open.
                     </motion.p>
 
                     <motion.form
@@ -49,25 +49,16 @@ export default function JoinCTA() {
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                         onSubmit={(e) => e.preventDefault()}
-                        className="w-full! max-w-lg!"
+                        className="w-fit! mx-auto!"
                     >
-                        <div className="relative! flex! flex-col! sm:flex-row! gap-3! p-2! bg-white/5! border! border-white/10! rounded-2xl! focus-within:border-blue/50! transition-all! duration-300!">
-                            <input
-                                type="email"
-                                placeholder="Enter your email address"
-                                className="flex-1! bg-transparent! border-none! outline-none! px-6! py-4! text-canvas! font-body! placeholder:text-canvas/80!"
-                                required
-                            />
+                        <div className="relative! gap-3! p-2! bg-white/5! border! border-white/10! rounded-2xl! focus-within:border-blue/50! transition-all! duration-300!">
                             <button
                                 type="submit"
-                                className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-xl! hover:bg-canvas! hover:text-ink! transition-all! duration-300! ease-brand whitespace-nowrap!"
+                                className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-xl! hover:bg-canvas! hover:text-blue! transition-all! duration-300! ease-brand whitespace-nowrap!"
                             >
                                 Join The Community
                             </button>
                         </div>
-                        {/* <p className="mt-6! font-display text-[10px] md:text-xs! uppercase! tracking-widest! text-canvas/40! text-center!">
-                            Direct inquiries: <span className="text-canvas/60!">community@theprofhq.com</span>
-                        </p> */}
                     </motion.form>
                 </div>
             </MaxWidthWrapper>

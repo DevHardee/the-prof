@@ -38,7 +38,9 @@ const duplicatedTestimonials = [...testimonials, ...testimonials];
 export default function Testimonials() {
     return (
         <section id="testimonials" className="bg-ink! py-24! relative! z-10! w-full! overflow-hidden!">
-            <div className="absolute! -top-40! right-0! w-[600px] h-[600px] bg-blue/5 rounded-full blur-3xl pointer-events-none" />
+            {/* Enhanced Background elements */}
+            <div className="absolute! top-0! right-0! w-[800px] h-[800px] bg-blue/8 rounded-full blur-[100px] translate-x-1/4 -translate-y-1/4 pointer-events-none" />
+            <div className="absolute! bottom-0! left-0! w-[600px] h-[600px] bg-blue/6 rounded-full blur-[90px] -translate-x-1/4 translate-y-1/4 pointer-events-none" />
 
             <MaxWidthWrapper className="relative! z-10!">
                 <div className="flex! flex-col! items-center! text-center! mb-16!">
@@ -65,9 +67,9 @@ export default function Testimonials() {
 
             {/* Marquee Row */}
             <div className="relative! w-full! overflow-hidden! py-8!">
-                {/* Gradient Masks */}
-                <div className="absolute! inset-y-0! left-0! w-20! md:w-40! bg-gradient-to-r! from-ink! to-transparent! z-20! pointer-events-none!" />
-                <div className="absolute! inset-y-0! right-0! w-20! md:w-40! bg-gradient-to-l! from-ink! to-transparent! z-20! pointer-events-none!" />
+                {/* Enhanced Gradient Masks with glow */}
+                <div className="hidden lg:block absolute! inset-y-0! left-0! w-32! md:w-48! bg-gradient-to-r! from-ink! via-ink/80! to-transparent! z-20! pointer-events-none!" />
+                <div className="hidden lg:block absolute! inset-y-0! right-0! w-32! md:w-48! bg-gradient-to-l! from-ink! via-ink/80! to-transparent! z-20! pointer-events-none!" />
 
                 <motion.div
                     animate={{ x: [0, -1920] }} // Approximated width, works well with items
@@ -81,17 +83,31 @@ export default function Testimonials() {
                     {duplicatedTestimonials.map((t, i) => (
                         <div
                             key={`${t.author}-${i}`}
-                            className="w-[300px]! md:w-[400px]! bg-ink! border! border-white/20! rounded-2xl! p-8! flex! flex-col! gap-6! hover:border-blue! transition-all! duration-300!"
+                            className="group relative w-[300px]! md:w-[400px]! bg-gradient-to-br from-white/[0.03] to-white/[0.01] backdrop-blur-sm border! border-white/10! rounded-2xl! p-8! flex! flex-col! gap-6! hover:border-blue/50! hover:bg-blue/5! hover:scale-[1.02] hover:-translate-y-1 transition-all! duration-500! shadow-lg shadow-black/20!"
                         >
-                            <span className="text-blue! text-3xl! font-display font-black! leading-none!">"</span>
-                            <p className="font-body text-white! text-base! leading-relaxed! flex-1!">
+                            {/* Accent corner */}
+                            <div className="absolute top-0 right-0 w-20 h-20 bg-blue/5 rounded-bl-[3rem] rounded-tr-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                            {/* Glowing border effect on hover */}
+                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue/20 via-transparent to-blue/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ padding: '1px', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude' }} />
+
+                            {/* Quote mark with animation */}
+                            <div className="relative">
+                                <span className="text-blue-mid! text-5xl! font-display font-black! leading-none! group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 inline-block">"</span>
+                            </div>
+
+                            <p className="font-body text-white/90! text-base! leading-relaxed! flex-1! group-hover:text-white transition-colors relative z-10">
                                 {t.quote}
                             </p>
-                            <div className="mt-auto!">
-                                <p className="font-display font-semibold! uppercase! tracking-[0.1em]! text-canvas/80! text-xs!">
-                                    {t.author}
+
+                            <div className="mt-auto! pt-4! border-t border-white/5 group-hover:border-blue/20 transition-colors relative z-10">
+                                <p className="font-display font-bold! uppercase! tracking-[0.15em]! text-blue-mid group-hover:text-blue text-xs! transition-colors">
+                                    — {t.author}
                                 </p>
                             </div>
+
+                            {/* Bottom accent line */}
+                            <div className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-blue via-blue to-transparent group-hover:w-full transition-all duration-700" />
                         </div>
                     ))}
                 </motion.div>
