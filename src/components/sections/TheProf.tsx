@@ -1,6 +1,8 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, Target, ShieldCheck, BrainCircuit, Unlock, Crown, Globe, Zap, CalendarDays, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
 import MaxWidthWrapper from '../MaxWidthWrapper';
+import { useNavigate } from 'react-router-dom';
 
 const profCards = [
     {
@@ -55,40 +57,48 @@ const brandValues = [
 ];
 
 export default function TheProf() {
+    const [showValues, setShowValues] = useState(false);
+    const navigate = useNavigate();
+
     return (
         <section id="pillars" className="bg-ink py-24! relative overflow-hidden z-10 w-full overflow-x-hidden">
-            {/* Background elements */}
-            <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-blue/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-            <div className="absolute inset-0 opacity-[0.10] mix-blend-screen pointer-events-none">
-                <img src="/assets/brand-elements/Brand ELements-22.png" alt="background image" className="w-full h-full object-cover" />
-            </div>
+            {/* Enhanced Background elements */}
+            <div className="absolute top-0 left-0 w-[1000px] h-[1000px] bg-blue/10 rounded-full blur-[120px] -translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+            <div className="absolute top-1/2 right-0 w-[800px] h-[800px] bg-blue/8 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/4 pointer-events-none" />
+            <div className="absolute bottom-0 left-1/2 w-[600px] h-[600px] bg-orange/5 rounded-full blur-[80px] -translate-x-1/2 translate-y-1/3 pointer-events-none" />
 
             <MaxWidthWrapper>
                 <div className="relative z-10 w-full space-y-24!">
                     {/* Bio Section */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12! lg:gap-20! items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-12! lg:gap-16! items-start">
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="relative group"
+                            className="relative group lg:sticky lg:top-24"
                         >
-                            <div className="absolute -inset-4 bg-blue/20 rounded-[2rem] blur-2xl group-hover:bg-blue/30 transition-colors duration-500" />
-                            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-canvas/10">
+                            <div className="absolute -inset-6 bg-blue/20 rounded-[3rem] blur-3xl group-hover:bg-blue/30 transition-colors duration-500" />
+                            <div className="absolute -inset-2 bg-gradient-to-br from-blue/20 via-transparent to-orange/10 rounded-[2.5rem] opacity-50" />
+
+                            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border-2 border-canvas/10 shadow-2xl shadow-blue/10">
                                 <img
                                     src="/assets/prof.jpeg"
                                     alt="Kehinde Adebanjo (The Prof)"
                                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent opacity-60" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-transparent opacity-70" />
+
+                                {/* Corner accent lines */}
+                                <div className="absolute top-4 left-4 w-12 h-12 border-l-2 border-t-2 border-blue/50" />
+                                <div className="absolute bottom-4 right-4 w-12 h-12 border-r-2 border-b-2 border-blue/50" />
                             </div>
 
-                            {/* Accent element */}
-                            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue/10 backdrop-blur-xl border border-canvas/10 rounded-2xl p-4! flex items-center justify-center">
+                            {/* Enhanced Accent element */}
+                            <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-blue/15 backdrop-blur-xl border-2 border-canvas/20 rounded-3xl p-6! flex items-center justify-center shadow-xl">
                                 <div className="text-center">
-                                    <div className="text-blue font-display font-black text-2xl leading-none">THE</div>
-                                    <div className="text-canvas font-display font-black text-2xl leading-none">PROF</div>
+                                    <div className="text-blue font-display font-black text-3xl leading-none">THE</div>
+                                    <div className="text-canvas font-display font-black text-3xl leading-none mt-1">PROF</div>
                                 </div>
                             </div>
                         </motion.div>
@@ -169,53 +179,65 @@ export default function TheProf() {
                                         </p>
                                     </div>
                                     {card.link && (
-                                        <div className="mt-auto pt-4! flex items-center gap-2 text-blue font-display font-bold uppercase text-xs tracking-widest group-hover:gap-4 transition-all">
-                                            See our values <ArrowRight size={14} />
-                                        </div>
+                                        <button
+                                            onClick={() => setShowValues(!showValues)}
+                                            className="mt-auto pt-4! flex items-center gap-2 text-blue font-display font-bold uppercase text-xs tracking-widest group-hover:gap-4 transition-all cursor-pointer"
+                                        >
+                                            {showValues ? 'Hide' : 'See'} our values <ArrowRight size={14} className={`transition-transform ${showValues ? 'rotate-90' : ''}`} />
+                                        </button>
                                     )}
                                 </motion.div>
                             ))}
                         </div>
                     </div>
 
-                    {/* Values Strip */}
-                    <div className="space-y-8! pt-12! border-t border-canvas/10">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-center"
-                        >
-                            <h3 className="font-display font-black text-canvas text-3xl md:text-4xl uppercase tracking-tighter">
-                                Brand <span className="text-blue">Values.</span>
-                            </h3>
-                        </motion.div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4!">
-                            {brandValues.map((value, index) => (
+                    {/* Values Strip - Collapsible */}
+                    <AnimatePresence>
+                        {showValues && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                                className="space-y-8! pt-12! border-t border-canvas/10 overflow-hidden"
+                            >
                                 <motion.div
-                                    key={value.label}
-                                    initial={{ opacity: 0, scale: 0.95 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="bg-canvas/5 border border-canvas/10 rounded-xl p-6! space-y-4! hover:border-canvas/20 transition-all"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.2 }}
+                                    className="text-center"
                                 >
-                                    <div className="w-10 h-10 rounded-full bg-blue/20 flex items-center justify-center text-blue">
-                                        <value.icon size={18} />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-display font-bold text-canvas uppercase text-sm tracking-widest mb-2! flex items-center gap-2!">
-                                            {value.label}
-                                        </h4>
-                                        <p className="font-body text-canvas/60 text-xs leading-relaxed">
-                                            {value.desc}
-                                        </p>
-                                    </div>
+                                    <h3 className="font-display font-black text-canvas text-3xl md:text-4xl uppercase tracking-tighter">
+                                        Brand <span className="text-blue">Values.</span>
+                                    </h3>
                                 </motion.div>
-                            ))}
-                        </div>
-                    </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4!">
+                                    {brandValues.map((value, index) => (
+                                        <motion.div
+                                            key={value.label}
+                                            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                                            className="bg-canvas/5 border border-canvas/10 rounded-xl p-6! space-y-4! hover:border-blue/30 hover:bg-blue/5 transition-all"
+                                        >
+                                            <div className="w-10 h-10 rounded-full bg-blue/20 flex items-center justify-center text-blue">
+                                                <value.icon size={18} />
+                                            </div>
+                                            <div>
+                                                <h4 className="font-display font-bold text-canvas uppercase text-sm tracking-widest mb-2! flex items-center gap-2!">
+                                                    {value.label}
+                                                </h4>
+                                                <p className="font-body text-canvas/60 text-xs leading-relaxed">
+                                                    {value.desc}
+                                                </p>
+                                            </div>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
 
                     {/* Closing CTA */}
                     <motion.div
@@ -236,8 +258,10 @@ export default function TheProf() {
                                 whileTap={{ scale: 0.95 }}
                                 className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-sm tracking-[0.2em] shadow-2xl shadow-blue/20 group"
                             >
-                                <span className="flex items-center gap-3!">
-                                    Charge Your Brain
+                                <span
+                                    onClick={() => navigate('/techpath')}
+                                    className="flex items-center gap-3!">
+                                    Find Your Tech Path
                                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                 </span>
                             </motion.button>

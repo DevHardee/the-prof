@@ -52,25 +52,29 @@ export default function WhatYouGet() {
 
     const item: Variants = {
         hidden: { opacity: 0, y: 30 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } }
+        show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const } }
     };
 
     return (
         <section
             id="resources"
             className="bg-ink/95! py-24! relative! z-10! w-full! overflow-hidden!">
-            {/* Background elements */}
-            <div className="absolute! -top-40! -right-40! w-96! h-96! bg-orange/10 rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute! top-1/2! -left-40! w-96! h-96! bg-blue/10 rounded-full blur-[100px] pointer-events-none" />
+            {/* Enhanced Background elements */}
+            <div className="absolute! top-0! right-0! w-[900px]! h-[900px]! bg-orange/15 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+            <div className="absolute! top-1/3! left-0! w-[700px]! h-[700px]! bg-orange/10 rounded-full blur-[100px] -translate-x-1/2 pointer-events-none" />
+            <div className="absolute! bottom-0! left-1/2! w-[600px]! h-[600px]! bg-orange/8 rounded-full blur-[90px] -translate-x-1/4 translate-y-1/3 pointer-events-none" />
 
+            {/* <div className="absolute inset-0 opacity-[0.08] mix-blend-screen pointer-events-none">
+                <img src="/assets/brand-elements/Brand ELements-18.png" alt="background pattern" className="w-full h-full object-cover" />
+            </div> */}
             <MaxWidthWrapper className="relative! z-10!">
                 <div className="flex! flex-col! items-center! text-center! mb-16!">
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="font-display font-semibold! uppercase! tracking-[0.15em]! text-blue-mid! text-sm! md:text-base! mb-4!"
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+                        className="font-display font-semibold! uppercase! tracking-[0.15em]! text-orange! text-sm! md:text-base! mb-4!"
                     >
                         What You Get
                     </motion.p>
@@ -78,7 +82,7 @@ export default function WhatYouGet() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+                        transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
                         className="font-display font-black! uppercase! text-4xl! md:text-5xl! lg:text-6xl! text-canvas! max-w-3xl!"
                     >
                         What happens when you plug in.
@@ -109,39 +113,39 @@ export default function WhatYouGet() {
                                 variants={item}
                                 whileHover={{
                                     y: -8,
-                                    backgroundColor: "rgba(255, 255, 255, 0.04)"
+                                    backgroundColor: "rgba(255, 103, 0, 0.04)"
                                 }}
-                                className="group! relative! flex! flex-col! bg-white/[0.02]! border! border-white/5! rounded-[32px]! p-10! transition-all! duration-500! ease-brand! overflow-hidden! hover:border-blue/30!"
+                                className="group relative! flex! flex-col! bg-white/[0.02]! border! border-white/5! rounded-[32px]! p-10! transition-all! duration-500! ease-brand! overflow-hidden! hover:border-orange/40!"
                             >
                                 {/* Decorative Number/Index */}
-                                <div className="absolute! top-8! right-10! font-display font-black! text-6xl! text-white/5! group-hover:text-blue/10! transition-colors!">
+                                <div className="absolute! top-8! right-10! font-display font-black! text-6xl! text-white/80! group-hover:text-orange! transition-colors!">
                                     0{idx + 1}
                                 </div>
 
                                 {/* Icon Wrapper */}
                                 <div className="mb-8! relative! w-fit!">
-                                    <div className="absolute! inset-0! bg-blue/20! blur-[20px]! opacity-0! group-hover:opacity-100! transition-opacity!" />
-                                    <div className="relative! w-14! h-14! rounded-2xl! bg-blue/10! flex! items-center! justify-center! text-blue! group-hover:bg-blue! group-hover:text-white! transition-all! duration-500!">
+                                    <div className="absolute! inset-0! bg-orange/30! blur-[20px]! opacity-0! group-hover:opacity-100! transition-opacity!" />
+                                    <div className="relative! w-14! h-14! rounded-2xl! bg-orange/10! flex! items-center! justify-center! text-orange! group-hover:bg-orange! group-hover:text-white! transition-all! duration-500!">
                                         <Icon size={28} strokeWidth={2.5} />
                                     </div>
                                 </div>
 
                                 {/* Labels & Content */}
                                 <div className="flex! flex-col! gap-3!">
-                                    <span className="font-display font-black! uppercase! tracking-[0.2em]! text-blue! text-[10px]! md:text-xs!">
+                                    <span className="font-display font-black! uppercase! tracking-[0.2em]! text-orange! text-[10px]! md:text-xs!">
                                         {shift.label}
                                     </span>
                                     <h3 className="font-display font-black! text-white! text-2xl! uppercase! tracking-tighter!">
                                         {shift.title}
                                     </h3>
-                                    <div className="w-8! h-[2px]! bg-blue/30! group-hover:w-16! group-hover:bg-blue! transition-all! duration-500! mt-1! mb-2!" />
+                                    <div className="w-8! h-[2px]! bg-orange/30! group-hover:w-16! group-hover:bg-orange! transition-all! duration-500! mt-1! mb-2!" />
                                     <p className="font-body text-canvas/50! text-sm! md:text-base! leading-relaxed! group-hover:text-canvas/80! transition-colors!">
                                         {shift.desc}
                                     </p>
                                 </div>
 
                                 {/* Bottom Glow */}
-                                <div className="absolute! bottom-0! left-0! w-full! h-[2px]! bg-gradient-to-r! from-transparent! via-blue/50! to-transparent! opacity-0! group-hover:opacity-100! transition-opacity!" />
+                                <div className="absolute! bottom-0! left-0! w-full! h-[2px]! bg-gradient-to-r! from-transparent! via-orange/60! to-transparent! opacity-0! group-hover:opacity-100! transition-opacity!" />
                             </motion.div>
                         );
                     })}

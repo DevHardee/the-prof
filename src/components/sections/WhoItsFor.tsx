@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import { Check, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const audienceItems = [
     'You\'re at the beginning and everyone around you seems to know something you don\'t – and you\'re tired of pretending otherwise',
@@ -20,6 +21,7 @@ const cyclingPhrases = [
 
 export default function WhoItsFor() {
     const [phraseIndex, setPhraseIndex] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -62,7 +64,7 @@ export default function WhoItsFor() {
                                 </h2>
 
                                 {/* Cycling phrase container with fixed height */}
-                                <div className="relative h-[80px] md:h-[100px] lg:h-[120px] overflow-hidden">
+                                <div className="relative h-[100px] md:h-[110px] lg:h-[170px] overflow-hidden">
                                     <AnimatePresence mode="wait">
                                         <motion.h2
                                             key={phraseIndex}
@@ -127,12 +129,39 @@ export default function WhoItsFor() {
                                     hidden: { opacity: 0, y: 20 },
                                     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
                                 }}
-                                className="group flex items-start gap-4! bg-white/[0.02] backdrop-blur-sm border border-canvas/10 rounded-2xl p-6! hover:border-blue/50 hover:bg-blue/5 hover:-translate-y-1 transition-all duration-500"
+                                className="group relative flex items-start gap-4! bg-white/[0.02] backdrop-blur-sm rounded-2xl p-6! hover:bg-blue/5 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
                             >
-                                <div className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-blue/20 flex items-center justify-center group-hover:bg-blue/30 group-hover:scale-110 transition-all duration-300">
+                                {/* Animated border wrapper */}
+                                <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                                    {/* Static border */}
+                                    <div className="absolute inset-0 border border-canvas/10 rounded-2xl group-hover:border-blue/30 transition-colors duration-500" />
+
+                                    {/* Animated traveling light border */}
+                                    <motion.div
+                                        className="absolute inset-0 rounded-2xl"
+                                        style={{
+                                            background: `conic-gradient(from ${index * 60}deg, transparent 0deg, transparent 270deg, rgba(59, 130, 246, 0.8) 300deg, rgba(59, 130, 246, 0) 360deg)`,
+                                            padding: '1px',
+                                            WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                                            WebkitMaskComposite: 'xor',
+                                            maskComposite: 'exclude'
+                                        }}
+                                        animate={{
+                                            rotate: [0, 360]
+                                        }}
+                                        transition={{
+                                            duration: 4,
+                                            ease: "linear",
+                                            repeat: Infinity,
+                                            delay: index * 0.3
+                                        }}
+                                    />
+                                </div>
+
+                                <div className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-blue/20 flex items-center justify-center group-hover:bg-blue/30 group-hover:scale-110 transition-all duration-300 relative z-10">
                                     <Check size={14} className="text-blue" strokeWidth={3} />
                                 </div>
-                                <p className="font-body text-white/80 text-base leading-relaxed group-hover:text-white transition-colors">
+                                <p className="font-body text-white/80 text-base leading-relaxed group-hover:text-white transition-colors relative z-10">
                                     {item}
                                 </p>
                             </motion.div>
@@ -152,7 +181,7 @@ export default function WhoItsFor() {
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue/10 rounded-full blur-3xl" />
 
                         {/* Content */}
-                        <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8!">
+                        <div className="relative z-10 max-w-6xl mx-auto text-center space-y-8!">
                             <h3 className="font-display font-black text-white text-2xl md:text-4xl lg:text-5xl uppercase leading-tight">
                                 If any of these is you,<br />
                                 <span className="text-blue">you're exactly who The Prof built this for.</span>
@@ -164,8 +193,10 @@ export default function WhoItsFor() {
                                     whileTap={{ scale: 0.95 }}
                                     className="bg-blue text-white px-10! py-4! rounded-full font-display font-black uppercase text-sm tracking-[0.15em] shadow-2xl shadow-blue/30 group"
                                 >
-                                    <span className="flex items-center gap-3!">
-                                        Enter the HQ
+                                    <span
+                                        onClick={() => navigate('/techpath')}
+                                        className="flex items-center gap-3!">
+                                        Find Your Tech Path
                                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                     </span>
                                 </motion.button>

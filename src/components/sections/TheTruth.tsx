@@ -42,25 +42,14 @@ export default function TheTruth() {
     return (
         <section
             id='about'
-            className="bg-blue/90! py-10! md:py-14! relative! z-10! w-full! overflow-hidden!">
-            {/* Background Pattern Decoration */}
-            <div className="absolute! inset-0! pointer-events-none! opacity-80! mix-blend-soft-light flex! items-center! justify-center!">
-                <div
-                    className="absolute! inset-0! w-full! h-full!"
-                    style={{
-                        backgroundImage: 'url(/assets/brand-elements/Brand ELements-17.png)',
-                        backgroundSize: '400px',
-                        backgroundRepeat: 'repeat',
-                        maskImage: 'radial-gradient(circle at center, black, transparent 80%)',
-                        WebkitMaskImage: 'radial-gradient(circle at center, black, transparent 80%)'
-                    }}
-                />
+            className="bg-ink/90 py-24! relative z-10 w-full overflow-hidden">
+            {/* Background elements */}
+            <div className="absolute top-1/2 left-1/2 w-full h-full bg-blue/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+            <div className="absolute inset-0 opacity-20 mix-blend-screen pointer-events-none">
+                <img src="/assets/brand-elements/Brand ELements-21.png" alt="background image" className="w-full h-full object-cover" />
             </div>
 
-            {/* Subtle Brand Accents */}
-            <div className="absolute! top-0! left-0! w-full! h-40! bg-gradient-to-b! from-ink/20! to-transparent! pointer-events-none!" />
-            <div className="absolute! bottom-0! left-0! w-full! h-40! bg-gradient-to-t! from-ink/20! to-transparent! pointer-events-none!" />
-            <MaxWidthWrapper>
+            <MaxWidthWrapper className="relative z-10">
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

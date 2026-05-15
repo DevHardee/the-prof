@@ -17,7 +17,7 @@ export default function Hero() {
 
     const item: Variants = {
         hidden: { opacity: 0, y: 30 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+        show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const } }
     };
 
     const TargetIcon = () => <Target size={20} strokeWidth={2.5} className="text-orange!" />;
@@ -78,13 +78,13 @@ export default function Hero() {
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                                transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
                                 className="relative! w-full! flex! items-center! justify-center!"
                             >
                                 {/* Blue background glow */}
                                 <div className="absolute! inset-0! bg-blue/20! rounded-3xl! blur-2xl! scale-110! pointer-events-none!" />
 
-                                <div className="relative! w-full! max-w-[550px]! overflow-hidden! rounded-2xl! border! border-orange/20!">
+                                <div className="hidden md:block relative! w-full! max-w-[550px]! overflow-hidden! rounded-2xl! border! border-orange/20!">
                                     <img
                                         src="/assets/homepage.png"
                                         alt="The Prof"
@@ -136,7 +136,7 @@ export default function Hero() {
                                         y: -10,
                                         backgroundColor: "rgba(255, 255, 255, 0.05)"
                                     }}
-                                    className="group! flex! flex-col! h-full! min-h-[160px]! rounded-[24px]! p-6! bg-white/[0.02]! border! border-orange/15! backdrop-blur-md! transition-all! duration-500! hover:border-orange!"
+                                    className="group flex flex-col h-full! min-h-[160px]! rounded-[24px]! p-6! bg-white/[0.02]! border! border-orange/15! backdrop-blur-md! transition-all! duration-500! hover:border-orange!"
                                 >
                                     <div className="flex! items-center! justify-between! mb-4!">
                                         <div className="p-3! bg-orange/10! rounded-xl! text-orange! group-hover:scale-110! transition-transform! duration-300!">
@@ -144,7 +144,7 @@ export default function Hero() {
                                         </div>
                                         <div className="w-8! h-[1px]! bg-white/10! group-hover:w-12! group-hover:bg-blue! transition-all! duration-300!" />
                                     </div>
-                                    <p className="font-display font-medium! uppercase! tracking-[0.1em]! text-white/40! text-[10px]! md:text-xs! mb-2! group-hover:text-blue! transition-colors!">
+                                    <p className=" font-display font-medium! uppercase! tracking-[0.1em]! text-white/80! text-[10px]! md:text-xs! mb-2! group-hover:text-white! transition-colors!">
                                         {card.label}
                                     </p>
                                     <p className="font-body text-canvas/80! text-sm! md:text-base! leading-relaxed! flex-1! group-hover:text-white! transition-colors!">{card.value}</p>
