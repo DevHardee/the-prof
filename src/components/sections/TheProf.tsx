@@ -62,10 +62,21 @@ export default function TheProf() {
 
     return (
         <section id="pillars" className="bg-ink py-24! relative overflow-hidden z-10 w-full overflow-x-hidden">
-            {/* Enhanced Background elements */}
-            <div className="absolute top-0 left-0 w-[1000px] h-[1000px] bg-blue/10 rounded-full blur-[120px] -translate-x-1/3 -translate-y-1/3 pointer-events-none" />
-            <div className="absolute top-1/2 right-0 w-[800px] h-[800px] bg-blue/8 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/4 pointer-events-none" />
-            <div className="absolute bottom-0 left-1/2 w-[600px] h-[600px] bg-orange/5 rounded-full blur-[80px] -translate-x-1/2 translate-y-1/3 pointer-events-none" />
+            {/* Layered Background elements */}
+            {/* Base layer - Large ambient glows */}
+            <div className="absolute top-0 left-0 w-[1200px] h-[1200px] bg-blue/15 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[1000px] h-[1000px] bg-blue/12 rounded-full blur-[140px] translate-x-1/2 translate-y-1/2 pointer-events-none" />
+
+            {/* Mid layer - Overlapping accent glows */}
+            <div className="absolute top-1/4 right-1/4 w-[700px] h-[700px] bg-blue/20 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-1/3 left-1/4 w-[600px] h-[600px] bg-blue/15 rounded-full blur-[90px] pointer-events-none" />
+
+            {/* Top layer - Smaller focused glows */}
+            <div className="absolute top-1/2 left-1/3 w-[400px] h-[400px] bg-blue/25 rounded-full blur-[70px] pointer-events-none" />
+            <div className="absolute top-2/3 right-1/3 w-[350px] h-[350px] bg-blue/20 rounded-full blur-[60px] pointer-events-none" />
+
+            {/* Gradient overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-transparent to-ink/60 pointer-events-none" />
 
             <MaxWidthWrapper>
                 <div className="relative z-10 w-full space-y-24!">
@@ -95,7 +106,7 @@ export default function TheProf() {
                             </div>
 
                             {/* Enhanced Accent element */}
-                            <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-blue/15 backdrop-blur-xl border-2 border-canvas/20 rounded-3xl p-6! flex items-center justify-center shadow-xl">
+                            <div className="absolute -bottom-8 -right-2 md:-right-8 w-32 h-32 md:w-40 md:h-40 bg-blue/15 backdrop-blur-xl border-2 border-canvas/20 rounded-3xl p-6! flex items-center justify-center shadow-xl">
                                 <div className="text-center">
                                     <div className="text-blue font-display font-black text-3xl leading-none">THE</div>
                                     <div className="text-canvas font-display font-black text-3xl leading-none mt-1">PROF</div>
@@ -149,7 +160,7 @@ export default function TheProf() {
                                 </p>
 
                                 <p>
-                                    He wished someone had grabbed his hand and pushed him back on track when everything fell apart. Nobody did. So, he became that person – <span className="text-blue font-bold">for you.</span>
+                                    He wished someone had grabbed his hand and pushed him back on track when everything fell apart. Nobody did. So, he became that person – <span className="text-blue-mid font-bold">for you.</span>
                                 </p>
                             </motion.div>
                         </div>
@@ -181,7 +192,7 @@ export default function TheProf() {
                                     {card.link && (
                                         <button
                                             onClick={() => setShowValues(!showValues)}
-                                            className="mt-auto pt-4! flex items-center gap-2 text-blue font-display font-bold uppercase text-xs tracking-widest group-hover:gap-4 transition-all cursor-pointer"
+                                            className="mt-auto pt-4! flex items-center gap-2 text-blue-mid font-display font-bold uppercase text-xs tracking-widest group-hover:gap-4 transition-all cursor-pointer"
                                         >
                                             {showValues ? 'Hide' : 'See'} our values <ArrowRight size={14} className={`transition-transform ${showValues ? 'rotate-90' : ''}`} />
                                         </button>
