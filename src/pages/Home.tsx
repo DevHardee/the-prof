@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import Hero from '../components/sections/Hero';
@@ -11,6 +13,28 @@ import TheRevolution from '../components/sections/TheRevolution';
 import JoinCTA from '../components/sections/JoinCTA';
 
 export default function Home() {
+    const location = useLocation();
+
+    useEffect(() => {
+        const state = location.state as { scrollTo?: string } | null;
+        const targetId = state?.scrollTo;
+
+        if (targetId) {
+            // Wait for the page to fully render
+            const timeoutId = setTimeout(() => {
+                const element = document.getElementById(targetId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 300);
+
+            // Clear the state to prevent scrolling again on subsequent renders
+            window.history.replaceState({}, document.title);
+
+            return () => clearTimeout(timeoutId);
+        }
+    }, [location]);
+
     return (
         <div className="w-full relative min-h-screen flex flex-col">
             <Navbar />

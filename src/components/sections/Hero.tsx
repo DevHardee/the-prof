@@ -1,11 +1,14 @@
 import { motion, type Variants } from 'framer-motion';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import SplashScreen from '../ui/SplashScreen';
 import { Target, Users, Lightbulb } from 'lucide-react';
 
 export default function Hero() {
-    const [_splashDone, setSplashDone] = useState(false);
+    const location = useLocation();
+    const hasTarget = !!(location.state?.scrollTo || location.hash);
+    const [splashDone, setSplashDone] = useState(hasTarget);
 
     const container: Variants = {
         hidden: { opacity: 0 },
@@ -32,7 +35,7 @@ export default function Hero() {
 
     return (
         <>
-            <SplashScreen onComplete={() => setSplashDone(true)} />
+            {!splashDone && <SplashScreen onComplete={() => setSplashDone(true)} />}
 
             <section
                 id='hero'
@@ -48,7 +51,7 @@ export default function Hero() {
                             <motion.div
                                 variants={container}
                                 initial="hidden"
-                                animate="show"
+                                animate={splashDone ? "show" : "hidden"}
                                 className="flex! flex-col!"
                             >
                                 {/* Eyebrow tag */}
