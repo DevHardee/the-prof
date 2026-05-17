@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Zap } from 'lucide-react';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -10,11 +10,7 @@ function Logo() {
 
     const handleLogoClick = () => {
         if (location.pathname !== '/') {
-            navigate('/');
-            setTimeout(() => {
-                const el = document.getElementById('hero');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
+            navigate('/', { state: { scrollTo: 'hero' } });
         } else {
             const el = document.getElementById('hero');
             if (el) {
@@ -39,17 +35,47 @@ const navLinks = [
     { label: 'Home', target: 'hero' },
     { label: 'The Truth', target: 'about' },
     { label: 'The Prof', target: 'pillars' },
-    { label: 'TechPath', target: '/techpath' },
     { label: 'Testimonials', target: 'testimonials' },
+    { label: 'TechPath', target: '/techpath' },
     { label: 'Events', target: '/events' }
 ] as const;
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('hero');
     const location = useLocation();
     const navigate = useNavigate();
 
     const toggleMenu = () => setIsOpen(!isOpen);
+
+    // Track active section on Home page
+    useEffect(() => {
+        if (location.pathname !== '/') return;
+
+        const handleScroll = () => {
+            const sections = ['hero', 'about', 'pillars', 'testimonials', 'join-cta'];
+            const scrollPosition = window.scrollY + 200; // Offset for navbar
+
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = document.getElementById(sections[i]);
+                if (section && section.offsetTop <= scrollPosition) {
+                    setActiveSection(sections[i]);
+                    break;
+                }
+            }
+        };
+
+        handleScroll(); // Initial check
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [location.pathname]);
+
+    const isActive = (target: string) => {
+        if (target.startsWith('/')) {
+            return location.pathname === target;
+        }
+        return location.pathname === '/' && activeSection === target;
+    };
 
     const handleNavigate = (target: string) => {
         setIsOpen(false);
@@ -60,13 +86,7 @@ export default function Navbar() {
         }
 
         if (location.pathname !== '/') {
-            navigate('/');
-            setTimeout(() => {
-                const element = document.getElementById(target);
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                }
-            }, 100);
+            navigate('/', { state: { scrollTo: target } });
         } else {
             const element = document.getElementById(target);
             if (element) {
@@ -101,7 +121,8 @@ export default function Navbar() {
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 * (idx + 1), duration: 0.5, ease: 'easeOut' }}
-                            className="font-display font-semibold text-xs! md:text-sm! uppercase! tracking-widest! text-canvas! hover:text-orange! transition-colors! cursor-pointer! whitespace-nowrap!"
+                            className={`font-display font-semibold text-xs! md:text-sm! uppercase! tracking-widest! transition-colors! cursor-pointer! whitespace-nowrap! ${isActive(link.target) ? 'text-orange!' : 'text-canvas! hover:text-orange!'
+                                }`}
                         >
                             {link.label}
                         </motion.a>
@@ -110,16 +131,16 @@ export default function Navbar() {
 
                 {/* Right: CTA Button */}
                 <div className="hidden! lg:flex! flex-1! justify-end! items-center! gap-4!">
-                    <motion.a
-                        href="#"
+                    <motion.button
+                        onClick={() => handleNavigate('join-cta')}
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.5, duration: 0.5, ease: 'easeOut' }}
-                        className="bg-blue! text-white! hover:bg-white! hover:text-blue! font-display font-bold! uppercase! tracking-wider! px-5! py-2.5! rounded! transition-all! duration-300! text-xs! md:text-sm! flex! items-center! gap-2!"
+                        className="bg-blue! text-white! hover:bg-white! hover:text-blue! font-display font-bold! uppercase! tracking-wider! px-5! py-2.5! rounded! transition-all! duration-300! text-xs! md:text-sm! flex! items-center! gap-2! cursor-pointer!"
                     >
                         Charge Your Brain
                         <Zap size={14} className="fill-current" />
-                    </motion.a>
+                    </motion.button>
                 </div>
 
                 {/* Mobile Menu Toggle Button */}
@@ -151,21 +172,21 @@ export default function Navbar() {
                                         e.preventDefault();
                                         handleNavigate(link.target);
                                     }}
-                                    className="font-display font-semibold! text-lg! uppercase! tracking-widest! text-canvas! hover:text-orange! transition-colors! w-full! text-center! py-2! cursor-pointer!"
+                                    className={`font-display font-semibold! text-lg! uppercase! tracking-widest! transition-colors! w-full! text-center! py-2! cursor-pointer! ${isActive(link.target) ? 'text-orange!' : 'text-canvas! hover:text-orange!'
+                                        }`}
                                 >
                                     {link.label}
                                 </a>
                             ))}
 
                             <div className="flex! flex-col! w-full! gap-3! mt-4!">
-                                <a
-                                    href="#"
-                                    onClick={() => setIsOpen(false)}
-                                    className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-full! hover:bg-white! hover:text-blue! transition-all! duration-300! w-full! text-center! flex! items-center! justify-center! gap-2!"
+                                <button
+                                    onClick={() => handleNavigate('join-cta')}
+                                    className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-full! hover:bg-white! hover:text-blue! transition-all! duration-300! w-full! text-center! flex! items-center! justify-center! gap-2! cursor-pointer!"
                                 >
                                     Charge Your Brain
                                     <Zap size={16} className="fill-current" />
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </motion.div>

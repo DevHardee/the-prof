@@ -3,7 +3,9 @@ import MaxWidthWrapper from '../MaxWidthWrapper';
 
 export default function JoinCTA() {
     return (
-        <section className="bg-ink! py-24! px-6! relative! z-10! text-center! w-full! overflow-hidden!">
+        <section
+            id="join-cta"
+            className="bg-ink! py-24! px-6! relative! z-10! text-center! w-full! overflow-hidden!">
             {/* Background decorative */}
             <div className="absolute! top-1/2! left-1/2! w-[800px] h-[800px] bg-blue/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
             <div className="absolute! inset-0! opacity-[0.10] mix-blend-screen pointer-events-none">
