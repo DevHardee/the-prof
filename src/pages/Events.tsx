@@ -87,10 +87,31 @@ export default function Events() {
                                     </div>
                                 </div>
 
-                                <button className="group bg-ink text-canvas hover:bg-blue transition-all duration-500 px-8! py-4! rounded-full font-display font-black uppercase tracking-wider flex items-center gap-3!">
-                                    Secure My Seat
-                                    <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
-                                </button>
+                                <div className="flex flex-wrap gap-4! mb-10!">
+                                    <button className="group bg-ink text-canvas hover:bg-blue transition-all duration-500 px-8! py-4! rounded-full font-display font-black uppercase tracking-wider flex items-center gap-3!">
+                                        Secure My Seat
+                                        <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
+                                    </button>
+                                    <a
+                                        href="https://wa.me/2348117899169"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group border-2 border-ink text-ink hover:bg-ink hover:text-white transition-all duration-500 px-8! py-4! rounded-full font-display font-black uppercase tracking-wider flex items-center gap-3!"
+                                    >
+                                        Join The Community
+                                        <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
+                                    </a>
+                                </div>
+
+                                <div className="space-y-2!">
+                                    <p className="font-body text-ink/70 text-sm md:text-base flex items-center gap-2!">
+                                        <span className="w-2 h-2 rounded-full bg-blue" />
+                                        Have questions or want to know more about the event?
+                                    </p>
+                                    <p className="font-body text-ink/70 text-sm md:text-base">
+                                        For partnerships or inquiries, reach out via WhatsApp: <a href="https://wa.me/2348117899169" target="_blank" className="text-blue font-bold hover:underline">+234 811 789 9169</a>
+                                    </p>
+                                </div>
                             </motion.div>
 
                             <motion.div

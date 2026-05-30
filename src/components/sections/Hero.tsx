@@ -30,7 +30,7 @@ export default function Hero() {
     const miniCards = [
         { label: 'What are we doing?', value: 'Impacting the world with the right knowledge and information.', icon: TargetIcon },
         { label: 'Who are we doing it for?', value: 'Aspiring entrepreneurs, builders, side-hustlers, thinkers, tired of mediocrity - regardless of background, income, or experience.', icon: GroupIcon },
-        { label: 'Why are we doing it?', value: 'To educatem inspire, and empower every person with the right knowledge they need to build a life they are proud of - completely free. Knowledge shouldn\'t be a privilege.', icon: LightIcon },
+        { label: 'Why are we doing it?', value: 'To educate, inspire, and empower every person with the right knowledge they need to build a life they are proud of - completely free. Knowledge shouldn\'t be a privilege.', icon: LightIcon },
     ];
 
     return (
@@ -71,7 +71,7 @@ export default function Hero() {
 
                                 <motion.p
                                     variants={item}
-                                    className="font-body text-white/70! text-lg! md:text-xl! max-w-md! mt-10! leading-relaxed!"
+                                    className="font-body text-white/70! text-lg! md:text-2xl! max-w-md! mt-10! leading-relaxed!"
                                 >
                                     The world trained you to memorize. The Prof helps you to see clearly, think independently, and operate at a higher mental frequency.
                                 </motion.p>
@@ -89,7 +89,7 @@ export default function Hero() {
 
                                 <div className="hidden lg:block relative! w-full! max-w-[550px]! overflow-hidden! rounded-2xl! border! border-orange/20!">
                                     <img
-                                        src="/assets/homepage.png"
+                                        src="/assets/homepage1.png"
                                         alt="The Prof"
                                         className="w-full! h-full! object-cover! rounded-2xl! shadow-2xl!"
                                     />
@@ -119,6 +119,21 @@ export default function Hero() {
                                         }}
                                         className="absolute! inset-0! rounded-2xl! shadow-[0_0_30px_rgba(255,103,0,0.3)]! pointer-events-none!"
                                     />
+
+                                    {/* Scanner Animation Overlay */}
+                                    <motion.div
+                                        animate={{
+                                            top: ['-5%', '105%', '-5%']
+                                        }}
+                                        transition={{
+                                            duration: 4,
+                                            repeat: Infinity,
+                                            ease: "easeInOut"
+                                        }}
+                                        className="absolute! left-0! right-0! h-[2px]! bg-blue/40! shadow-[0_0_15px_rgba(11,58,255,0.4)]! z-20! pointer-events-none!"
+                                    />
+
+                                    <div className="absolute! inset-0! bg-gradient-to-b! from-blue/5! via-transparent! to-blue/5! pointer-events-none! z-10!" />
                                 </div>
                             </motion.div>
                         </div>
@@ -147,10 +162,10 @@ export default function Hero() {
                                         </div>
                                         <div className="w-8! h-[1px]! bg-white/10! group-hover:w-12! group-hover:bg-blue! transition-all! duration-300!" />
                                     </div>
-                                    <p className=" font-display font-medium! uppercase! tracking-[0.1em]! text-white/80! text-[10px]! md:text-xs! mb-2! group-hover:text-white! transition-colors!">
+                                    <p className=" font-display font-bold uppercase! tracking-[0.1em]! text-white! text-xs md:text-sm mb-2! group-hover:text-white! transition-colors!">
                                         {card.label}
                                     </p>
-                                    <p className="font-body text-canvas/80! text-sm! md:text-base! leading-relaxed! flex-1! group-hover:text-white! transition-colors!">{card.value}</p>
+                                    <p className="font-body text-canvas/80! text-lg md:text-2xl leading-relaxed! flex-1! group-hover:text-white! transition-colors!">{card.value}</p>
                                 </motion.div>
                             ))}
                         </motion.div>

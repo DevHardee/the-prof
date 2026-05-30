@@ -13,7 +13,7 @@ const shifts = [
         icon: Telescope,
         title: 'Perspective',
         label: 'See what people around you can\t see yet',
-        desc: 'Your environment shapes your ceiling – until your thinking breaks it. The Prof expands your frame of reference beyond your street, your city, and your current room. You start seeing the world the way people three levels ahead of you see it.',
+        desc: 'Your environment shapes your ceiling until your thinking breaks it. The Prof expands your frame of reference beyond your street, your city, and your current room. You start seeing the world the way people three levels ahead of you see it.',
     },
     {
         icon: Compass,
@@ -37,7 +37,7 @@ const shifts = [
         icon: Zap,
         title: 'Edge',
         label: 'Arrive before the crowd does',
-        desc: 'The people winning right now aren\'t smarter than you – they\'re earlier. They spotted the opportunity before it became obvious. The Prof trains you to read signals, spot openings in careers, business, and tech, and move while everyone else is still catching up.',
+        desc: 'The people winning right now aren\'t smarter than you, they\'re earlier. They spotted the opportunity before it became obvious. The Prof trains you to read signals, spot openings in careers, business, and tech, and move while everyone else is still catching up.',
     },
 ];
 
@@ -92,7 +92,7 @@ export default function WhatYouGet() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-                        className="font-body text-canvas/70! text-lg! mt-4! max-w-xl!"
+                        className="font-body text-canvas/70! text-lg! md:text-2xl! mt-4! max-w-xl!"
                     >
                         Six shifts that compound. Each one sharpens how you see, decide, and move.
                     </motion.p>
@@ -139,7 +139,7 @@ export default function WhatYouGet() {
                                         {shift.title}
                                     </h3>
                                     <div className="w-8! h-[2px]! bg-orange/30! group-hover:w-16! group-hover:bg-orange! transition-all! duration-500! mt-1! mb-2!" />
-                                    <p className="font-body text-canvas/50! text-sm! md:text-base! leading-relaxed! group-hover:text-canvas/80! transition-colors!">
+                                    <p className="font-body text-canvas/50! text-lg! md:text-2xl! leading-relaxed! group-hover:text-canvas/80! transition-colors!">
                                         {shift.desc}
                                     </p>
                                 </div>

@@ -4,31 +4,31 @@ import MaxWidthWrapper from '../MaxWidthWrapper';
 const testimonials = [
     {
         quote: "The Prof doesn't motivate you. It sharpens you. I left with more clarity in one sitting than a year of scrolling.",
-        author: 'Young professional',
+        author: 'Hadi',
     },
     {
         quote: "It feels like a headquarters for people who want substance. The intelligence behind the message is what made me stay.",
-        author: 'Student founder',
+        author: 'Confidence',
     },
     {
         quote: 'Bold voice, practical value. Knowledge is finally organised in a way that is worth acting on.',
-        author: 'Community member',
+        author: 'Mercy',
     },
     {
         quote: "The digital path mapping wasn't just helpful; it was a revelation of what's actually possible for someone like me.",
-        author: 'Career switcher',
+        author: 'Debby',
     },
     {
         quote: "Finally, a place that values substance over hype. The depth of insights here is unmatched.",
-        author: 'Digital entrepreneur',
+        author: 'Ben',
     },
     {
         quote: "HQ is where I go to refocus. It's the reset button everyone in this industry needs.",
-        author: 'Software Engineer',
+        author: 'Victor',
     },
     {
         quote: "The frameworks for product management are exactly what's being done at the top tier. No fluff.",
-        author: 'Product Designer',
+        author: 'Martha',
     },
 ];
 
@@ -96,7 +96,7 @@ export default function Testimonials() {
                                 <span className="text-blue-mid! text-5xl! font-display font-black! leading-none! group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 inline-block">"</span>
                             </div>
 
-                            <p className="font-body text-white/90! text-base! leading-relaxed! flex-1! group-hover:text-white transition-colors relative z-10">
+                            <p className="font-body text-white/90! text-lg! md:text-2xl! leading-relaxed! flex-1! group-hover:text-white transition-colors relative z-10">
                                 {t.quote}
                             </p>
 

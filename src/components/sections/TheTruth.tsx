@@ -10,12 +10,12 @@ interface Pillar {
 const pillars: Pillar[] = [
     {
         num: '01',
-        title: "You're trying.",
+        title: "You are trying.",
         desc: "Courses. Videos. Threads. You're consuming everything, but nothing is compounding. The more you learn, the more scattered you feel. That's not a knowledge problem. That's a sequence problem.",
     },
     {
         num: '02',
-        title: "You're moving.",
+        title: "You are moving.",
         desc: "But effort without a map gets you lost faster. You're not behind because you're slow. You're behind because no one gave you the road. Most people spend years figuring out what could be handed to them in weeks.",
     },
     {
@@ -73,9 +73,9 @@ export default function TheTruth() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-                    className="font-body text-white/70! text-lg! max-w-2xl! mb-14!"
+                    className="font-body text-white/70! text-lg! md:text-2xl! max-w-2xl! mb-14!"
                 >
-                    Not lazy. Not incapable. Just unclear. That's the gap most people never name — and it's the <em>only</em> one that matters.
+                    Not lazy. Not incapable. Just unclear. That's the gap most people never name, and it's the <em>only</em> one that matters.
                 </motion.p>
 
                 <motion.div
@@ -105,7 +105,7 @@ export default function TheTruth() {
                             <h3 className="font-display font-black! uppercase! text-2xl! lg:text-3xl! tracking-tighter! text-white! mb-4!">
                                 {p.title}
                             </h3>
-                            <p className="font-body text-white/60! leading-relaxed! group-hover:text-white! transition-colors! duration-300!">
+                            <p className="font-body text-white/60! text-lg! md:text-2xl! leading-relaxed! group-hover:text-white! transition-colors! duration-300!">
                                 {p.desc}
                             </p>
                         </motion.div>
@@ -120,7 +120,7 @@ export default function TheTruth() {
                     transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                     className="mt-12! text-center!"
                 >
-                    <p className="font-display font-bold! text-orange/80! hover:text-orange! transition-colors! duration-200! text-lg! tracking-wide!">
+                    <p className="font-display font-bold! text-orange/80! hover:text-orange! transition-colors! duration-200! text-lg! md:text-2xl! tracking-wide!">
                         That changes here. →
                     </p>
                 </motion.div>

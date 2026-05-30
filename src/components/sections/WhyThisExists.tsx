@@ -34,7 +34,7 @@ export default function WhyThisExists() {
                             className="font-display font-black uppercase text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-[0.92]"
                         >
                             Because knowledge is power{' '}
-                            <span className="text-orange">– and power should never be locked behind privilege.</span>
+                            <span className="text-orange"> - and power should never be locked behind privilege.</span>
                         </motion.h2>
 
                         <motion.p
@@ -42,7 +42,7 @@ export default function WhyThisExists() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-                            className="font-body text-white/70 text-lg md:text-xl leading-relaxed"
+                            className="font-body text-white/70 text-lg md:text-2xl leading-relaxed"
                         >
                             Too many brilliant people are losing – not because they lack ability, but because the right knowledge never reached them.{' '}
                             <span className="text-white font-semibold">That ends here.</span>
@@ -57,7 +57,7 @@ export default function WhyThisExists() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="space-y-6! font-body text-white/80 text-base md:text-lg leading-relaxed"
+                            className="space-y-6! font-body text-white/80 text-lg md:text-2xl leading-relaxed"
                         >
                             <p>
                                 There is a version of you that never gets the information it needs. Not because you aren't smart enough. Not because you aren't willing enough. But because the knowledge that could change your life is sitting behind a paywall, inside a network you were never invited into, or in a room you didn't know existed.
@@ -74,7 +74,7 @@ export default function WhyThisExists() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="space-y-6! font-body text-white/80 text-base md:text-lg leading-relaxed"
+                            className="space-y-6! font-body text-white/80 text-lg md:text-2xl leading-relaxed"
                         >
                             <p>
                                 <span className="text-orange font-semibold">The Prof knows this</span> – not as a theory, but as a lived experience. Learnt every piece of clarity through confusion, every lesson through loss, every step forward through years of standing still.
@@ -89,7 +89,7 @@ export default function WhyThisExists() {
                                         That is why the Prof exists.
                                     </h3>
                                 </div>
-                                <p className="text-white/90 font-semibold text-lg">
+                                <p className="text-white/90 font-semibold text-lg md:text-2xl">
                                     This is not a platform. <span className="text-orange">This is a correction.</span>
                                 </p>
                             </div>
@@ -124,18 +124,7 @@ export default function WhyThisExists() {
                                     <span
                                         onClick={() => navigate('/techpath')}
                                         className="flex items-center gap-3!">
-                                        Find Your Tech Path
-                                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                    </span>
-                                </motion.button>
-
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="bg-white/5 backdrop-blur-sm text-white border border-white/20 px-10! py-4! rounded-full font-display font-black uppercase text-sm tracking-[0.15em] hover:bg-white/10 transition-colors group"
-                                >
-                                    <span className="flex items-center gap-3!">
-                                        Join the Community
+                                        Join The Community
                                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                     </span>
                                 </motion.button>

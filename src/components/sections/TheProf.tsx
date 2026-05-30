@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 const profCards = [
     {
         label: 'VISION',
-        desc: 'To become the most trusted name in knowledge. The brand that charges millions of minds and sparks a generation of bold, informed, and fearless builders – one person at a time.',
+        desc: 'To become a trusted source of knowledge, clarity, and mental elevation. The brand that charges millions of minds and sparks a generation of bold, informed, and fearless builders – one person at a time.',
         icon: Eye
     },
     {
         label: 'MISSION',
-        desc: 'To educate, inspire, and empower every person with the right knowledge to build a life they are proud of. No paywalls. No gatekeeping. Completely free – because access to clarity should never be a privilege.',
+        desc: 'To educate, inspire, and empower every person with the right knowledge to build a life they are proud of. No paywalls. No gatekeeping - because access to clarity should never be a privilege.',
         icon: Target
     },
     {
@@ -22,7 +22,11 @@ const profCards = [
     },
     {
         label: 'WHAT DRIVES US',
-        desc: 'Five values power everything at The Prof – Freedom, Integrity, Accessibility, Inspiration, and Consistency. Not words on a wall. Standards we are held to every single day.',
+        desc: (
+            <>
+                Five values power everything at The Prof – <span className="font-bold text-canvas">Freedom</span>, <span className="font-bold text-canvas">Integrity</span>, <span className="font-bold text-canvas">Accessibility</span>, <span className="font-bold text-canvas">Inspiration</span>, and <span className="font-bold text-canvas">Consistency</span>. Not words on a wall. Standards we are held to every single day.
+            </>
+        ),
         icon: ShieldCheck,
         link: true
     },
@@ -47,7 +51,7 @@ const brandValues = [
     {
         icon: Zap,
         label: 'Inspiration',
-        desc: "Every piece of content must leave you more motivated than it found you. We don't just inform — we ignite."
+        desc: "Every piece of content must leave you more motivated than it found you. We don't just inform, we ignite."
     },
     {
         icon: CalendarDays,
@@ -132,13 +136,13 @@ export default function TheProf() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
-                                className="space-y-6! text-canvas/80 font-body text-lg leading-relaxed"
+                                className="space-y-6! text-canvas/80 font-body text-lg md:text-2xl leading-relaxed"
                             >
                                 <p>
                                     His name is Kehinde Adebanjo. But most people just call him <span className="text-canvas font-bold italic">The Prof.</span>
                                 </p>
                                 <p>
-                                    He didn't start with confidence. He started with a speech defect and a room full of people who laughed. Through secondary school and into his early years in higher institution, speaking was something that happened to other people – not to him. Then one faculty did something nobody else had done: they pushed him in front of a room full of young people who needed to hear what the journey ahead looked like.
+                                    He didn't start with confidence. He started with a speech defect and a room full of people who laughed. Through secondary school and into his early years in higher institution, speaking was something that happened to other people, not to him. Then one faculty did something nobody else had done: they pushed him in front of a room full of young people who needed to hear what the journey ahead looked like.
                                 </p>
                                 <p>
                                     He spoke. They listened. They clapped. They laughed with him, not at him. And something shifted that never shifted back. <span className="text-blue font-semibold italic">That was the beginning of The Prof.</span>
@@ -152,15 +156,15 @@ export default function TheProf() {
                                 </div>
 
                                 <p>
-                                    Today, Kehinde is rebuilding. Not with bitterness – he carries no regrets, only understanding. He is clear about what he does have: his hands, his brain, and God. While quietly navigating his own storm, he has spent years counselling others through theirs – helping people find direction while keeping his own battles private.
+                                    Today, Kehinde is rebuilding. Not with bitterness, he carries no regrets, only understanding. He is clear about what he does have: his hands, his brain, and God. While quietly navigating his own storm, he has spent years counselling others through theirs, helping people find direction while keeping his own battles private.
                                 </p>
 
                                 <p className="bg-blue/10 border-l-4 border-blue p-6! rounded-r-xl text-canvas italic">
-                                    "The Prof is the moment those two things finally meet. His story and your journey. His mistakes and your map. He is not building this from a place of arrival. He is building it from the middle of the road – because that is exactly where you are too, and that is precisely why you should listen."
+                                    "The Prof is the moment those two things finally meet. His story and your journey. His mistakes and your map. He is not building this from a place of arrival. He is building it from the middle of the road, because that is exactly where you are too, and that is precisely why you should listen."
                                 </p>
 
                                 <p>
-                                    He wished someone had grabbed his hand and pushed him back on track when everything fell apart. Nobody did. So, he became that person – <span className="text-blue-mid font-bold">for you.</span>
+                                    He wished someone had grabbed his hand and pushed him back on track when everything fell apart. Nobody did. So, he became that person, <span className="text-blue-mid font-bold">for you.</span>
                                 </p>
                             </motion.div>
                         </div>
@@ -168,7 +172,7 @@ export default function TheProf() {
 
                     {/* Pillars Grid */}
                     <div className="space-y-12!">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6!">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6!">
                             {profCards.map((card, index) => (
                                 <motion.div
                                     key={card.label}
@@ -185,7 +189,7 @@ export default function TheProf() {
                                         <h3 className="font-display font-black text-canvas text-xl uppercase tracking-wider">
                                             {card.label}
                                         </h3>
-                                        <p className="font-body text-canvas/70 text-base leading-relaxed">
+                                        <p className="font-body text-canvas/70 text-lg md:text-2xl leading-relaxed">
                                             {card.desc}
                                         </p>
                                     </div>
@@ -223,7 +227,7 @@ export default function TheProf() {
                                     </h3>
                                 </motion.div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4!">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4!">
                                     {brandValues.map((value, index) => (
                                         <motion.div
                                             key={value.label}
@@ -239,7 +243,7 @@ export default function TheProf() {
                                                 <h4 className="font-display font-bold text-canvas uppercase text-sm tracking-widest mb-2! flex items-center gap-2!">
                                                     {value.label}
                                                 </h4>
-                                                <p className="font-body text-canvas/60 text-xs leading-relaxed">
+                                                <p className="font-body text-canvas/60 text-lg md:text-2xl leading-relaxed">
                                                     {value.desc}
                                                 </p>
                                             </div>
@@ -271,9 +275,9 @@ export default function TheProf() {
                                     className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.2em] shadow-2xl shadow-blue/20 group"
                                 >
                                     <span
-                                        onClick={() => navigate('/techpath')}
+                                        onClick={() => navigate('/events')}
                                         className="flex items-center gap-3!">
-                                        Find Your Tech Path
+                                        View Upcoming Events
                                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                     </span>
                                 </motion.button>
@@ -283,9 +287,9 @@ export default function TheProf() {
                                     className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.2em] shadow-2xl shadow-blue/20 group"
                                 >
                                     <span
-                                        onClick={() => navigate('/events')}
+                                        onClick={() => navigate('/techpath')}
                                         className="flex items-center gap-3!">
-                                        View Upcoming Events
+                                        Join The Community
                                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                     </span>
                                 </motion.button>
