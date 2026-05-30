@@ -7,7 +7,7 @@ const movementCategories = [
         icon: Brain,
         category: 'THINKERS',
         value: 'Independent',
-        description: 'You question what you\'re told and go looking for what\'s actually true. You don\'t accept the ceiling your environment gave you – you raise it yourself.'
+        description: 'You question what you are told and go looking for what is actually true. You don\'t accept the ceiling your environment gave you, you raise it yourself.'
     },
     {
         icon: Hammer,
@@ -71,7 +71,7 @@ export default function TheRevolution() {
                                 className="space-y-6!"
                             >
                                 <p className="font-body text-white/70 text-lg md:text-xl leading-relaxed max-w-lg">
-                                    Not a person. Not a trend. A growing standard for people who refuse to stay average – a generation of thinkers, builders, and doers who decided to charge their brains instead of waiting for life to change.
+                                    Not a person. Not a trend. A growing standard for people who refuse to stay average. A generation of thinkers, builders, and doers who decided to charge their brains instead of waiting for life to change.
                                 </p>
 
                                 <p className="font-body text-blue font-semibold text-lg md:text-xl">
@@ -143,7 +143,7 @@ export default function TheRevolution() {
                         <div className="relative z-10 max-w-6xl mx-auto text-center space-y-8!">
                             <h3 className="font-display font-black text-white text-3xl md:text-5xl uppercase leading-tight">
                                 The movement has already started.<br />
-                                <span className="text-blue">The only question is whether you're in it.</span>
+                                <span className="text-blue">The only question is whether you are in it.</span>
                             </h3>
 
                             <motion.button
@@ -152,7 +152,7 @@ export default function TheRevolution() {
                                 className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.15em] shadow-2xl shadow-blue/30 group"
                             >
                                 <span className="flex items-center gap-3!">
-                                    Join free. Charge your brain
+                                    Join The Community
                                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                 </span>
                             </motion.button>

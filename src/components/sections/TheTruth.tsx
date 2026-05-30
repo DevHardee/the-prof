@@ -10,12 +10,12 @@ interface Pillar {
 const pillars: Pillar[] = [
     {
         num: '01',
-        title: "You're trying.",
+        title: "You are trying.",
         desc: "Courses. Videos. Threads. You're consuming everything, but nothing is compounding. The more you learn, the more scattered you feel. That's not a knowledge problem. That's a sequence problem.",
     },
     {
         num: '02',
-        title: "You're moving.",
+        title: "You are moving.",
         desc: "But effort without a map gets you lost faster. You're not behind because you're slow. You're behind because no one gave you the road. Most people spend years figuring out what could be handed to them in weeks.",
     },
     {
@@ -75,7 +75,7 @@ export default function TheTruth() {
                     transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
                     className="font-body text-white/70! text-lg! max-w-2xl! mb-14!"
                 >
-                    Not lazy. Not incapable. Just unclear. That's the gap most people never name — and it's the <em>only</em> one that matters.
+                    Not lazy. Not incapable. Just unclear. That's the gap most people never name, and it's the <em>only</em> one that matters.
                 </motion.p>
 
                 <motion.div

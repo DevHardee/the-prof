@@ -2,10 +2,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import { Check, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 const audienceItems = [
-    'You\'re at the beginning and everyone around you seems to know something you don\'t – and you\'re tired of pretending otherwise',
+    'You\'re at the beginning and everyone around you seems to know something you don\'t, and you\'re tired of pretending otherwise',
     'You have an idea that won\'t leave you alone and you\'re ready to stop calling it a dream and start building it properly',
     'You want to break into tech but don\'t know where the door is, who has the key, or whether someone like you is even allowed in',
     'You\'re stuck in the wrong career, the wrong city, or the wrong chapter, and you know it\'s time to rewrite it',
@@ -21,7 +20,6 @@ const cyclingPhrases = [
 
 export default function WhoItsFor() {
     const [phraseIndex, setPhraseIndex] = useState(0);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -194,20 +192,8 @@ export default function WhoItsFor() {
                                     className="bg-blue text-white px-10! py-4! rounded-full font-display font-black uppercase text-sm tracking-[0.15em] shadow-2xl shadow-blue/30 group"
                                 >
                                     <span
-                                        onClick={() => navigate('/techpath')}
                                         className="flex items-center gap-3!">
-                                        Find Your Tech Path
-                                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                    </span>
-                                </motion.button>
-
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="bg-white/5 backdrop-blur-sm text-white border border-white/20 px-10! py-4! rounded-full font-display font-black uppercase text-sm tracking-[0.15em] hover:bg-white/10 transition-colors group"
-                                >
-                                    <span className="flex items-center gap-3!">
-                                        Join the Community
+                                        Join The Community
                                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                     </span>
                                 </motion.button>

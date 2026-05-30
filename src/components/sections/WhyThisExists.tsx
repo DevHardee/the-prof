@@ -34,7 +34,7 @@ export default function WhyThisExists() {
                             className="font-display font-black uppercase text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-[0.92]"
                         >
                             Because knowledge is power{' '}
-                            <span className="text-orange">– and power should never be locked behind privilege.</span>
+                            <span className="text-orange"> - and power should never be locked behind privilege.</span>
                         </motion.h2>
 
                         <motion.p
@@ -124,18 +124,7 @@ export default function WhyThisExists() {
                                     <span
                                         onClick={() => navigate('/techpath')}
                                         className="flex items-center gap-3!">
-                                        Find Your Tech Path
-                                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                    </span>
-                                </motion.button>
-
-                                <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="bg-white/5 backdrop-blur-sm text-white border border-white/20 px-10! py-4! rounded-full font-display font-black uppercase text-sm tracking-[0.15em] hover:bg-white/10 transition-colors group"
-                                >
-                                    <span className="flex items-center gap-3!">
-                                        Join the Community
+                                        Join The Community
                                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                     </span>
                                 </motion.button>

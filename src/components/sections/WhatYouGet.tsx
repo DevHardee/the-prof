@@ -13,7 +13,7 @@ const shifts = [
         icon: Telescope,
         title: 'Perspective',
         label: 'See what people around you can\t see yet',
-        desc: 'Your environment shapes your ceiling – until your thinking breaks it. The Prof expands your frame of reference beyond your street, your city, and your current room. You start seeing the world the way people three levels ahead of you see it.',
+        desc: 'Your environment shapes your ceiling until your thinking breaks it. The Prof expands your frame of reference beyond your street, your city, and your current room. You start seeing the world the way people three levels ahead of you see it.',
     },
     {
         icon: Compass,
@@ -37,7 +37,7 @@ const shifts = [
         icon: Zap,
         title: 'Edge',
         label: 'Arrive before the crowd does',
-        desc: 'The people winning right now aren\'t smarter than you – they\'re earlier. They spotted the opportunity before it became obvious. The Prof trains you to read signals, spot openings in careers, business, and tech, and move while everyone else is still catching up.',
+        desc: 'The people winning right now aren\'t smarter than you, they\'re earlier. They spotted the opportunity before it became obvious. The Prof trains you to read signals, spot openings in careers, business, and tech, and move while everyone else is still catching up.',
     },
 ];
 
