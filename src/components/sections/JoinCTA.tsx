@@ -40,7 +40,7 @@ export default function JoinCTA() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="font-body text-lg! md:text-xl! text-canvas/60! max-w-md! mb-12!"
+                        className="font-body text-lg! md:text-2xl! text-canvas/60! max-w-xl! mb-12!"
                     >
                         You've read the truth. You know what's missing. You've seen what's possible. Now there's only one thing left.The HQ is open.
                     </motion.p>

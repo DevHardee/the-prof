@@ -30,7 +30,7 @@ export default function Hero() {
     const miniCards = [
         { label: 'What are we doing?', value: 'Impacting the world with the right knowledge and information.', icon: TargetIcon },
         { label: 'Who are we doing it for?', value: 'Aspiring entrepreneurs, builders, side-hustlers, thinkers, tired of mediocrity - regardless of background, income, or experience.', icon: GroupIcon },
-        { label: 'Why are we doing it?', value: 'To educatem inspire, and empower every person with the right knowledge they need to build a life they are proud of - completely free. Knowledge shouldn\'t be a privilege.', icon: LightIcon },
+        { label: 'Why are we doing it?', value: 'To educate, inspire, and empower every person with the right knowledge they need to build a life they are proud of - completely free. Knowledge shouldn\'t be a privilege.', icon: LightIcon },
     ];
 
     return (
@@ -71,7 +71,7 @@ export default function Hero() {
 
                                 <motion.p
                                     variants={item}
-                                    className="font-body text-white/70! text-lg! md:text-xl! max-w-md! mt-10! leading-relaxed!"
+                                    className="font-body text-white/70! text-lg! md:text-2xl! max-w-md! mt-10! leading-relaxed!"
                                 >
                                     The world trained you to memorize. The Prof helps you to see clearly, think independently, and operate at a higher mental frequency.
                                 </motion.p>
@@ -165,7 +165,7 @@ export default function Hero() {
                                     <p className=" font-display font-bold uppercase! tracking-[0.1em]! text-white! text-xs md:text-sm mb-2! group-hover:text-white! transition-colors!">
                                         {card.label}
                                     </p>
-                                    <p className="font-body text-canvas/80! text-sm! md:text-base! leading-relaxed! flex-1! group-hover:text-white! transition-colors!">{card.value}</p>
+                                    <p className="font-body text-canvas/80! text-lg md:text-2xl leading-relaxed! flex-1! group-hover:text-white! transition-colors!">{card.value}</p>
                                 </motion.div>
                             ))}
                         </motion.div>

@@ -70,11 +70,11 @@ export default function TheRevolution() {
                                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                                 className="space-y-6!"
                             >
-                                <p className="font-body text-white/70 text-lg md:text-xl leading-relaxed max-w-lg">
+                                <p className="font-body text-white/70 text-lg md:text-2xl leading-relaxed max-w-lg">
                                     Not a person. Not a trend. A growing standard for people who refuse to stay average. A generation of thinkers, builders, and doers who decided to charge their brains instead of waiting for life to change.
                                 </p>
 
-                                <p className="font-body text-blue font-semibold text-lg md:text-xl">
+                                <p className="font-body text-blue font-semibold text-lg md:text-2xl">
                                     The movement has already started. And you're early.
                                 </p>
                             </motion.div>
@@ -118,7 +118,7 @@ export default function TheRevolution() {
                                         </div>
 
                                         {/* Description */}
-                                        <p className="font-body text-white/50 text-sm md:text-base leading-relaxed group-hover:text-white/80 transition-colors">
+                                        <p className="font-body text-white/50 text-lg md:text-2xl leading-relaxed group-hover:text-white/80 transition-colors">
                                             {item.description}
                                         </p>
                                     </motion.div>

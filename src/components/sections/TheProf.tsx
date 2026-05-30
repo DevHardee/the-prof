@@ -136,7 +136,7 @@ export default function TheProf() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
-                                className="space-y-6! text-canvas/80 font-body text-lg leading-relaxed"
+                                className="space-y-6! text-canvas/80 font-body text-lg md:text-2xl leading-relaxed"
                             >
                                 <p>
                                     His name is Kehinde Adebanjo. But most people just call him <span className="text-canvas font-bold italic">The Prof.</span>
@@ -172,7 +172,7 @@ export default function TheProf() {
 
                     {/* Pillars Grid */}
                     <div className="space-y-12!">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6!">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6!">
                             {profCards.map((card, index) => (
                                 <motion.div
                                     key={card.label}
@@ -189,7 +189,7 @@ export default function TheProf() {
                                         <h3 className="font-display font-black text-canvas text-xl uppercase tracking-wider">
                                             {card.label}
                                         </h3>
-                                        <p className="font-body text-canvas/70 text-base leading-relaxed">
+                                        <p className="font-body text-canvas/70 text-lg md:text-2xl leading-relaxed">
                                             {card.desc}
                                         </p>
                                     </div>
@@ -227,7 +227,7 @@ export default function TheProf() {
                                     </h3>
                                 </motion.div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4!">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4!">
                                     {brandValues.map((value, index) => (
                                         <motion.div
                                             key={value.label}
@@ -243,7 +243,7 @@ export default function TheProf() {
                                                 <h4 className="font-display font-bold text-canvas uppercase text-sm tracking-widest mb-2! flex items-center gap-2!">
                                                     {value.label}
                                                 </h4>
-                                                <p className="font-body text-canvas/60 text-xs leading-relaxed">
+                                                <p className="font-body text-canvas/60 text-lg md:text-2xl leading-relaxed">
                                                     {value.desc}
                                                 </p>
                                             </div>

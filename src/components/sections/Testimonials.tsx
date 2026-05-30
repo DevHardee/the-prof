@@ -96,7 +96,7 @@ export default function Testimonials() {
                                 <span className="text-blue-mid! text-5xl! font-display font-black! leading-none! group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 inline-block">"</span>
                             </div>
 
-                            <p className="font-body text-white/90! text-base! leading-relaxed! flex-1! group-hover:text-white transition-colors relative z-10">
+                            <p className="font-body text-white/90! text-lg! md:text-2xl! leading-relaxed! flex-1! group-hover:text-white transition-colors relative z-10">
                                 {t.quote}
                             </p>
 

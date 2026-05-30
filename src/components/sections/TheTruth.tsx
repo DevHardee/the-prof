@@ -73,7 +73,7 @@ export default function TheTruth() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-                    className="font-body text-white/70! text-lg! max-w-2xl! mb-14!"
+                    className="font-body text-white/70! text-lg! md:text-2xl! max-w-2xl! mb-14!"
                 >
                     Not lazy. Not incapable. Just unclear. That's the gap most people never name, and it's the <em>only</em> one that matters.
                 </motion.p>
@@ -105,7 +105,7 @@ export default function TheTruth() {
                             <h3 className="font-display font-black! uppercase! text-2xl! lg:text-3xl! tracking-tighter! text-white! mb-4!">
                                 {p.title}
                             </h3>
-                            <p className="font-body text-white/60! leading-relaxed! group-hover:text-white! transition-colors! duration-300!">
+                            <p className="font-body text-white/60! text-lg! md:text-2xl! leading-relaxed! group-hover:text-white! transition-colors! duration-300!">
                                 {p.desc}
                             </p>
                         </motion.div>
@@ -120,7 +120,7 @@ export default function TheTruth() {
                     transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                     className="mt-12! text-center!"
                 >
-                    <p className="font-display font-bold! text-orange/80! hover:text-orange! transition-colors! duration-200! text-lg! tracking-wide!">
+                    <p className="font-display font-bold! text-orange/80! hover:text-orange! transition-colors! duration-200! text-lg! md:text-2xl! tracking-wide!">
                         That changes here. →
                     </p>
                 </motion.div>
