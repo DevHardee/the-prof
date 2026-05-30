@@ -162,7 +162,7 @@ export default function Hero() {
                                         </div>
                                         <div className="w-8! h-[1px]! bg-white/10! group-hover:w-12! group-hover:bg-blue! transition-all! duration-300!" />
                                     </div>
-                                    <p className=" font-display font-medium! uppercase! tracking-[0.1em]! text-white/80! text-[10px]! md:text-xs! mb-2! group-hover:text-white! transition-colors!">
+                                    <p className=" font-display font-bold uppercase! tracking-[0.1em]! text-white! text-xs md:text-sm mb-2! group-hover:text-white! transition-colors!">
                                         {card.label}
                                     </p>
                                     <p className="font-body text-canvas/80! text-sm! md:text-base! leading-relaxed! flex-1! group-hover:text-white! transition-colors!">{card.value}</p>
