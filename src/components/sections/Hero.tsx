@@ -89,7 +89,7 @@ export default function Hero() {
 
                                 <div className="hidden lg:block relative! w-full! max-w-[550px]! overflow-hidden! rounded-2xl! border! border-orange/20!">
                                     <img
-                                        src="/assets/homepage.png"
+                                        src="/assets/homepage1.png"
                                         alt="The Prof"
                                         className="w-full! h-full! object-cover! rounded-2xl! shadow-2xl!"
                                     />
