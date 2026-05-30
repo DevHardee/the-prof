@@ -119,6 +119,21 @@ export default function Hero() {
                                         }}
                                         className="absolute! inset-0! rounded-2xl! shadow-[0_0_30px_rgba(255,103,0,0.3)]! pointer-events-none!"
                                     />
+
+                                    {/* Scanner Animation Overlay */}
+                                    <motion.div
+                                        animate={{
+                                            top: ['-5%', '105%', '-5%']
+                                        }}
+                                        transition={{
+                                            duration: 4,
+                                            repeat: Infinity,
+                                            ease: "easeInOut"
+                                        }}
+                                        className="absolute! left-0! right-0! h-[2px]! bg-blue/40! shadow-[0_0_15px_rgba(11,58,255,0.4)]! z-20! pointer-events-none!"
+                                    />
+
+                                    <div className="absolute! inset-0! bg-gradient-to-b! from-blue/5! via-transparent! to-blue/5! pointer-events-none! z-10!" />
                                 </div>
                             </motion.div>
                         </div>
