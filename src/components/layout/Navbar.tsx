@@ -81,7 +81,6 @@ export default function Navbar() {
         setIsOpen(false);
         if (target.startsWith('/')) {
             navigate(target);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
             return;
         }
 
