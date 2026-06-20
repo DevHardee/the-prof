@@ -14,10 +14,16 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Get allowed origins from environment or use defaults
+ALLOWED_ORIGINS = os.environ.get(
+    "ALLOWED_ORIGINS",
+    "http://localhost:5173,http://localhost:3000,https://the-prof.vercel.app"
+).split(",")
+
 # Enable CORS for frontend communication
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000", "*"],
+    allow_origins=ALLOWED_ORIGINS + ["*"],  # Allow configured origins plus wildcard
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
