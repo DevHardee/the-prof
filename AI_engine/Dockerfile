@@ -17,9 +17,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-
 EXPOSE ${PORT}
 
 ENV PORT=${PORT}
 CMD ["python3", "app.py"]
-ENTRYPOINT ["python3", "reddis.py"]
+
