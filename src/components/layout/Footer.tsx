@@ -22,7 +22,7 @@ const quickLinksLeft = [
 
 const quickLinksRight = [
     { label: 'View Our Events', href: '/events' },
-    { label: 'Join The Community', href: '#' },
+    { label: 'Join The Community', href: 'https://chat.whatsapp.com/FC0z0jih9b032oLHQmmDAC', target: '_blank', rel: 'noopener noreferrer' },
     // { label: 'Store', href: '#' },
     // { label: 'Terms', href: '#' },
     // { label: 'Privacy', href: '#' },
@@ -110,7 +110,7 @@ export default function Footer() {
                                 {quickLinksLeft.map((link) => (
                                     <li key={link.label} className='list-disc text-blue'>
                                         <a
-                                            href={link.href}
+                                            {...link}
                                             className="font-body text-canvas! hover:text-blue! transition-all! duration-300! text-lg! flex! items-center! gap-2! group!"
                                         >
                                             {link.label}
@@ -122,7 +122,7 @@ export default function Footer() {
                                 {quickLinksRight.map((link) => (
                                     <li key={link.label} className='list-disc text-blue'>
                                         <a
-                                            href={link.href}
+                                            {...link}
                                             className="font-body text-canvas hover:text-blue! transition-all! duration-300! text-lg! flex! items-center! gap-2! group!"
                                         >
                                             {link.label}

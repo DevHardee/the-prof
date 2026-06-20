@@ -93,7 +93,7 @@ export default function Events() {
                                         <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
                                     </button>
                                     <a
-                                        href="https://wa.me/2348117899169"
+                                        href="https://chat.whatsapp.com/FC0z0jih9b032oLHQmmDAC"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="group border-2 border-ink text-ink hover:bg-ink hover:text-white transition-all duration-500 px-8! py-4! rounded-full font-display font-black uppercase tracking-wider flex items-center gap-3!"

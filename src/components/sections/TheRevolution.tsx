@@ -70,11 +70,11 @@ export default function TheRevolution() {
                                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                                 className="space-y-6!"
                             >
-                                <p className="font-body text-white/70 text-lg md:text-2xl leading-relaxed max-w-lg">
+                                <p className="font-body text-white/70 text-base md:text-lg lg:text-2xl leading-relaxed max-w-lg">
                                     Not a person. Not a trend. A growing standard for people who refuse to stay average. A generation of thinkers, builders, and doers who decided to charge their brains instead of waiting for life to change.
                                 </p>
 
-                                <p className="font-body text-blue font-semibold text-lg md:text-2xl">
+                                <p className="font-body text-blue font-semibold text-base md:text-lg lg:text-2xl">
                                     The movement has already started. And you're early.
                                 </p>
                             </motion.div>
@@ -108,17 +108,17 @@ export default function TheRevolution() {
                                                 <item.icon size={28} strokeWidth={2.5} />
                                             </div>
                                             <div>
-                                                <p className="font-display font-bold uppercase tracking-[0.2em] text-blue/60 text-[10px] mb-1!">
+                                                <p className="font-display font-bold uppercase tracking-[0.2em] text-blue/60 text-[10px] md:text-sm mb-1!">
                                                     {item.category}
                                                 </p>
-                                                <h4 className="font-display font-black uppercase text-white text-2xl group-hover:text-blue transition-colors">
+                                                <h4 className="font-display font-black uppercase text-white text-lg! md:text-xl! lg:text-3xl! group-hover:text-blue transition-colors">
                                                     {item.value}
                                                 </h4>
                                             </div>
                                         </div>
 
                                         {/* Description */}
-                                        <p className="font-body text-white/50 text-lg md:text-2xl leading-relaxed group-hover:text-white/80 transition-colors">
+                                        <p className="font-body text-white/50 text-base md:text-lg lg:text-2xl leading-relaxed group-hover:text-white/80 transition-colors">
                                             {item.description}
                                         </p>
                                     </motion.div>
@@ -146,16 +146,17 @@ export default function TheRevolution() {
                                 <span className="text-blue">The only question is whether you are in it.</span>
                             </h3>
 
-                            <motion.button
+                            <motion.a
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.15em] shadow-2xl shadow-blue/30 group"
+                                href="https://chat.whatsapp.com/FC0z0jih9b032oLHQmmDAC"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-blue text-white px-12! py-5! w-fit! mx-auto! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.15em] shadow-2xl shadow-blue/30 group flex items-center justify-center gap-3!"
                             >
-                                <span className="flex items-center gap-3!">
-                                    Join The Community
-                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                </span>
-                            </motion.button>
+                                Join The Community
+                                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                            </motion.a>
                         </div>
                     </motion.div>
                 </div>
