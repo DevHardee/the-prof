@@ -92,7 +92,7 @@ export default function WhatYouGet() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-                        className="font-body text-canvas/70! text-lg! md:text-2xl! mt-4! max-w-xl!"
+                        className="font-body text-canvas/70! text-base! md:text-lg! lg:text-2xl! mt-4! max-w-xl!"
                     >
                         Six shifts that compound. Each one sharpens how you see, decide, and move.
                     </motion.p>
@@ -135,11 +135,11 @@ export default function WhatYouGet() {
                                     <span className="font-display font-black! uppercase! tracking-[0.2em]! text-orange! text-[10px]! md:text-xs!">
                                         {shift.label}
                                     </span>
-                                    <h3 className="font-display font-black! text-white! text-2xl! uppercase! tracking-tighter!">
+                                    <h3 className="font-display font-black! text-white! text-lg! md:text-xl! lg:text-3xl! uppercase! tracking-tighter!">
                                         {shift.title}
                                     </h3>
                                     <div className="w-8! h-[2px]! bg-orange/30! group-hover:w-16! group-hover:bg-orange! transition-all! duration-500! mt-1! mb-2!" />
-                                    <p className="font-body text-canvas/50! text-lg! md:text-2xl! leading-relaxed! group-hover:text-canvas/80! transition-colors!">
+                                    <p className="font-body text-canvas/50! text-base! md:text-lg! lg:text-2xl! leading-relaxed! group-hover:text-canvas/80! transition-colors!">
                                         {shift.desc}
                                     </p>
                                 </div>

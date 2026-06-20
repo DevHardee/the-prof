@@ -40,28 +40,31 @@ export default function JoinCTA() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="font-body text-lg! md:text-2xl! text-canvas/60! max-w-xl! mb-12!"
+                        className="font-body text-base! md:text-lg! lg:text-2xl! text-canvas/60! max-w-xl! mb-12!"
                     >
                         You've read the truth. You know what's missing. You've seen what's possible. Now there's only one thing left.The HQ is open.
                     </motion.p>
 
-                    <motion.form
+                    <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-                        onSubmit={(e) => e.preventDefault()}
                         className="w-fit! mx-auto!"
                     >
-                        <div className="relative! gap-3! p-2! bg-white/5! border! border-white/10! rounded-2xl! focus-within:border-blue/50! transition-all! duration-300!">
-                            <button
-                                type="submit"
-                                className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-xl! hover:bg-canvas! hover:text-blue! transition-all! duration-300! ease-brand whitespace-nowrap!"
-                            >
+                        <motion.a
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            href='https://chat.whatsapp.com/FC0z0jih9b032oLHQmmDAC'
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            className="flex! items-center! justify-center! gap-3! p-5! bg-white/5! border! border-white/10! rounded-2xl! hover:border-blue/50! transition-all! duration-300! group"
+                        >
+                            <span className="bg-blue! text-white! font-display font-bold! uppercase! tracking-wider! px-8! py-4! rounded-xl! group-hover:bg-canvas! group-hover:text-blue! transition-all! duration-300! ease-brand whitespace-nowrap!">
                                 Join The Community
-                            </button>
-                        </div>
-                    </motion.form>
+                            </span>
+                        </motion.a>
+                    </motion.div>
                 </div>
             </MaxWidthWrapper>
         </section>
