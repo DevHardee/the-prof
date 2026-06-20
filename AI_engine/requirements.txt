@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]==0.32.0
+groq
+python-dotenv
+pydantic
+requests
