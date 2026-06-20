@@ -83,7 +83,7 @@ export default function WhoItsFor() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-100px" }}
                                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-                                className="font-body text-white/70 text-lg md:text-2xl leading-relaxed max-w-lg"
+                                className="font-body text-white/70 text-base md:text-lg lg:text-2xl leading-relaxed max-w-lg"
                             >
                                 No gatekeeping. No barriers. No limits. The Prof is your access point – whether you're starting from zero or scaling something already in motion. If you're willing to learn, you already qualify.
                             </motion.p>
@@ -102,10 +102,10 @@ export default function WhoItsFor() {
                                 <div className="w-16 h-16 rounded-2xl bg-blue/20 flex items-center justify-center">
                                     <Check size={32} className="text-blue" strokeWidth={3} />
                                 </div>
-                                <h3 className="font-display font-black text-white text-2xl md:text-3xl uppercase leading-tight">
+                                <h3 className="font-display font-black text-white text-lg md:text-xl lg:text-3xl uppercase leading-tight">
                                     You're exactly who this is for.
                                 </h3>
-                                <p className="font-body text-white/60 text-lg md:text-2xl leading-relaxed">
+                                <p className="font-body text-white/60 text-base md:text-lg lg:text-2xl leading-relaxed">
                                     This isn't for people who have it all figured out. It's for the ones in motion, the ones rebuilding, the ones refusing to settle.
                                 </p>
                             </div>
@@ -159,7 +159,7 @@ export default function WhoItsFor() {
                                 <div className="flex-shrink-0 w-6 h-6 mt-1 rounded-full bg-blue/20 flex items-center justify-center group-hover:bg-blue/30 group-hover:scale-110 transition-all duration-300 relative z-10">
                                     <Check size={14} className="text-blue" strokeWidth={3} />
                                 </div>
-                                <p className="font-body text-white/80 text-lg md:text-2xl leading-relaxed group-hover:text-white transition-colors relative z-10">
+                                <p className="font-body text-white/80 text-base md:text-lg lg:text-2xl leading-relaxed group-hover:text-white transition-colors relative z-10">
                                     {item}
                                 </p>
                             </motion.div>
@@ -186,17 +186,17 @@ export default function WhoItsFor() {
                             </h3>
 
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-4! pt-4!">
-                                <motion.button
+                                <motion.a
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="bg-blue text-white px-10! py-4! rounded-full font-display font-black uppercase text-sm tracking-[0.15em] shadow-2xl shadow-blue/30 group"
+                                    href="https://chat.whatsapp.com/FC0z0jih9b032oLHQmmDAC"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-blue text-white px-10! py-4! rounded-full font-display font-black uppercase text-sm tracking-[0.15em] shadow-2xl shadow-blue/30 group flex items-center gap-3!"
                                 >
-                                    <span
-                                        className="flex items-center gap-3!">
-                                        Join The Community
-                                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                    </span>
-                                </motion.button>
+                                    Join The Community
+                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                </motion.a>
                             </div>
                         </div>
                     </motion.div>

@@ -136,7 +136,7 @@ export default function TheProf() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
-                                className="space-y-6! text-canvas/80 font-body text-lg md:text-2xl leading-relaxed"
+                                className="space-y-6! text-canvas/80 font-body text-base md:text-lg lg:text-2xl leading-relaxed"
                             >
                                 <p>
                                     His name is Kehinde Adebanjo. But most people just call him <span className="text-canvas font-bold italic">The Prof.</span>
@@ -149,7 +149,7 @@ export default function TheProf() {
                                 </p>
 
                                 <div className="pt-4! border-t border-canvas/10">
-                                    <h3 className="font-display font-bold text-canvas uppercase text-xl mb-4!">Then came the storm</h3>
+                                    <h3 className="font-display font-bold text-canvas uppercase text-lg md:text-xl lg:text-3xl mb-4!">Then came the storm</h3>
                                     <p>
                                         What came after wasn't easy; some days he cried. Some days the weight was too heavy to name. This left him with nothing but lessons. But he didn't disappear.
                                     </p>
@@ -186,10 +186,10 @@ export default function TheProf() {
                                         <card.icon size={24} strokeWidth={2} />
                                     </div>
                                     <div className="space-y-3!">
-                                        <h3 className="font-display font-black text-canvas text-xl uppercase tracking-wider">
+                                        <h3 className="font-display font-black text-canvas text-lg md:text-xl lg:text-3xl uppercase tracking-wider">
                                             {card.label}
                                         </h3>
-                                        <p className="font-body text-canvas/70 text-lg md:text-2xl leading-relaxed">
+                                        <p className="font-body text-canvas/70 text-base md:text-lg lg:text-2xl leading-relaxed">
                                             {card.desc}
                                         </p>
                                     </div>
@@ -240,10 +240,10 @@ export default function TheProf() {
                                                 <value.icon size={18} />
                                             </div>
                                             <div>
-                                                <h4 className="font-display font-bold text-canvas uppercase text-sm tracking-widest mb-2! flex items-center gap-2!">
+                                                <h4 className="font-display font-bold text-canvas uppercase text-lg md:text-xl lg:text-3xl tracking-widest mb-2! flex items-center gap-2!">
                                                     {value.label}
                                                 </h4>
-                                                <p className="font-body text-canvas/60 text-lg md:text-2xl leading-relaxed">
+                                                <p className="font-body text-canvas/60 text-base md:text-lg lg:text-2xl leading-relaxed">
                                                     {value.desc}
                                                 </p>
                                             </div>
@@ -272,27 +272,23 @@ export default function TheProf() {
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.2em] shadow-2xl shadow-blue/20 group"
+                                    onClick={() => navigate('/events')}
+                                    className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.2em] shadow-2xl shadow-blue/20 group flex items-center gap-3!"
                                 >
-                                    <span
-                                        onClick={() => navigate('/events')}
-                                        className="flex items-center gap-3!">
-                                        View Upcoming Events
-                                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                    </span>
+                                    View Upcoming Events
+                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                 </motion.button>
-                                <motion.button
+                                <motion.a
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.2em] shadow-2xl shadow-blue/20 group"
+                                    href="https://chat.whatsapp.com/FC0z0jih9b032oLHQmmDAC"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-blue text-white px-12! py-5! rounded-full font-display font-black uppercase text-xs md:text-sm tracking-[0.2em] shadow-2xl shadow-blue/20 group flex items-center gap-3!"
                                 >
-                                    <span
-                                        onClick={() => navigate('/techpath')}
-                                        className="flex items-center gap-3!">
-                                        Join The Community
-                                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                    </span>
-                                </motion.button>
+                                    Join The Community
+                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                </motion.a>
                             </div>
                         </div>
                     </motion.div>

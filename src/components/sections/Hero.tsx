@@ -71,7 +71,7 @@ export default function Hero() {
 
                                 <motion.p
                                     variants={item}
-                                    className="font-body text-white/70! text-lg! md:text-2xl! max-w-md! mt-10! leading-relaxed!"
+                                    className="font-body text-white/70! text-base! md:text-lg! lg:text-2xl! max-w-md! mt-10! leading-relaxed!"
                                 >
                                     The world trained you to memorize. The Prof helps you to see clearly, think independently, and operate at a higher mental frequency.
                                 </motion.p>
@@ -162,10 +162,10 @@ export default function Hero() {
                                         </div>
                                         <div className="w-8! h-[1px]! bg-white/10! group-hover:w-12! group-hover:bg-blue! transition-all! duration-300!" />
                                     </div>
-                                    <p className=" font-display font-bold uppercase! tracking-[0.1em]! text-white! text-xs md:text-sm mb-2! group-hover:text-white! transition-colors!">
+                                    <p className=" font-display font-bold uppercase! tracking-[0.1em]! text-white! text-lg! md:text-xl! lg:text-3xl! mb-2! group-hover:text-white! transition-colors!">
                                         {card.label}
                                     </p>
-                                    <p className="font-body text-canvas/80! text-lg md:text-2xl leading-relaxed! flex-1! group-hover:text-white! transition-colors!">{card.value}</p>
+                                    <p className="font-body text-canvas/80! text-base! md:text-lg! lg:text-2xl! leading-relaxed! flex-1! group-hover:text-white! transition-colors!">{card.value}</p>
                                 </motion.div>
                             ))}
                         </motion.div>

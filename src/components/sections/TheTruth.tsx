@@ -73,7 +73,7 @@ export default function TheTruth() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-                    className="font-body text-white/70! text-lg! md:text-2xl! max-w-2xl! mb-14!"
+                    className="font-body text-white/70! text-base! md:text-lg! lg:text-2xl! max-w-2xl! mb-14!"
                 >
                     Not lazy. Not incapable. Just unclear. That's the gap most people never name, and it's the <em>only</em> one that matters.
                 </motion.p>
@@ -102,10 +102,10 @@ export default function TheTruth() {
                                 {p.num}
                             </div>
                             <div className="w-12! h-[3px]! bg-orange! mb-8! rounded-full! group-hover:w-20! transition-all! duration-500!" />
-                            <h3 className="font-display font-black! uppercase! text-2xl! lg:text-3xl! tracking-tighter! text-white! mb-4!">
+                            <h3 className="font-display font-black! uppercase! text-lg! md:text-xl! lg:text-3xl! tracking-tighter! text-white! mb-4!">
                                 {p.title}
                             </h3>
-                            <p className="font-body text-white/60! text-lg! md:text-2xl! leading-relaxed! group-hover:text-white! transition-colors! duration-300!">
+                            <p className="font-body text-white/60! text-base! md:text-lg! lg:text-2xl! leading-relaxed! group-hover:text-white! transition-colors! duration-300!">
                                 {p.desc}
                             </p>
                         </motion.div>
@@ -120,7 +120,7 @@ export default function TheTruth() {
                     transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
                     className="mt-12! text-center!"
                 >
-                    <p className="font-display font-bold! text-orange/80! hover:text-orange! transition-colors! duration-200! text-lg! md:text-2xl! tracking-wide!">
+                    <p className="font-display font-bold! text-orange/80! hover:text-orange! transition-colors! duration-200! text-base! md:text-lg! lg:text-2xl! tracking-wide!">
                         That changes here. →
                     </p>
                 </motion.div>

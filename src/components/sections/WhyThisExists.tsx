@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 import { Zap, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 export default function WhyThisExists() {
-    const navigate = useNavigate();
     return (
         <section id="about" className="bg-ink py-24! relative z-10 w-full overflow-hidden">
             {/* Enhanced Background atmosphere */}
@@ -42,7 +40,7 @@ export default function WhyThisExists() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-                            className="font-body text-white/70 text-lg md:text-2xl leading-relaxed"
+                            className="font-body text-white/70 text-base md:text-lg lg:text-2xl leading-relaxed"
                         >
                             Too many brilliant people are losing – not because they lack ability, but because the right knowledge never reached them.{' '}
                             <span className="text-white font-semibold">That ends here.</span>
@@ -57,7 +55,7 @@ export default function WhyThisExists() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="space-y-6! font-body text-white/80 text-lg md:text-2xl leading-relaxed"
+                            className="space-y-6! font-body text-white/80 text-base md:text-lg lg:text-2xl leading-relaxed"
                         >
                             <p>
                                 There is a version of you that never gets the information it needs. Not because you aren't smart enough. Not because you aren't willing enough. But because the knowledge that could change your life is sitting behind a paywall, inside a network you were never invited into, or in a room you didn't know existed.
@@ -74,7 +72,7 @@ export default function WhyThisExists() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="space-y-6! font-body text-white/80 text-lg md:text-2xl leading-relaxed"
+                            className="space-y-6! font-body text-white/80 text-base md:text-lg lg:text-2xl leading-relaxed"
                         >
                             <p>
                                 <span className="text-orange font-semibold">The Prof knows this</span> – not as a theory, but as a lived experience. Learnt every piece of clarity through confusion, every lesson through loss, every step forward through years of standing still.
@@ -85,11 +83,11 @@ export default function WhyThisExists() {
                                     <div className="w-10 h-10 rounded-xl bg-orange/20 flex items-center justify-center">
                                         <Zap size={20} className="text-orange" strokeWidth={2.5} />
                                     </div>
-                                    <h3 className="font-display font-black text-white text-xl uppercase">
+                                    <h3 className="font-display font-black text-white text-lg md:text-xl lg:text-3xl uppercase">
                                         That is why the Prof exists.
                                     </h3>
                                 </div>
-                                <p className="text-white/90 font-semibold text-lg md:text-2xl">
+                                <p className="text-white/90 font-semibold text-base md:text-lg lg:text-2xl">
                                     This is not a platform. <span className="text-orange">This is a correction.</span>
                                 </p>
                             </div>
@@ -116,18 +114,17 @@ export default function WhyThisExists() {
                             </h3>
 
                             <div className="flex flex-col md:flex-row items-center justify-center gap-4! pt-4!">
-                                <motion.button
+                                <motion.a
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="bg-orange text-white px-10! py-4! rounded-full font-display font-black uppercase text-sm tracking-[0.15em] shadow-2xl shadow-orange/30 group"
+                                    href="https://chat.whatsapp.com/FC0z0jih9b032oLHQmmDAC"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-orange text-white px-10! py-4! rounded-full font-display font-black uppercase text-sm tracking-[0.15em] shadow-2xl shadow-orange/30 group flex items-center gap-3!"
                                 >
-                                    <span
-                                        onClick={() => navigate('/techpath')}
-                                        className="flex items-center gap-3!">
-                                        Join The Community
-                                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                    </span>
-                                </motion.button>
+                                    Join The Community
+                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                </motion.a>
                             </div>
                         </div>
                     </motion.div>
