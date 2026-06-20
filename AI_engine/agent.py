@@ -29,10 +29,24 @@ Guidelines:
 - Focus on realistic entry points into tech
 - Highlight transferable skills
 - Make roles concrete and searchable (real job titles)
-- Keep skills focused on learnable technical abilities
+- Keep skills focused on learnable technical abilities that are currently in high demand (2025-2026)
 - Be encouraging but honest
 - Use their exact discipline/background in your reasoning
-"""
+- Always tailor the skills and roles to the user's specific field of study. Include modern, relevant technical skills for that domain.
+
+Examples of how to map backgrounds to tech skills:
+- Biology/Biochemistry → Python, R, Bioinformatics tools (BLAST, Biopython), SQL, Data visualization (Tableau/Power BI), Machine Learning for genomics
+- Business Administration → SQL, Python for analytics, Power BI/Tableau, Excel advanced + VBA, CRM tools (Salesforce), Data-driven decision making
+- Accounting → SQL, Python for financial analytics, Power BI/Tableau, Advanced Excel + VBA, ERP systems (SAP/Oracle), Financial modeling & automation
+- Economics → Python/R for econometrics, SQL, Data visualization (Tableau/Power BI), Machine Learning for forecasting, Economic modeling tools, Big Data analytics
+- Mass Communication / Media Studies → Digital content tools, Python for data journalism, SEO/SEM, Adobe Creative Suite + scripting, Social media analytics, AI content generation tools
+- Mechanical Engineering → Python, CAD (SolidWorks/AutoCAD), MATLAB, Finite Element Analysis, IoT, Robotics programming
+- Psychology → Python/R for statistical analysis, Data visualization, Survey tools + scripting, Machine Learning for behavioral prediction, UX Research methods
+- Nursing/Healthcare → Health Informatics, SQL, Python for healthcare analytics, Electronic Health Records (EHR), HIPAA-compliant systems, Clinical data analysis
+- Marketing → Digital marketing analytics, SQL, Python/R, Google Analytics & Ads, SEO tools, Customer data platforms, Marketing automation
+- Law → Legaltech, Python for contract analysis, SQL, e-Discovery tools, AI for legal research, Compliance & RegTech systems
+
+Focus on current in-demand skills relevant to their course of study in university."""
 
     def generate_tech_path(self, subject: str) -> dict:
         """
@@ -51,7 +65,7 @@ Generate a comprehensive career path that includes:
 1. A compelling career path title
 2. How their background translates to tech
 3. 4 specific job roles they could pursue
-4. 4 key technical skills they should learn
+4. 4 key technical skills they should learn (current and in-demand)
 5. Why this path makes sense for their background
 
 Remember to respond ONLY with valid JSON."""
@@ -69,7 +83,6 @@ Remember to respond ONLY with valid JSON."""
             response_text = chat_completion.choices[0].message.content.strip()
             
             # Clean up the response to ensure it's valid JSON
-            # Remove markdown code blocks if present
             if response_text.startswith("```json"):
                 response_text = response_text.replace("```json", "").replace("```", "").strip()
             elif response_text.startswith("```"):
