@@ -80,16 +80,16 @@ export default function TechPath() {
     const handleRevealPath = async () => {
         const fieldToUse = selectedField || searchInput;
         if (!fieldToUse) return;
-        
+
         setSelectedField(fieldToUse);
         setIsLoading(true);
         setError(null);
         setShowResults(true);
-        
+
         try {
             // Get API URL from environment variable or default to localhost
             const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-            
+
             // Call the AI backend
             const response = await fetch(`${API_URL}/api/generate-path`, {
                 method: 'POST',
@@ -100,9 +100,9 @@ export default function TechPath() {
                     subject: fieldToUse
                 })
             });
-            
+
             const result = await response.json();
-            
+
             if (result.success) {
                 setAiGeneratedPath(result.data);
             } else {
@@ -285,7 +285,7 @@ export default function TechPath() {
                                     {isLoading ? (
                                         <div className="flex flex-col items-center justify-center text-center min-h-[400px] py-12!">
                                             <motion.div
-                                                animate={{ 
+                                                animate={{
                                                     scale: [1, 1.2, 1],
                                                     rotate: [0, 180, 360]
                                                 }}
@@ -324,7 +324,7 @@ export default function TechPath() {
                                             {(() => {
                                                 // Use AI generated path if available, otherwise fall back to hardcoded
                                                 const pathData = aiGeneratedPath || pathRecommendations[selectedField];
-                                                
+
                                                 return (
                                                     <>
                                                         {/* Path Title */}
