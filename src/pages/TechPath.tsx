@@ -73,12 +73,45 @@ export default function TechPath() {
     const [showResults, setShowResults] = useState(false);
     const [selectedField, setSelectedField] = useState('');
     const [searchInput, setSearchInput] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [aiGeneratedPath, setAiGeneratedPath] = useState<any>(null);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleRevealPath = () => {
+    const handleRevealPath = async () => {
         const fieldToUse = selectedField || searchInput;
-        if (fieldToUse) {
-            setSelectedField(fieldToUse);
-            setShowResults(true);
+        if (!fieldToUse) return;
+        
+        setSelectedField(fieldToUse);
+        setIsLoading(true);
+        setError(null);
+        setShowResults(true);
+        
+        try {
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            
+            // Call the AI backend
+            const response = await fetch(`${API_URL}/api/generate-path`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    subject: fieldToUse
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                setAiGeneratedPath(result.data);
+            } else {
+                setError(result.error || 'Failed to generate path');
+            }
+        } catch (err) {
+            console.error('Error calling AI agent:', err);
+            setError('Failed to connect to AI engine. Make sure the backend is running.');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -191,10 +224,11 @@ export default function TechPath() {
                                     {/* CTA */}
                                     <button
                                         onClick={handleRevealPath}
-                                        className="bg-blue-mid hover:bg-blue text-white font-display font-bold uppercase tracking-widest px-10! py-5! rounded-xl transition-all duration-300 flex items-center gap-3! w-full md:w-auto justify-center"
+                                        disabled={isLoading || (!selectedField && !searchInput)}
+                                        className="bg-blue-mid hover:bg-blue text-white font-display font-bold uppercase tracking-widest px-10! py-5! rounded-xl transition-all duration-300 flex items-center gap-3! w-full md:w-auto justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        Reveal my path
-                                        <Zap className="fill-current" size={18} />
+                                        {isLoading ? 'Generating your path...' : 'Reveal my path'}
+                                        {!isLoading && <Zap className="fill-current" size={18} />}
                                     </button>
                                 </div>
                             </motion.div>
@@ -242,75 +276,123 @@ export default function TechPath() {
                                 >
                                     <div className="absolute top-8! left-8! flex items-center gap-2! bg-ink/5 rounded-full px-3! py-1!">
                                         <Target className="w-3 h-3 text-ink/30" />
-                                        <span className="text-[10px] font-display font-bold uppercase tracking-wider text-ink/30">Recommended path</span>
+                                        <span className="text-[10px] font-display font-bold uppercase tracking-wider text-ink/30">
+                                            {isLoading ? 'Generating...' : 'Recommended path'}
+                                        </span>
                                     </div>
 
-                                    {pathRecommendations[selectedField] ? (
+                                    {isLoading ? (
+                                        <div className="flex flex-col items-center justify-center text-center min-h-[400px] py-12!">
+                                            <motion.div
+                                                animate={{ 
+                                                    scale: [1, 1.2, 1],
+                                                    rotate: [0, 180, 360]
+                                                }}
+                                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                                className="w-16 h-16 bg-blue/10 rounded-full flex items-center justify-center mb-6!"
+                                            >
+                                                <Sparkles className="w-8 h-8 text-blue" />
+                                            </motion.div>
+                                            <h4 className="font-display font-black uppercase text-2xl md:text-3xl text-ink mb-4!">
+                                                Creating Your Path
+                                            </h4>
+                                            <p className="font-body text-muted text-base md:text-lg max-w-sm">
+                                                Our AI is analyzing {selectedField} and mapping it to tech opportunities...
+                                            </p>
+                                        </div>
+                                    ) : error ? (
+                                        <div className="flex flex-col items-center justify-center text-center min-h-[400px] py-12!">
+                                            <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-6!">
+                                                <span className="text-3xl">⚠️</span>
+                                            </div>
+                                            <h4 className="font-display font-black uppercase text-2xl md:text-3xl text-ink mb-4!">
+                                                Oops! Something went wrong
+                                            </h4>
+                                            <p className="font-body text-muted text-base md:text-lg max-w-sm mb-4!">
+                                                {error}
+                                            </p>
+                                            <button
+                                                onClick={handleRevealPath}
+                                                className="bg-blue-mid hover:bg-blue text-white font-display font-bold uppercase tracking-widest px-6! py-3! rounded-xl transition-all duration-300 flex items-center gap-2!"
+                                            >
+                                                Try Again
+                                            </button>
+                                        </div>
+                                    ) : aiGeneratedPath || pathRecommendations[selectedField] ? (
                                         <div className="mt-8! space-y-8!">
-                                            {/* Path Title */}
-                                            <div>
-                                                <div className="flex items-center gap-3! mb-4!">
-                                                    <Compass className="w-8 h-8 text-blue" />
-                                                    <h3 className="font-display font-black uppercase text-3xl md:text-4xl text-ink">
-                                                        {pathRecommendations[selectedField].title}
-                                                    </h3>
-                                                </div>
-                                                <p className="font-body text-muted text-lg md:text-xl leading-relaxed">
-                                                    {pathRecommendations[selectedField].description}
-                                                </p>
-                                            </div>
+                                            {(() => {
+                                                // Use AI generated path if available, otherwise fall back to hardcoded
+                                                const pathData = aiGeneratedPath || pathRecommendations[selectedField];
+                                                
+                                                return (
+                                                    <>
+                                                        {/* Path Title */}
+                                                        <div>
+                                                            <div className="flex items-center gap-3! mb-4!">
+                                                                <Compass className="w-8 h-8 text-blue" />
+                                                                <h3 className="font-display font-black uppercase text-3xl md:text-4xl text-ink">
+                                                                    {pathData.title}
+                                                                </h3>
+                                                            </div>
+                                                            <p className="font-body text-muted text-lg md:text-xl leading-relaxed">
+                                                                {pathData.description}
+                                                            </p>
+                                                        </div>
 
-                                            {/* Why This Path */}
-                                            <div className="bg-blue/5 border border-blue/10 rounded-2xl p-6! md:p-8!">
-                                                <div className="flex items-start gap-3! mb-3!">
-                                                    <Lightbulb className="w-6 h-6 text-blue flex-shrink-0 mt-1!" />
-                                                    <h4 className="font-display font-bold uppercase text-sm tracking-wider text-ink">
-                                                        Why this path fits you
-                                                    </h4>
-                                                </div>
-                                                <p className="font-body text-muted text-base leading-relaxed ml-9!">
-                                                    {pathRecommendations[selectedField].why}
-                                                </p>
-                                            </div>
+                                                        {/* Why This Path */}
+                                                        <div className="bg-blue/5 border border-blue/10 rounded-2xl p-6! md:p-8!">
+                                                            <div className="flex items-start gap-3! mb-3!">
+                                                                <Lightbulb className="w-6 h-6 text-blue flex-shrink-0 mt-1!" />
+                                                                <h4 className="font-display font-bold uppercase text-sm tracking-wider text-ink">
+                                                                    Why this path fits you
+                                                                </h4>
+                                                            </div>
+                                                            <p className="font-body text-muted text-base leading-relaxed ml-9!">
+                                                                {pathData.why}
+                                                            </p>
+                                                        </div>
 
-                                            {/* Roles & Skills Grid */}
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6! md:gap-8!">
-                                                {/* Roles */}
-                                                <div className="bg-ink/5 rounded-2xl p-6! md:p-8!">
-                                                    <div className="flex items-center gap-3! mb-6!">
-                                                        <Briefcase className="w-5 h-5 text-ink/60" />
-                                                        <h4 className="font-display font-bold uppercase text-xs tracking-wider text-ink/60">
-                                                            Sample Roles
-                                                        </h4>
-                                                    </div>
-                                                    <ul className="space-y-3!">
-                                                        {pathRecommendations[selectedField].roles.map((role, idx) => (
-                                                            <li key={idx} className="flex items-start gap-3!">
-                                                                <span className="text-blue text-lg mt-0.5!">•</span>
-                                                                <span className="font-body text-ink text-base">{role}</span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
+                                                        {/* Roles & Skills Grid */}
+                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6! md:gap-8!">
+                                                            {/* Roles */}
+                                                            <div className="bg-ink/5 rounded-2xl p-6! md:p-8!">
+                                                                <div className="flex items-center gap-3! mb-6!">
+                                                                    <Briefcase className="w-5 h-5 text-ink/60" />
+                                                                    <h4 className="font-display font-bold uppercase text-xs tracking-wider text-ink/60">
+                                                                        Sample Roles
+                                                                    </h4>
+                                                                </div>
+                                                                <ul className="space-y-3!">
+                                                                    {pathData.roles.map((role: string, idx: number) => (
+                                                                        <li key={idx} className="flex items-start gap-3!">
+                                                                            <span className="text-blue text-lg mt-0.5!">•</span>
+                                                                            <span className="font-body text-ink text-base">{role}</span>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
 
-                                                {/* Skills */}
-                                                <div className="bg-ink/5 rounded-2xl p-6! md:p-8!">
-                                                    <div className="flex items-center gap-3! mb-6!">
-                                                        <TrendingUp className="w-5 h-5 text-ink/60" />
-                                                        <h4 className="font-display font-bold uppercase text-xs tracking-wider text-ink/60">
-                                                            Skills to Learn
-                                                        </h4>
-                                                    </div>
-                                                    <ul className="space-y-3!">
-                                                        {pathRecommendations[selectedField].skills.map((skill, idx) => (
-                                                            <li key={idx} className="flex items-start gap-3!">
-                                                                <span className="text-blue text-lg mt-0.5!">•</span>
-                                                                <span className="font-body text-ink text-base">{skill}</span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                                            {/* Skills */}
+                                                            <div className="bg-ink/5 rounded-2xl p-6! md:p-8!">
+                                                                <div className="flex items-center gap-3! mb-6!">
+                                                                    <TrendingUp className="w-5 h-5 text-ink/60" />
+                                                                    <h4 className="font-display font-bold uppercase text-xs tracking-wider text-ink/60">
+                                                                        Skills to Learn
+                                                                    </h4>
+                                                                </div>
+                                                                <ul className="space-y-3!">
+                                                                    {pathData.skills.map((skill: string, idx: number) => (
+                                                                        <li key={idx} className="flex items-start gap-3!">
+                                                                            <span className="text-blue text-lg mt-0.5!">•</span>
+                                                                            <span className="font-body text-ink text-base">{skill}</span>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </>
+                                                );
+                                            })()}
                                         </div>
                                     ) : (
                                         <div className="flex flex-col items-center justify-center text-center min-h-[400px] py-12!">
