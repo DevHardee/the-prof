@@ -1,17 +1,12 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Search, Zap, Lightbulb, Briefcase, TrendingUp, Sparkles, Target, Compass } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Search, Zap, Lightbulb, Briefcase, TrendingUp, Sparkles, Target, Compass, Mail, User, ArrowRight } from 'lucide-react';
+import { STUDY_FIELDS } from '../data/studyFields';
+import { supabase } from '../lib/supabase';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import MaxWidthWrapper from '../components/MaxWidthWrapper';
 
-const studyFields = [
-    'Microbiology',
-    'Accounting',
-    'Mass Communication',
-    'Economics',
-    'English'
-];
 
 const pathRecommendations: Record<string, { title: string; description: string; roles: string[]; skills: string[]; why: string }> = {
     'Microbiology': {
@@ -73,9 +68,42 @@ export default function TechPath() {
     const [showResults, setShowResults] = useState(false);
     const [selectedField, setSelectedField] = useState('');
     const [searchInput, setSearchInput] = useState('');
+    const [suggestions, setSuggestions] = useState<string[]>([]);
+    const [showSuggestions, setShowSuggestions] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [loadingProgress, setLoadingProgress] = useState(0);
+    const [loadingStatus, setLoadingStatus] = useState('Initializing search...');
+    const [showLeadForm, setShowLeadForm] = useState(false);
+    const [leadData, setLeadData] = useState({ name: '', email: '' });
+    const [isSubmittingLead, setIsSubmittingLead] = useState(false);
     const [aiGeneratedPath, setAiGeneratedPath] = useState<any>(null);
     const [error, setError] = useState<string | null>(null);
+    const suggestionRef = useRef<HTMLDivElement>(null);
+
+    // Filter suggestions based on input
+    useEffect(() => {
+        if (searchInput.length > 1) {
+            const filtered = STUDY_FIELDS.filter(field =>
+                field.toLowerCase().includes(searchInput.toLowerCase())
+            ).slice(0, 5);
+            setSuggestions(filtered);
+            setShowSuggestions(filtered.length > 0);
+        } else {
+            setSuggestions([]);
+            setShowSuggestions(false);
+        }
+    }, [searchInput]);
+
+    // Handle clicking outside of suggestions
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (suggestionRef.current && !suggestionRef.current.contains(event.target as Node)) {
+                setShowSuggestions(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     const handleRevealPath = async () => {
         const fieldToUse = selectedField || searchInput;
@@ -84,42 +112,92 @@ export default function TechPath() {
         setSelectedField(fieldToUse);
         setIsLoading(true);
         setError(null);
-        setShowResults(true);
+        setLoadingProgress(0);
+        setLoadingStatus('Identifying best tech career matches...');
+
+        // Simulate progress for premium feel
+        const intervals = [
+            { threshold: 30, status: 'Analyzing your background...', duration: 800 },
+            { threshold: 60, status: 'Mapping potential career pivots...', duration: 1200 },
+            { threshold: 90, status: 'Generating personalized recommendations...', duration: 1000 },
+            { threshold: 100, status: 'Analysis complete!', duration: 500 }
+        ];
+
+        let currentIntervalIdx = 0;
+        const timer = setInterval(() => {
+            setLoadingProgress(prev => {
+                if (prev >= 100) {
+                    clearInterval(timer);
+                    setTimeout(() => {
+                        setIsLoading(false);
+                        setShowLeadForm(true);
+                    }, 500);
+                    return 100;
+                }
+
+                const nextVal = prev + Math.random() * 5;
+                if (nextVal >= intervals[currentIntervalIdx].threshold && currentIntervalIdx < intervals.length - 1) {
+                    setLoadingStatus(intervals[currentIntervalIdx + 1].status);
+                    currentIntervalIdx++;
+                }
+                return Math.min(nextVal, 100);
+            });
+        }, 100);
 
         try {
-            // Get API URL from environment variable or default to localhost
             const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-
-            // Call the AI backend
             const response = await fetch(`${API_URL}/api/generate-path`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    subject: fieldToUse
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ subject: fieldToUse })
             });
 
             const result = await response.json();
-
             if (result.success) {
                 setAiGeneratedPath(result.data);
             } else {
-                setError(result.error || 'Failed to generate path');
+                // If AI fails, we still proceed with lead gen but show specific error later if needed
+                console.warn('AI Generation failed, falling back to local recommendations if available.');
             }
         } catch (err) {
             console.error('Error calling AI agent:', err);
-            setError('Failed to connect to AI engine. Make sure the backend is running.');
-        } finally {
-            setIsLoading(false);
         }
     };
 
-    const handleFieldClick = (field: string) => {
-        setSelectedField(field);
-        setSearchInput(field);
+    const handleLeadSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmittingLead(true);
+
+        try {
+            // Save to Supabase
+            const { error: sbError } = await supabase
+                .from('leads')
+                .insert([
+                    {
+                        name: leadData.name,
+                        email: leadData.email,
+                        field_of_study: selectedField || searchInput
+                    }
+                ]);
+
+            if (sbError) throw sbError;
+
+            setShowLeadForm(false);
+            setShowResults(true);
+        } catch (err) {
+            console.error('Error saving lead:', err);
+            // Even if save fails, let them see results for better UX, but log it
+            setShowLeadForm(false);
+            setShowResults(true);
+        } finally {
+            setIsSubmittingLead(false);
+        }
     };
+
+    // const handleFieldClick = (field: string) => {
+    //     setSelectedField(field);
+    //     setSearchInput(field);
+    // };
 
     return (
         <div className="w-full relative min-h-screen flex flex-col bg-ink">
@@ -192,7 +270,7 @@ export default function TechPath() {
 
                                 <div className="relative h-full bg-ink backdrop-blur-xl border border-white/10 rounded-3xl p-8! md:p-12! space-y-8!">
                                     {/* Search */}
-                                    <div>
+                                    <div className="relative" ref={suggestionRef}>
                                         <label className="block font-display font-semibold text-canvas/80 text-sm md:text-base mb-4!">
                                             What did you study, or where do your strengths already live?
                                         </label>
@@ -201,35 +279,49 @@ export default function TechPath() {
                                             <input
                                                 type="text"
                                                 value={searchInput}
+                                                onFocus={() => searchInput.length > 1 && setShowSuggestions(true)}
                                                 onChange={(e) => setSearchInput(e.target.value)}
-                                                placeholder="Try Microbiology, Accounting, Economics..."
-                                                className="w-full bg-white/5 border border-white/10 rounded-xl py-4! pl-12! pr-4! text-canvas placeholder:text-canvas/30 focus:outline-none focus:border-blue/50 transition-all"
+                                                placeholder="Enter the course you are interested in..."
+                                                className="w-full bg-white/5 border border-white/10 rounded-xl py-4! pl-12! pr-4! text-canvas placeholder:text-canvas/30 focus:outline-none focus:border-blue/50 transition-all font-body"
                                             />
                                         </div>
-                                    </div>
 
-                                    {/* Tags */}
-                                    <div className="flex flex-wrap gap-3!">
-                                        {studyFields.map((field) => (
-                                            <button
-                                                key={field}
-                                                onClick={() => handleFieldClick(field)}
-                                                className={`bg-white/5 hover:bg-white/10 border border-white/10 rounded-full px-5! py-2! text-sm text-canvas/80 transition-all duration-300 ${selectedField === field ? 'bg-blue/20 border-blue/40' : ''
-                                                    }`}
-                                            >
-                                                {field}
-                                            </button>
-                                        ))}
+                                        {/* Suggestions Dropdown */}
+                                        <AnimatePresence>
+                                            {showSuggestions && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: -10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: -10 }}
+                                                    className="absolute z-50 left-0 right-0 mt-2 bg-ink/95 border border-white/10 rounded-xl overflow-hidden shadow-2xl backdrop-blur-xl"
+                                                >
+                                                    {suggestions.map((suggestion) => (
+                                                        <button
+                                                            key={suggestion}
+                                                            onClick={() => {
+                                                                setSearchInput(suggestion);
+                                                                setSelectedField(suggestion);
+                                                                setShowSuggestions(false);
+                                                            }}
+                                                            className="w-full text-left px-6! py-3! text-canvas/70 hover:bg-blue hover:text-white transition-colors border-b border-white/5 last:border-0 font-body text-sm"
+                                                        >
+                                                            {suggestion}
+                                                        </button>
+                                                    ))}
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
                                     </div>
 
                                     {/* CTA */}
                                     <button
                                         onClick={handleRevealPath}
                                         disabled={isLoading || (!selectedField && !searchInput)}
-                                        className="bg-blue-mid hover:bg-blue text-white font-display font-bold uppercase tracking-widest px-10! py-5! rounded-xl transition-all duration-300 flex items-center gap-3! w-full md:w-auto justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="bg-blue-mid hover:bg-blue text-white font-display font-bold uppercase tracking-widest px-10! py-5! rounded-xl transition-all duration-300 flex items-center gap-3! w-full md:w-auto justify-center disabled:opacity-50 disabled:cursor-not-allowed group relative overflow-hidden"
                                     >
-                                        {isLoading ? 'Generating your path...' : 'Reveal my path'}
-                                        {!isLoading && <Zap className="fill-current" size={18} />}
+                                        <span className="relative z-10">{isLoading ? 'Processing...' : 'Reveal my path'}</span>
+                                        {!isLoading && <Zap className="fill-current relative z-10" size={18} />}
+                                        <div className="absolute inset-0 bg-gradient-to-r from-blue to-blue-mid opacity-0 group-hover:opacity-100 transition-opacity" />
                                     </button>
                                 </div>
                             </motion.div>
@@ -283,22 +375,105 @@ export default function TechPath() {
                                     </div>
 
                                     {isLoading ? (
-                                        <div className="flex flex-col items-center justify-center text-center min-h-[400px] py-12!">
-                                            <motion.div
-                                                animate={{
-                                                    scale: [1, 1.2, 1],
-                                                    rotate: [0, 180, 360]
-                                                }}
-                                                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                                                className="w-16 h-16 bg-blue/10 rounded-full flex items-center justify-center mb-6!"
-                                            >
-                                                <Sparkles className="w-8 h-8 text-blue" />
-                                            </motion.div>
-                                            <h4 className="font-display font-black uppercase text-2xl md:text-3xl text-ink mb-4!">
-                                                Creating Your Path
+                                        <div className="flex flex-col items-center justify-center text-center py-20!">
+                                            {/* Circular Progress */}
+                                            <div className="relative w-32 h-32 mb-12!">
+                                                <svg className="w-full h-full transform -rotate-90">
+                                                    <circle
+                                                        cx="64"
+                                                        cy="64"
+                                                        r="58"
+                                                        stroke="currentColor"
+                                                        strokeWidth="8"
+                                                        fill="transparent"
+                                                        className="text-ink/10"
+                                                    />
+                                                    <motion.circle
+                                                        cx="64"
+                                                        cy="64"
+                                                        r="58"
+                                                        stroke="currentColor"
+                                                        strokeWidth="8"
+                                                        fill="transparent"
+                                                        strokeDasharray={364.4}
+                                                        initial={{ strokeDashoffset: 364.4 }}
+                                                        animate={{ strokeDashoffset: 364.4 - (364.4 * loadingProgress) / 100 }}
+                                                        transition={{ duration: 0.5, ease: "linear" }}
+                                                        className="text-blue"
+                                                        strokeLinecap="round"
+                                                    />
+                                                </svg>
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <div className="w-16 h-16 border-2 border-blue/20 rounded-full animate-spin border-t-blue" />
+                                                </div>
+                                            </div>
+
+                                            <h4 className="font-display font-black uppercase text-xl md:text-3xl text-ink mb-2!">
+                                                {loadingStatus}
                                             </h4>
-                                            <p className="font-body text-muted text-base md:text-lg max-w-sm">
-                                                Our AI is analyzing {selectedField} and mapping it to tech opportunities...
+
+                                            {/* Linear Progress */}
+                                            <div className="w-full max-w-md mt-8!">
+                                                <div className="h-1.5 w-full bg-ink/5 rounded-full overflow-hidden mb-3!">
+                                                    <motion.div
+                                                        className="h-full bg-blue"
+                                                        initial={{ width: 0 }}
+                                                        animate={{ width: `${loadingProgress}%` }}
+                                                    />
+                                                </div>
+                                                <div className="flex justify-between items-center px-1!">
+                                                    <span className="text-xs font-display font-bold uppercase tracking-widest text-ink/30 italic">Processing analysis</span>
+                                                    <span className="text-sm font-display font-black text-ink">{Math.round(loadingProgress)}% Complete</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : showLeadForm ? (
+                                        <div className="flex flex-col items-center justify-center text-center py-12! max-w-xl mx-auto">
+                                            <div className="w-16 h-16 bg-blue/10 rounded-full flex items-center justify-center mb-8!">
+                                                <Sparkles className="w-8 h-8 text-blue" />
+                                            </div>
+                                            <h4 className="font-display font-black uppercase text-3xl md:text-4xl text-ink mb-4!">
+                                                Almost there!
+                                            </h4>
+                                            <p className="font-body text-muted text-lg mb-10!">
+                                                Enter your details to reveal your personalized career path.
+                                            </p>
+
+                                            <form onSubmit={handleLeadSubmit} className="w-full space-y-4!">
+                                                <div className="relative group">
+                                                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/30 group-focus-within:text-blue transition-colors" size={20} />
+                                                    <input
+                                                        required
+                                                        type="email"
+                                                        value={leadData.email}
+                                                        onChange={(e) => setLeadData(prev => ({ ...prev, email: e.target.value }))}
+                                                        placeholder="Email"
+                                                        className="w-full bg-ink/5 border border-ink/10 rounded-xl py-4! pl-12! pr-4! text-ink placeholder:text-ink/30 focus:outline-none focus:border-blue/50 transition-all"
+                                                    />
+                                                </div>
+                                                <div className="relative group">
+                                                    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/30 group-focus-within:text-blue transition-colors" size={20} />
+                                                    <input
+                                                        required
+                                                        type="text"
+                                                        value={leadData.name}
+                                                        onChange={(e) => setLeadData(prev => ({ ...prev, name: e.target.value }))}
+                                                        placeholder="Name"
+                                                        className="w-full bg-ink/5 border border-ink/10 rounded-xl py-4! pl-12! pr-4! text-ink placeholder:text-ink/30 focus:outline-none focus:border-blue/50 transition-all"
+                                                    />
+                                                </div>
+                                                <button
+                                                    type="submit"
+                                                    disabled={isSubmittingLead}
+                                                    className="w-full bg-blue hover:bg-blue-mid text-white font-display font-black uppercase tracking-widest py-5! rounded-xl transition-all duration-300 flex items-center justify-center gap-2! shadow-lg shadow-blue/20"
+                                                >
+                                                    {isSubmittingLead ? 'Processing...' : 'Reveal My Path'}
+                                                    {!isSubmittingLead && <ArrowRight size={20} />}
+                                                </button>
+                                            </form>
+
+                                            <p className="mt-8! text-xs font-body text-muted italic">
+                                                By continuing, you agree to receive career insights and updates from The Prof.
                                             </p>
                                         </div>
                                     ) : error ? (
