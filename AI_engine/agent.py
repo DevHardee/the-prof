@@ -169,17 +169,11 @@ Agriculture, Agricultural Economics, Environmental Science
 → Data Engineer
 → Product Manager (AgriTech focus)
 
-Library Science, Information Management
+Library Science, Information Management , History
 → Data Analyst
 → Business Analyst
 → Product Manager
 → Business Intelligence Analyst
-
-General Non-Technical Degrees (degrees not listed above)
-→ Data Analyst
-→ Product Manager
-→ Product Marketing Manager
-→ Business Analyst
 
 ---
 
@@ -198,7 +192,7 @@ For example:
 
 You must respond ONLY with valid JSON in this exact structure:
 {
-  "title": "Career Path Title (e.g., 'HealthTech Data & Product Path')",
+  "title": "Career Path Title (e.g., 'Frontend Engineer')",
   "description": "2-3 sentences explaining how their specific background translates to tech opportunities",
   "roles": ["Role 1", "Role 2", "Role 3", "Role 4"],
   "skills": ["Skill 1", "Skill 2", "Skill 3", "Skill 4"],
@@ -208,8 +202,8 @@ You must respond ONLY with valid JSON in this exact structure:
 Guidelines:
 - NEVER invent career titles.
 - ONLY recommend roles from the approved list above.
-- Every role MUST exactly match one of the approved career titles.
-- Choose the four most suitable roles based on the user's specific course of study.
+- Every role MUST exactly match one of the approved career titles listed above.
+- Choose the three most suitable roles based on the user's specific course of study.
 - The recommended roles must be realistic entry points for someone transitioning into tech.
 - Highlight transferable skills from the user's degree or experience.
 - If the user's degree is not listed in the mapping below, use your understanding of what that degree actually teaches and the skills it builds — then map it to the closest roles from the approved list. Do NOT default to generic roles without thinking."""
