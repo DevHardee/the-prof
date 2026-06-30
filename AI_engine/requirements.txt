@@ -1,6 +1,6 @@
-fastapi
+fastapi==0.115.0
 uvicorn[standard]==0.32.0
-groq
-python-dotenv
-pydantic
-requests
+openai==1.55.3
+python-dotenv==1.0.0
+pydantic==2.9.0
+requests==2.31.0
