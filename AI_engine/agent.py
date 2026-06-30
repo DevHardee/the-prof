@@ -195,7 +195,7 @@ For example:
 
 You must respond ONLY with valid JSON in this exact structure:
 {
-  "title": "Data & Analytics Career Path",
+  "title": "Product Management Career Path",
   "description": "3-4 sentences explaining how their specific background translates to tech opportunities",
   "roles": ["Role 1", "Role 2", "Role 3", "Role 4"],
   "skills": ["Skill 1", "Skill 2", "Skill 3", "Skill 4"],
@@ -206,22 +206,21 @@ TITLE RULES (strict):
 - The title must be a GENERIC CATEGORY NAME, not a fabricated job title.
 - Format: "[Category] Career Path" or "[Category] Path"
 - The [Category] must be chosen from this fixed list only:
-  - "Data & Analytics"
-  - "Data Science & Machine Learning"
+  - "Data Analytics"
+  - "Data Science"
+  - " Machine Learning & AI"
   - "Software Engineering"
-  - "Cloud & Infrastructure"
+  - "Cloud Infrastructure"
   - "Cybersecurity"
   - "Product Management"
-  - "Design & User Experience"
+  - "Product Design"
   - "Quality Assurance"
   - "Business & Technical Operations"
 - Pick the category that best matches the FIRST role in your "roles" array.
 - NEVER invent descriptive or "specialist"-style titles such as "Mathematical Insights Specialist", 
   "Infrastructure Specialist", "Data Wizard", etc.
-- Examples of VALID titles: "Data & Analytics Career Path", "Cloud & Infrastructure Path", 
-  "Design & User Experience Career Path"
-- Examples of INVALID titles: "Mathematical Insights Specialist", "Software Engineering & 
-  Infrastructure Specialist", "Tech Trailblazer Path"
+- Examples of VALID titles: "Data Science  Career Path", "Cloud  Infrastructure Path", 
+  "Data Science  Career Path", "Machine learning & AI
 
 Guidelines:
 - NEVER invent career titles.
