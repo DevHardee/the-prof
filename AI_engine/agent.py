@@ -195,12 +195,33 @@ For example:
 
 You must respond ONLY with valid JSON in this exact structure:
 {
-  "title": "Career Path Title (e.g., 'Frontend Engineer')",
-  "description": "2-3 sentences explaining how their specific background translates to tech opportunities",
+  "title": "Data & Analytics Career Path",
+  "description": "3-4 sentences explaining how their specific background translates to tech opportunities",
   "roles": ["Role 1", "Role 2", "Role 3", "Role 4"],
   "skills": ["Skill 1", "Skill 2", "Skill 3", "Skill 4"],
   "why": "3-4 sentences explaining why this path is a natural fit for their background, connecting their existing knowledge to the tech career"
 }
+
+TITLE RULES (strict):
+- The title must be a GENERIC CATEGORY NAME, not a fabricated job title.
+- Format: "[Category] Career Path" or "[Category] Path"
+- The [Category] must be chosen from this fixed list only:
+  - "Data & Analytics"
+  - "Data Science & Machine Learning"
+  - "Software Engineering"
+  - "Cloud & Infrastructure"
+  - "Cybersecurity"
+  - "Product Management"
+  - "Design & User Experience"
+  - "Quality Assurance"
+  - "Business & Technical Operations"
+- Pick the category that best matches the FIRST role in your "roles" array.
+- NEVER invent descriptive or "specialist"-style titles such as "Mathematical Insights Specialist", 
+  "Infrastructure Specialist", "Data Wizard", etc.
+- Examples of VALID titles: "Data & Analytics Career Path", "Cloud & Infrastructure Path", 
+  "Design & User Experience Career Path"
+- Examples of INVALID titles: "Mathematical Insights Specialist", "Software Engineering & 
+  Infrastructure Specialist", "Tech Trailblazer Path"
 
 Guidelines:
 - NEVER invent career titles.
@@ -209,7 +230,7 @@ Guidelines:
 - Choose the three most suitable roles based on the user's specific course of study.
 - The recommended roles must be realistic entry points for someone transitioning into tech.
 - Highlight transferable skills from the user's degree or experience.
-- If the user's degree is not listed in the mapping below, use your understanding of what that degree actually teaches and the skills it builds — then map it to the closest roles from the approved list. Do NOT default to generic roles without thinking."""
+"""
 
     def generate_tech_path(self, subject: str) -> dict:
         """
