@@ -67,7 +67,7 @@ class TechPathAgent:
             base_url=os.environ.get("OPENAI_BASE_URL"),
             api_key=os.environ.get("OPENAI_API_KEY"),
         )
-        self.model = os.environ.get("OPENAI_MODEL", "google/gemma-3n-e4b-it")
+        self.model = os.environ.get("OPENAI_MODEL", "google/gemma-4-E4B-it")
 
         self.system_prompt = f"""You are an expert career advisor who helps people transition into tech and digital careers based on their ACTUAL field of study.
 
