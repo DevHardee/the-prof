@@ -98,7 +98,7 @@ export default function TheProf() {
 
                             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border-2 border-canvas/10 shadow-2xl shadow-blue/10">
                                 <img
-                                    src="/assets/prof.jpeg"
+                                    src="/assets/new-prof.png"
                                     alt="Kehinde Adebanjo (The Prof)"
                                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                                 />
