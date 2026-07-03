@@ -23,6 +23,7 @@ APPROVED_ROLES = {
     "QA Engineer", "Test Automation Engineer",
     "Business Analyst", "Technical Support Engineer", "Solutions Engineer",
     "Customer Success Engineer",
+    "Bioinformatics Scientist", "AI in Medical Imaging Specialist", "Health Informatics Analyst",
 }
 
 # Roles the model tends to default to. Not banned outright — just gated
@@ -58,6 +59,9 @@ ROLE_TO_CATEGORY = {
     "Technical Support Engineer": "Business & Technical Operations",
     "Solutions Engineer": "Business & Technical Operations",
     "Customer Success Engineer": "Business & Technical Operations",
+    "Bioinformatics Scientist": "Data Science",
+    "AI in Medical Imaging Specialist": "Machine Learning & AI",
+    "Health Informatics Analyst": "Data Analytics",
 }
 
 
@@ -67,7 +71,7 @@ class TechPathAgent:
             base_url=os.environ.get("OPENAI_BASE_URL"),
             api_key=os.environ.get("OPENAI_API_KEY"),
         )
-        self.model = os.environ.get("OPENAI_MODEL", "google/gemma-4-E4B-it")
+        self.model = "google/gemma-4-E4B-it"
 
         self.system_prompt = f"""You are an expert career advisor who helps people transition into tech and digital careers based on their ACTUAL field of study.
 
@@ -90,6 +94,7 @@ Step 3 — Apply the Data Cluster Gate.
 Data Analyst, Data Scientist, Data Engineer, Machine Learning Engineer, and AI Engineer may ONLY be selected if the degree's core curriculum is inherently quantitative, statistical, computational, or data-centric — e.g. Mathematics, Statistics, Physics, Computer Science, Engineering disciplines, or quantitative Economics.
 For non-quantitative fields (Law, Arts, Humanities, Design, Psychology, Communications, Medicine/Health sciences, Business, etc.) these roles are NOT allowed UNLESS the reasoning field explicitly and specifically justifies the data/statistics component of that exact degree — a vague justification like "all fields involve some data" is NOT acceptable and must be rejected.
 If you catch yourself about to select 2 or more Data Cluster roles for a non-quantitative field, STOP and re-derive the roles from Step 1 skills instead.
+NOTE: Bioinformatics Scientist, AI in Medical Imaging Specialist, and Health Informatics Analyst are NOT part of the Data Cluster Gate restriction — they are specialized health-tech roles and should be freely used (in fact preferred) for Medicine/Health/Biology-related degrees regardless of this gate.
 
 Step 4 — Select and order the 4 best roles, most to least suitable, from Step 2's candidates.
 
@@ -99,8 +104,9 @@ Examples of correct reasoning (study these carefully):
 
 Degree: Anatomy
 skills_taught: human body systems, clinical/medical research methods, lab data recording, evidence-based analysis
-→ Data Analyst (HealthTech), Data Scientist (Clinical data), Product Manager (HealthTech), Data Engineer (Health data pipelines)
+→ Health Informatics Analyst, Bioinformatics Scientist, AI in Medical Imaging Specialist, Product Manager (HealthTech)
 NOT UI/UX Designer — nothing in this degree touches visual design.
+NOTE: for ANY Medicine, Nursing, Pharmacy, Public Health, Anatomy, Physiology, Biology, Biochemistry, or Medical Laboratory Science background, PREFER the specific roles Health Informatics Analyst, Bioinformatics Scientist, and AI in Medical Imaging Specialist over the generic Data Analyst/Data Scientist — these are the more accurate, specialized entry points for health-adjacent backgrounds and should be used first. Only fall back to generic Data Analyst/Data Scientist if none of these three specific roles fit, or to fill a 4th slot.
 
 Degree: Law
 skills_taught: regulatory interpretation, contract analysis, risk assessment, structured argumentation, compliance frameworks
