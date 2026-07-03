@@ -7,6 +7,16 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import MaxWidthWrapper from '../components/MaxWidthWrapper';
 
+interface TechPath {
+    data: {
+        title: string,
+        description: string,
+        roles: string[],
+        skills: string[],
+        why: string,
+    },
+    subject: string,
+}
 
 const pathRecommendations: Record<string, { title: string; description: string; roles: string[]; skills: string[]; why: string }> = {
     'Microbiology': {
@@ -76,9 +86,10 @@ export default function TechPath() {
     const [showLeadForm, setShowLeadForm] = useState(false);
     const [leadData, setLeadData] = useState({ name: '', email: '' });
     const [isSubmittingLead, setIsSubmittingLead] = useState(false);
-    const [aiGeneratedPath, setAiGeneratedPath] = useState<any>(null);
+    const [aiGeneratedPath, setAiGeneratedPath] = useState<TechPath | null>(null);
     const [error, setError] = useState<string | null>(null);
     const suggestionRef = useRef<HTMLDivElement>(null);
+    const resultsRef = useRef<HTMLDivElement>(null);
 
     // Filter suggestions based on input
     useEffect(() => {
@@ -106,19 +117,27 @@ export default function TechPath() {
     }, []);
 
     const handleRevealPath = async () => {
-        const fieldToUse = selectedField || searchInput;
+        const fieldToUse = searchInput.trim();
         if (!fieldToUse) return;
 
         setSelectedField(fieldToUse);
+        setAiGeneratedPath(null);
+        setShowResults(false);
+        setShowLeadForm(false);
         setIsLoading(true);
         setError(null);
         setLoadingProgress(0);
         setLoadingStatus('Identifying best tech career matches...');
 
+        // Scroll to results area
+        setTimeout(() => {
+            resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+
         // Simulate progress for premium feel
         const intervals = [
             { threshold: 30, status: 'Analyzing your background...', duration: 800 },
-            { threshold: 60, status: 'Mapping potential career pivots...', duration: 1200 },
+            { threshold: 60, status: 'Mapping potential career choices...', duration: 1200 },
             { threshold: 90, status: 'Generating personalized recommendations...', duration: 1000 },
             { threshold: 100, status: 'Analysis complete!', duration: 500 }
         ];
@@ -130,7 +149,11 @@ export default function TechPath() {
                     clearInterval(timer);
                     setTimeout(() => {
                         setIsLoading(false);
-                        setShowLeadForm(true);
+                        if (leadData.name.trim() && leadData.email.trim()) {
+                            setShowResults(true);
+                        } else {
+                            setShowLeadForm(true);
+                        }
                     }, 500);
                     return 100;
                 }
@@ -154,9 +177,8 @@ export default function TechPath() {
 
             const result = await response.json();
             if (result.success) {
-                setAiGeneratedPath(result.data);
+                setAiGeneratedPath(result);
             } else {
-                // If AI fails, we still proceed with lead gen but show specific error later if needed
                 console.warn('AI Generation failed, falling back to local recommendations if available.');
             }
         } catch (err) {
@@ -250,13 +272,13 @@ export default function TechPath() {
 
                     <MaxWidthWrapper className="relative z-10">
                         {/* Tool Main Area */}
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8! mb-16!">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8! mb-16! flex-col lg:flex-none">
                             {/* Left Panel: Form */}
                             <motion.div
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8 }}
-                                className="lg:col-span-7 relative rounded-3xl"
+                                className="order-2 lg:order-1 lg:col-span-7 relative rounded-3xl"
                             >
                                 {/* Animated glow border */}
                                 <motion.div
@@ -331,7 +353,7 @@ export default function TechPath() {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8 }}
-                                className="lg:col-span-5 flex flex-col justify-center p-4! md:p-8!"
+                                className="order-1 lg:order-2 lg:col-span-5 flex flex-col justify-center p-4! md:p-8!"
                             >
                                 <h3 className="font-display font-black uppercase text-xs tracking-[0.2em] text-blue mb-10!">
                                     HOW IT WORKS
@@ -357,27 +379,27 @@ export default function TechPath() {
                             </motion.div>
                         </div>
 
-                        {/* Results Area - Only shown when showResults is true */}
-                        {showResults && (
-                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8!">
+                        {/* Results Area - Only shown when showResults, isLoading, or showLeadForm is true */}
+                        {(showResults || isLoading || showLeadForm) && (
+                            <div ref={resultsRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8!">
                                 {/* Results Card */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 30 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.8 }}
-                                    className="lg:col-span-12 bg-canvas border border-ink/10 rounded-3xl p-8! md:p-12! relative overflow-hidden"
+                                    className="lg:col-span-12 bg-ink backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-5! md:p-8! lg:p-12! relative overflow-hidden"
                                 >
-                                    <div className="absolute top-8! left-8! flex items-center gap-2! bg-ink/5 rounded-full px-3! py-1!">
-                                        <Target className="w-3 h-3 text-ink/30" />
-                                        <span className="text-[10px] font-display font-bold uppercase tracking-wider text-ink/30">
+                                    <div className="absolute top-8! left-8! flex items-center gap-2! bg-white/5 rounded-full px-3! py-1!">
+                                        <Target className="w-3 h-3 text-blue-mid" />
+                                        <span className="text-[10px] md:text-xs font-display font-bold uppercase tracking-wider text-blue-mid">
                                             {isLoading ? 'Generating...' : 'Recommended path'}
                                         </span>
                                     </div>
 
                                     {isLoading ? (
-                                        <div className="flex flex-col items-center justify-center text-center py-20!">
+                                        <div className="flex flex-col items-center justify-center text-center py-10! md:py-20!">
                                             {/* Circular Progress */}
-                                            <div className="relative w-32 h-32 mb-12!">
+                                            <div className="relative w-24 h-24 md:w-32 md:h-32 mb-8! md:mb-12!">
                                                 <svg className="w-full h-full transform -rotate-90">
                                                     <circle
                                                         cx="64"
@@ -386,7 +408,7 @@ export default function TechPath() {
                                                         stroke="currentColor"
                                                         strokeWidth="8"
                                                         fill="transparent"
-                                                        className="text-ink/10"
+                                                        className="text-white/10"
                                                     />
                                                     <motion.circle
                                                         cx="64"
@@ -404,17 +426,17 @@ export default function TechPath() {
                                                     />
                                                 </svg>
                                                 <div className="absolute inset-0 flex items-center justify-center">
-                                                    <div className="w-16 h-16 border-2 border-blue/20 rounded-full animate-spin border-t-blue" />
+                                                    <div className="w-12 h-12 md:w-16 md:h-16 border-2 border-blue/20 rounded-full animate-spin border-t-blue" />
                                                 </div>
                                             </div>
 
-                                            <h4 className="font-display font-black uppercase text-xl md:text-3xl text-ink mb-2!">
+                                            <h4 className="font-display font-black uppercase text-base md:text-2xl text-canvas mb-2! px-4!">
                                                 {loadingStatus}
                                             </h4>
 
                                             {/* Linear Progress */}
-                                            <div className="w-full max-w-md mt-8!">
-                                                <div className="h-1.5 w-full bg-ink/5 rounded-full overflow-hidden mb-3!">
+                                            <div className="w-full max-w-xs md:max-w-md mt-6! md:mt-8! px-2! md:px-0!">
+                                                <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden mb-3!">
                                                     <motion.div
                                                         className="h-full bg-blue"
                                                         initial={{ width: 0 }}
@@ -422,66 +444,59 @@ export default function TechPath() {
                                                     />
                                                 </div>
                                                 <div className="flex justify-between items-center px-1!">
-                                                    <span className="text-xs font-display font-bold uppercase tracking-widest text-ink/30 italic">Processing analysis</span>
-                                                    <span className="text-sm font-display font-black text-ink">{Math.round(loadingProgress)}% Complete</span>
+                                                    <span className="text-[10px] md:text-xs font-display font-bold uppercase tracking-widest text-white/30 italic">Processing</span>
+                                                    <span className="text-xs md:text-sm font-display font-black text-canvas">{Math.round(loadingProgress)}%</span>
                                                 </div>
                                             </div>
                                         </div>
                                     ) : showLeadForm ? (
-                                        <div className="flex flex-col items-center justify-center text-center py-12! max-w-xl mx-auto">
-                                            <div className="w-16 h-16 bg-blue/10 rounded-full flex items-center justify-center mb-8!">
-                                                <Sparkles className="w-8 h-8 text-blue" />
-                                            </div>
-                                            <h4 className="font-display font-black uppercase text-3xl md:text-4xl text-ink mb-4!">
+                                        <div className="flex flex-col items-center justify-center text-center py-8! md:py-12! w-full max-w-xl mx-auto!">
+                                            <h4 className="font-display font-black uppercase text-2xl md:text-4xl text-canvas mb-3! md:mb-4!">
                                                 Almost there!
                                             </h4>
-                                            <p className="font-body text-muted text-lg mb-10!">
+                                            <p className="font-body text-muted text-sm md:text-lg mb-6! md:mb-10! px-2!">
                                                 Enter your details to reveal your personalized career path.
                                             </p>
 
-                                            <form onSubmit={handleLeadSubmit} className="w-full space-y-4!">
+                                            <form onSubmit={handleLeadSubmit} className="w-full space-y-3! md:space-y-4!">
                                                 <div className="relative group">
-                                                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/30 group-focus-within:text-blue transition-colors" size={20} />
+                                                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 group-focus-within:text-blue transition-colors" size={18} />
                                                     <input
                                                         required
                                                         type="email"
                                                         value={leadData.email}
                                                         onChange={(e) => setLeadData(prev => ({ ...prev, email: e.target.value }))}
                                                         placeholder="Email"
-                                                        className="w-full bg-ink/5 border border-ink/10 rounded-xl py-4! pl-12! pr-4! text-ink placeholder:text-ink/30 focus:outline-none focus:border-blue/50 transition-all"
+                                                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5! md:py-4! pl-11! pr-4! text-canvas placeholder:text-white/30 focus:outline-none focus:border-blue/50 transition-all text-sm md:text-base"
                                                     />
                                                 </div>
                                                 <div className="relative group">
-                                                    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-ink/30 group-focus-within:text-blue transition-colors" size={20} />
+                                                    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 group-focus-within:text-blue transition-colors" size={18} />
                                                     <input
                                                         required
                                                         type="text"
                                                         value={leadData.name}
                                                         onChange={(e) => setLeadData(prev => ({ ...prev, name: e.target.value }))}
                                                         placeholder="Name"
-                                                        className="w-full bg-ink/5 border border-ink/10 rounded-xl py-4! pl-12! pr-4! text-ink placeholder:text-ink/30 focus:outline-none focus:border-blue/50 transition-all"
+                                                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5! md:py-4! pl-11! pr-4! text-canvas placeholder:text-white/30 focus:outline-none focus:border-blue/50 transition-all text-sm md:text-base"
                                                     />
                                                 </div>
                                                 <button
                                                     type="submit"
                                                     disabled={isSubmittingLead}
-                                                    className="w-full bg-blue hover:bg-blue-mid text-white font-display font-black uppercase tracking-widest py-5! rounded-xl transition-all duration-300 flex items-center justify-center gap-2! shadow-lg shadow-blue/20"
+                                                    className="w-full bg-blue hover:bg-blue-mid text-white font-display font-black uppercase tracking-widest py-4! md:py-5! rounded-xl transition-all duration-300 flex items-center justify-center gap-2! shadow-lg shadow-blue/20 text-sm md:text-base"
                                                 >
                                                     {isSubmittingLead ? 'Processing...' : 'Reveal My Path'}
-                                                    {!isSubmittingLead && <ArrowRight size={20} />}
+                                                    {!isSubmittingLead && <ArrowRight size={18} />}
                                                 </button>
                                             </form>
-
-                                            <p className="mt-8! text-xs font-body text-muted italic">
-                                                By continuing, you agree to receive career insights and updates from The Prof.
-                                            </p>
                                         </div>
                                     ) : error ? (
                                         <div className="flex flex-col items-center justify-center text-center min-h-[400px] py-12!">
                                             <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-6!">
                                                 <span className="text-3xl">⚠️</span>
                                             </div>
-                                            <h4 className="font-display font-black uppercase text-2xl md:text-3xl text-ink mb-4!">
+                                            <h4 className="font-display font-black uppercase text-2xl md:text-3xl text-canvas mb-4!">
                                                 Oops! Something went wrong
                                             </h4>
                                             <p className="font-body text-muted text-base md:text-lg max-w-sm mb-4!">
@@ -494,73 +509,72 @@ export default function TechPath() {
                                                 Try Again
                                             </button>
                                         </div>
-                                    ) : aiGeneratedPath || pathRecommendations[selectedField] ? (
-                                        <div className="mt-8! space-y-8!">
+                                    ) : (aiGeneratedPath || pathRecommendations[selectedField]) ? (
+                                        <div className="mt-6! md:mt-8! space-y-6! md:space-y-8!">
                                             {(() => {
-                                                // Use AI generated path if available, otherwise fall back to hardcoded
-                                                const pathData = aiGeneratedPath || pathRecommendations[selectedField];
+                                                const pathData = aiGeneratedPath ? aiGeneratedPath.data : pathRecommendations[selectedField];
 
                                                 return (
                                                     <>
                                                         {/* Path Title */}
-                                                        <div>
-                                                            <div className="flex items-center gap-3! mb-4!">
-                                                                <Compass className="w-8 h-8 text-blue" />
-                                                                <h3 className="font-display font-black uppercase text-3xl md:text-4xl text-ink">
+                                                        <div className="pt-2! md:pt-4!">
+                                                            <div className="flex items-start gap-3! mb-3! md:mb-4!">
+                                                                <Compass className="w-6 h-6 md:w-8 md:h-8 text-blue flex-shrink-0 mt-1!" />
+                                                                <h3 className="font-display font-black uppercase text-xl md:text-3xl lg:text-4xl text-canvas leading-tight">
                                                                     {pathData.title}
                                                                 </h3>
                                                             </div>
-                                                            <p className="font-body text-muted text-lg md:text-xl leading-relaxed">
+                                                            <p className="font-body text-canvas text-sm md:text-lg leading-relaxed pl-0! md:pl-0!">
                                                                 {pathData.description}
                                                             </p>
                                                         </div>
 
                                                         {/* Why This Path */}
-                                                        <div className="bg-blue/5 border border-blue/10 rounded-2xl p-6! md:p-8!">
-                                                            <div className="flex items-start gap-3! mb-3!">
-                                                                <Lightbulb className="w-6 h-6 text-blue flex-shrink-0 mt-1!" />
-                                                                <h4 className="font-display font-bold uppercase text-sm tracking-wider text-ink">
+                                                        <div className="bg-blue/5 border border-blue/10 rounded-xl md:rounded-2xl p-4! md:p-6! lg:p-8!">
+                                                            <div className="flex items-center gap-2! md:gap-3! mb-2! md:mb-3!">
+                                                                <Lightbulb className="w-5 h-5 md:w-6 md:h-6 text-blue flex-shrink-0" />
+                                                                <h4 className="font-display font-bold uppercase text-xs md:text-sm tracking-wider text-canvas">
                                                                     Why this path fits you
                                                                 </h4>
                                                             </div>
-                                                            <p className="font-body text-muted text-base leading-relaxed ml-9!">
+                                                            <p className="font-body text-canvas/80 text-sm md:text-lg leading-relaxed">
                                                                 {pathData.why}
                                                             </p>
                                                         </div>
 
                                                         {/* Roles & Skills Grid */}
-                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6! md:gap-8!">
+                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4! md:gap-6! lg:gap-8!">
                                                             {/* Roles */}
-                                                            <div className="bg-ink/5 rounded-2xl p-6! md:p-8!">
-                                                                <div className="flex items-center gap-3! mb-6!">
-                                                                    <Briefcase className="w-5 h-5 text-ink/60" />
-                                                                    <h4 className="font-display font-bold uppercase text-xs tracking-wider text-ink/60">
+                                                            <div className="bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-4! md:p-6! lg:p-8!">
+                                                                <div className="flex items-center gap-2! md:gap-3! mb-4! md:mb-6!">
+                                                                    <Briefcase className="w-4 h-4 md:w-5 md:h-5 text-white/60" />
+                                                                    <h4 className="font-display font-bold uppercase text-xs tracking-wider text-white/60">
                                                                         Sample Roles
                                                                     </h4>
                                                                 </div>
-                                                                <ul className="space-y-3!">
+                                                                <ul className="space-y-2! md:space-y-3!">
                                                                     {pathData.roles.map((role: string, idx: number) => (
-                                                                        <li key={idx} className="flex items-start gap-3!">
-                                                                            <span className="text-blue text-lg mt-0.5!">•</span>
-                                                                            <span className="font-body text-ink text-base">{role}</span>
+                                                                        <li key={idx} className="flex items-start gap-2! md:gap-3!">
+                                                                            <span className="text-blue text-base md:text-lg mt-0.5! flex-shrink-0">•</span>
+                                                                            <span className="font-body text-canvas text-sm md:text-base leading-snug">{role}</span>
                                                                         </li>
                                                                     ))}
                                                                 </ul>
                                                             </div>
 
                                                             {/* Skills */}
-                                                            <div className="bg-ink/5 rounded-2xl p-6! md:p-8!">
-                                                                <div className="flex items-center gap-3! mb-6!">
-                                                                    <TrendingUp className="w-5 h-5 text-ink/60" />
-                                                                    <h4 className="font-display font-bold uppercase text-xs tracking-wider text-ink/60">
+                                                            <div className="bg-white/5 border border-white/10 rounded-xl md:rounded-2xl p-4! md:p-6! lg:p-8!">
+                                                                <div className="flex items-center gap-2! md:gap-3! mb-4! md:mb-6!">
+                                                                    <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-white/60" />
+                                                                    <h4 className="font-display font-bold uppercase text-xs tracking-wider text-white/60">
                                                                         Skills to Learn
                                                                     </h4>
                                                                 </div>
-                                                                <ul className="space-y-3!">
+                                                                <ul className="space-y-2! md:space-y-3!">
                                                                     {pathData.skills.map((skill: string, idx: number) => (
-                                                                        <li key={idx} className="flex items-start gap-3!">
-                                                                            <span className="text-blue text-lg mt-0.5!">•</span>
-                                                                            <span className="font-body text-ink text-base">{skill}</span>
+                                                                        <li key={idx} className="flex items-start gap-2! md:gap-3!">
+                                                                            <span className="text-blue text-base md:text-lg mt-0.5! flex-shrink-0">•</span>
+                                                                            <span className="font-body text-canvas text-sm md:text-base leading-snug">{skill}</span>
                                                                         </li>
                                                                     ))}
                                                                 </ul>
@@ -575,12 +589,12 @@ export default function TechPath() {
                                             <motion.div
                                                 animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.8, 0.5] }}
                                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                                className="w-16 h-16 bg-ink/5 rounded-full flex items-center justify-center mb-6!"
+                                                className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-6!"
                                             >
-                                                <Compass className="w-8 h-8 text-ink/20" />
+                                                <Compass className="w-8 h-8 text-white/20" />
                                             </motion.div>
 
-                                            <h4 className="font-display font-black uppercase text-2xl md:text-3xl text-ink mb-4!">
+                                            <h4 className="font-display font-black uppercase text-2xl md:text-3xl text-canvas mb-4!">
                                                 Custom Path Coming Soon
                                             </h4>
                                             <p className="font-body text-muted text-base md:text-lg max-w-sm">
