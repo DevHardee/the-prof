@@ -294,7 +294,7 @@ export default function TechPath() {
                                     {/* Search */}
                                     <div className="relative" ref={suggestionRef}>
                                         <label className="block font-display font-semibold text-canvas/80 text-sm md:text-base mb-4!">
-                                            What did you study, or where do your strengths already live?
+                                            Find the Tech field you can go into based on your course
                                         </label>
                                         <div className="relative group">
                                             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-canvas/40 group-focus-within:text-blue transition-colors" size={20} />
@@ -303,7 +303,7 @@ export default function TechPath() {
                                                 value={searchInput}
                                                 onFocus={() => searchInput.length > 1 && setShowSuggestions(true)}
                                                 onChange={(e) => setSearchInput(e.target.value)}
-                                                placeholder="Enter the course you are interested in..."
+                                                placeholder="Enter the course you're studying (e.g Biochemistry)"
                                                 className="w-full bg-white/5 border border-white/10 rounded-xl py-4! pl-12! pr-4! text-canvas placeholder:text-canvas/30 focus:outline-none focus:border-blue/50 transition-all font-body"
                                             />
                                         </div>
