@@ -84,14 +84,14 @@ export default function TheProf() {
 
             <MaxWidthWrapper>
                 <div className="relative z-10 w-full space-y-24!">
-                    {/* Bio Section */}
-                    <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-12! lg:gap-16! items-start">
+                    {/* Bio Section — image floats left, text wraps beside it then flows underneath once it runs past the image */}
+                    <div className="relative">
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="relative group lg:sticky lg:top-24"
+                            className="relative group mx-auto w-full max-w-sm lg:float-left lg:w-[42%] lg:mr-12! mb-10! lg:mb-6!"
                         >
                             <div className="absolute -inset-6 bg-blue/20 rounded-[3rem] blur-3xl group-hover:bg-blue/30 transition-colors duration-500" />
                             <div className="absolute -inset-2 bg-gradient-to-br from-blue/20 via-transparent to-orange/10 rounded-[2.5rem] opacity-50" />
@@ -118,56 +118,56 @@ export default function TheProf() {
                             </div>
                         </motion.div>
 
-                        <div className="space-y-8!">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6 }}
-                            >
-                                <p className="font-display font-semibold uppercase tracking-[0.2em] text-blue-mid! text-sm mb-4!">Meet The Prof</p>
-                                <h2 className="font-display font-black uppercase text-4xl md:text-5xl lg:text-6xl text-canvas leading-[0.9]">
-                                    Kehinde <span className="text-blue">Adebanjo.</span>
-                                </h2>
-                            </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            <p className="font-display font-semibold uppercase tracking-[0.2em] text-blue-mid! text-sm mb-4!">Meet The Prof</p>
+                            <h2 className="font-display font-black uppercase text-4xl md:text-5xl lg:text-6xl text-canvas leading-[0.9] mb-6!">
+                                Kehinde <span className="text-blue">Adebanjo.</span>
+                            </h2>
+                        </motion.div>
 
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                                className="space-y-6! text-canvas/80 font-body text-base md:text-lg lg:text-2xl leading-relaxed"
-                            >
-                                <p>
-                                    His name is Kehinde Adebanjo. But most people just call him <span className="text-canvas font-bold italic">The Prof.</span>
-                                </p>
-                                <p>
-                                    He didn't start with confidence. He started with a speech defect and a room full of people who laughed. Through secondary school and into his early years in higher institution, speaking was something that happened to other people, not to him. Then one faculty did something nobody else had done: they pushed him in front of a room full of young people who needed to hear what the journey ahead looked like.
-                                </p>
-                                <p>
-                                    He spoke. They listened. They clapped. They laughed with him, not at him. And something shifted that never shifted back. <span className="text-blue font-semibold italic">That was the beginning of The Prof.</span>
-                                </p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="text-canvas/80 font-body text-base md:text-lg leading-relaxed"
+                        >
+                            <p className="mb-6!">
+                                His name is Kehinde Adebanjo. But most people just call him <span className="text-canvas font-bold italic">The Prof.</span>
+                            </p>
+                            <p className="mb-6!">
+                                He didn't start with confidence. He started with a speech defect and a room full of people who laughed. Through secondary school and into his early years in higher institution, speaking was something that happened to other people, not to him. Then one faculty did something nobody else had done: they pushed him in front of a room full of young people who needed to hear what the journey ahead looked like.
+                            </p>
+                            <p className="mb-6!">
+                                He spoke. They listened. They clapped. They laughed with him, not at him. And something shifted that never shifted back. <span className="text-blue font-semibold italic">That was the beginning of The Prof.</span>
+                            </p>
 
-                                <div className="pt-4! border-t border-canvas/10">
-                                    <h3 className="font-display font-bold text-canvas uppercase text-lg md:text-xl lg:text-3xl mb-4!">Then came the storm</h3>
-                                    <p>
-                                        What came after wasn't easy; some days he cried. Some days the weight was too heavy to name. This left him with nothing but lessons. But he didn't disappear.
-                                    </p>
-                                </div>
-
+                            <div className="pt-2! pb-6!">
+                                <h3 className="font-display font-bold text-canvas uppercase text-lg md:text-xl tracking-tighter mb-4!">Then came the storm</h3>
                                 <p>
-                                    Today, Kehinde is rebuilding. Not with bitterness, he carries no regrets, only understanding. He is clear about what he does have: his hands, his brain, and God. While quietly navigating his own storm, he has spent years counselling others through theirs, helping people find direction while keeping his own battles private.
+                                    What came after wasn't easy; some days he cried. Some days the weight was too heavy to name. This left him with nothing but lessons. But he didn't disappear.
                                 </p>
+                            </div>
 
-                                <p className="bg-blue/10 border-l-4 border-blue p-6! rounded-r-xl text-canvas italic">
-                                    "The Prof is the moment those two things finally meet. His story and your journey. His mistakes and your map. He is not building this from a place of arrival. He is building it from the middle of the road, because that is exactly where you are too, and that is precisely why you should listen."
-                                </p>
+                            <p className="mb-6!">
+                                Today, Kehinde is rebuilding. Not with bitterness, he carries no regrets, only understanding. He is clear about what he does have: his hands, his brain, and God. While quietly navigating his own storm, he has spent years counselling others through theirs, helping people find direction while keeping his own battles private.
+                            </p>
 
-                                <p>
-                                    He wished someone had grabbed his hand and pushed him back on track when everything fell apart. Nobody did. So, he became that person, <span className="text-blue-mid font-bold">for you.</span>
-                                </p>
-                            </motion.div>
-                        </div>
+                            <p className="bg-blue/10 border-l-4 border-blue p-6! rounded-r-xl text-canvas italic mb-6!">
+                                "The Prof is the moment those two things finally meet. His story and your journey. His mistakes and your map. He is not building this from a place of arrival. He is building it from the middle of the road, because that is exactly where you are too, and that is precisely why you should listen."
+                            </p>
+
+                            <p>
+                                He wished someone had grabbed his hand and pushed him back on track when everything fell apart. Nobody did. So, he became that person, <span className="text-blue-mid font-bold">for you.</span>
+                            </p>
+                        </motion.div>
+
+                        <div className="clear-both" />
                     </div>
 
                     {/* Pillars Grid */}
@@ -186,10 +186,10 @@ export default function TheProf() {
                                         <card.icon size={24} strokeWidth={2} />
                                     </div>
                                     <div className="space-y-3!">
-                                        <h3 className="font-display font-black text-canvas text-lg md:text-xl lg:text-3xl uppercase tracking-wider">
+                                        <h3 className="font-display font-black text-canvas text-lg md:text-xl uppercase tracking-wider">
                                             {card.label}
                                         </h3>
-                                        <p className="font-body text-canvas/70 text-base md:text-lg lg:text-2xl leading-relaxed">
+                                        <p className="font-body text-canvas/70 text-base md:text-lg leading-relaxed">
                                             {card.desc}
                                         </p>
                                     </div>
@@ -240,10 +240,10 @@ export default function TheProf() {
                                                 <value.icon size={18} />
                                             </div>
                                             <div>
-                                                <h4 className="font-display font-bold text-canvas uppercase text-lg md:text-xl lg:text-3xl tracking-widest mb-2! flex items-center gap-2!">
+                                                <h4 className="font-display font-bold text-canvas uppercase text-lg md:text-xl tracking-widest mb-2! flex items-center gap-2!">
                                                     {value.label}
                                                 </h4>
-                                                <p className="font-body text-canvas/60 text-base md:text-lg lg:text-2xl leading-relaxed">
+                                                <p className="font-body text-canvas/60 text-base md:text-lg leading-relaxed">
                                                     {value.desc}
                                                 </p>
                                             </div>

@@ -70,11 +70,11 @@ export default function TheRevolution() {
                                 transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                                 className="space-y-6!"
                             >
-                                <p className="font-body text-white/70 text-base md:text-lg lg:text-2xl leading-relaxed max-w-lg">
+                                <p className="font-body text-white/70 text-base md:text-lg leading-relaxed max-w-lg">
                                     Not a person. Not a trend. A growing standard for people who refuse to stay average. A generation of thinkers, builders, and doers who decided to charge their brains instead of waiting for life to change.
                                 </p>
 
-                                <p className="font-body text-blue font-semibold text-base md:text-lg lg:text-2xl">
+                                <p className="font-body text-blue font-semibold text-base md:text-lg">
                                     The movement has already started. And you're early.
                                 </p>
                             </motion.div>
@@ -111,14 +111,14 @@ export default function TheRevolution() {
                                                 <p className="font-display font-bold uppercase tracking-[0.2em] text-blue/60 text-[10px] md:text-sm mb-1!">
                                                     {item.category}
                                                 </p>
-                                                <h4 className="font-display font-black uppercase text-white text-lg! md:text-xl! lg:text-3xl! group-hover:text-blue transition-colors">
+                                                <h4 className="font-display font-black uppercase text-white text-lg! md:text-xl! group-hover:text-blue transition-colors">
                                                     {item.value}
                                                 </h4>
                                             </div>
                                         </div>
 
                                         {/* Description */}
-                                        <p className="font-body text-white/50 text-base md:text-lg lg:text-2xl leading-relaxed group-hover:text-white/80 transition-colors">
+                                        <p className="font-body text-white/50 text-base md:text-lg leading-relaxed group-hover:text-white/80 transition-colors">
                                             {item.description}
                                         </p>
                                     </motion.div>
