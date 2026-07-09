@@ -135,7 +135,7 @@ export default function TheProf() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: 0.2 }}
-                            className="text-canvas/80 font-body text-base md:text-lg lg:text-2xl leading-relaxed"
+                            className="text-canvas/80 font-body text-base md:text-lg leading-relaxed"
                         >
                             <p className="mb-6!">
                                 His name is Kehinde Adebanjo. But most people just call him <span className="text-canvas font-bold italic">The Prof.</span>
@@ -148,7 +148,7 @@ export default function TheProf() {
                             </p>
 
                             <div className="pt-2! pb-6!">
-                                <h3 className="font-display font-bold text-canvas uppercase text-lg md:text-xl lg:text-3xl mb-4!">Then came the storm</h3>
+                                <h3 className="font-display font-bold text-canvas uppercase text-lg md:text-xl tracking-tighter mb-4!">Then came the storm</h3>
                                 <p>
                                     What came after wasn't easy; some days he cried. Some days the weight was too heavy to name. This left him with nothing but lessons. But he didn't disappear.
                                 </p>
@@ -186,10 +186,10 @@ export default function TheProf() {
                                         <card.icon size={24} strokeWidth={2} />
                                     </div>
                                     <div className="space-y-3!">
-                                        <h3 className="font-display font-black text-canvas text-lg md:text-xl lg:text-3xl uppercase tracking-wider">
+                                        <h3 className="font-display font-black text-canvas text-lg md:text-xl uppercase tracking-wider">
                                             {card.label}
                                         </h3>
-                                        <p className="font-body text-canvas/70 text-base md:text-lg lg:text-2xl leading-relaxed">
+                                        <p className="font-body text-canvas/70 text-base md:text-lg leading-relaxed">
                                             {card.desc}
                                         </p>
                                     </div>
@@ -240,10 +240,10 @@ export default function TheProf() {
                                                 <value.icon size={18} />
                                             </div>
                                             <div>
-                                                <h4 className="font-display font-bold text-canvas uppercase text-lg md:text-xl lg:text-3xl tracking-widest mb-2! flex items-center gap-2!">
+                                                <h4 className="font-display font-bold text-canvas uppercase text-lg md:text-xl tracking-widest mb-2! flex items-center gap-2!">
                                                     {value.label}
                                                 </h4>
-                                                <p className="font-body text-canvas/60 text-base md:text-lg lg:text-2xl leading-relaxed">
+                                                <p className="font-body text-canvas/60 text-base md:text-lg leading-relaxed">
                                                     {value.desc}
                                                 </p>
                                             </div>

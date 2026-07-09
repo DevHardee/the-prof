@@ -55,7 +55,7 @@ export default function WhyThisExists() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="space-y-6! font-body text-white/80 text-base md:text-lg lg:text-2xl leading-relaxed"
+                            className="space-y-6! font-body text-white/80 text-base md:text-lg leading-relaxed"
                         >
                             <p>
                                 There is a version of you that never gets the information it needs. Not because you aren't smart enough. Not because you aren't willing enough. But because the knowledge that could change your life is sitting behind a paywall, inside a network you were never invited into, or in a room you didn't know existed.
@@ -72,7 +72,7 @@ export default function WhyThisExists() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
-                            className="space-y-6! font-body text-white/80 text-base md:text-lg lg:text-2xl leading-relaxed"
+                            className="space-y-6! font-body text-white/80 text-base md:text-lg leading-relaxed"
                         >
                             <p>
                                 <span className="text-orange font-semibold">The Prof knows this</span> – not as a theory, but as a lived experience. Learnt every piece of clarity through confusion, every lesson through loss, every step forward through years of standing still.
@@ -83,11 +83,11 @@ export default function WhyThisExists() {
                                     <div className="w-10 h-10 rounded-xl bg-orange/20 flex items-center justify-center">
                                         <Zap size={20} className="text-orange" strokeWidth={2.5} />
                                     </div>
-                                    <h3 className="font-display font-black text-white text-lg md:text-xl lg:text-3xl uppercase">
+                                    <h3 className="font-display font-black text-white text-lg md:text-xl uppercase">
                                         That is why the Prof exists.
                                     </h3>
                                 </div>
-                                <p className="text-white/90 font-semibold text-base md:text-lg lg:text-2xl">
+                                <p className="text-white/90 font-semibold text-base md:text-lg">
                                     This is not a platform. <span className="text-orange">This is a correction.</span>
                                 </p>
                             </div>
