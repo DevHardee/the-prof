@@ -130,8 +130,10 @@ export default function Navbar() {
 
                 {/* Right: CTA Button */}
                 <div className="hidden! lg:flex! flex-1! justify-end! items-center! gap-4!">
-                    <motion.button
-                        onClick={() => handleNavigate('join-cta')}
+                    <motion.a
+                        href="https://chat.whatsapp.com/FC0z0jih9b032oLHQmmDAC"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.5, duration: 0.5, ease: 'easeOut' }}
@@ -139,7 +141,7 @@ export default function Navbar() {
                     >
                         Charge Your Brain
                         <Zap size={14} className="fill-current" />
-                    </motion.button>
+                    </motion.a>
                 </div>
 
                 {/* Mobile Menu Toggle Button */}
