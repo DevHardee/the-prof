@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { supabase } from '../../lib/supabase';
 import MaxWidthWrapper from '../MaxWidthWrapper';
 
-const testimonials = [
+const placeholders = [
     {
         quote: "The Prof doesn't motivate you. It sharpens you. I left with more clarity in one sitting than a year of scrolling.",
         author: 'Hadi',
@@ -32,10 +34,27 @@ const testimonials = [
     },
 ];
 
-// Double the testimonials for seamless looping
-const duplicatedTestimonials = [...testimonials, ...testimonials];
-
 export default function Testimonials() {
+    const [testimonials, setTestimonials] = useState(placeholders);
+
+    useEffect(() => {
+        supabase
+            .from('event_comments')
+            .select('name, message')
+            .order('created_at', { ascending: false })
+            .then(({ data }) => {
+                if (!data || data.length === 0) return;
+                const real = data.map((r) => ({ quote: r.message, author: r.name }));
+                // Replace placeholders from the front, keep remaining placeholders to fill space
+                const merged = [
+                    ...real,
+                    ...placeholders.slice(real.length),
+                ];
+                setTestimonials(merged);
+            });
+    }, []);
+
+    const duplicatedTestimonials = [...testimonials, ...testimonials];
     return (
         <section id="testimonials" className="bg-ink! py-24! relative! z-10! w-full! overflow-hidden!">
             {/* Enhanced Background elements */}

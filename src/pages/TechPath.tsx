@@ -87,6 +87,7 @@ export default function TechPath() {
     const [leadData, setLeadData] = useState({ name: '', email: '' });
     const [isSubmittingLead, setIsSubmittingLead] = useState(false);
     const [aiGeneratedPath, setAiGeneratedPath] = useState<TechPath | null>(null);
+    const [isAiFetching, setIsAiFetching] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const suggestionRef = useRef<HTMLDivElement>(null);
     const resultsRef = useRef<HTMLDivElement>(null);
@@ -125,6 +126,7 @@ export default function TechPath() {
         setShowResults(false);
         setShowLeadForm(false);
         setIsLoading(true);
+        setIsAiFetching(true);
         setError(null);
         setLoadingProgress(0);
         setLoadingStatus('Identifying best tech career matches...');
@@ -183,6 +185,8 @@ export default function TechPath() {
             }
         } catch (err) {
             console.error('Error calling AI agent:', err);
+        } finally {
+            setIsAiFetching(false);
         }
     };
 
@@ -303,7 +307,7 @@ export default function TechPath() {
                                                 value={searchInput}
                                                 onFocus={() => searchInput.length > 1 && setShowSuggestions(true)}
                                                 onChange={(e) => setSearchInput(e.target.value)}
-                                                placeholder="Enter the course you're studying (e.g Biochemistry)"
+                                                placeholder="Enter the course you studied (e.g Biochemistry)"
                                                 className="w-full bg-white/5 border border-white/10 rounded-xl py-4! pl-12! pr-4! text-canvas placeholder:text-canvas/30 focus:outline-none focus:border-blue/50 transition-all font-body"
                                             />
                                         </div>
@@ -491,6 +495,8 @@ export default function TechPath() {
                                                 </button>
                                             </form>
                                         </div>
+                                    ) : (isAiFetching) ? (
+                                        <div className="flex flex-col items-center justify-center text-center py-10! md:py-20!" />
                                     ) : error ? (
                                         <div className="flex flex-col items-center justify-center text-center min-h-[400px] py-12!">
                                             <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-6!">

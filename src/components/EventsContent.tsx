@@ -5,6 +5,7 @@ import {
     type LucideIcon
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+
 import MaxWidthWrapper from './MaxWidthWrapper';
 
 /* ============================================================================
@@ -12,7 +13,10 @@ import MaxWidthWrapper from './MaxWidthWrapper';
    Add, edit, or remove events here. Nothing below this block needs to change.
 
    - status: 'open'          → full featured card with live registration,
-                                a Supabase-backed seat count, and a progress bar.
+                                a Supabase-backed seat count, a progress bar,
+                                and a comments/feedback section that flips
+                                from "comments" to "feedback" once eventDateTime
+                                has passed.
    - status: 'coming-soon'   → compact "notify me" card, no registration.
    ============================================================================ */
 
@@ -24,7 +28,10 @@ type OpenEvent = {
     titleAccent: string;        // second line of the title, shown in blue
     description: string;
     location: string;
-    date: string;
+    date: string;                // display string shown to users, e.g. "Saturday, July 15th"
+    eventDateTime: string;       // ISO datetime used to detect when the event has ended,
+    // e.g. '2026-07-15T23:59:59'. Comments switch to
+    // feedback once "now" is past this value.
     participantsLabel: string;  // e.g. "limited to 100 participants"
     capacity: number;           // real number of seats on offer
     displayBaseline: number;    // progress bar starting point, for social proof (doesn't reduce capacity)
@@ -59,6 +66,7 @@ const events: EventItem[] = [
             "Master the art of building what people actually use. We're breaking down the exact frameworks used by top-tier PMs to scope, build, and ship products that scale.",
         location: 'The Prof HQ (Online)',
         date: 'Saturday, July 15th',
+        eventDateTime: '2026-07-15T23:59:59',
         participantsLabel: 'limited to 100 participants',
         capacity: 100,
         displayBaseline: 50,
@@ -107,6 +115,7 @@ export default function EventsContent() {
     const [regData, setRegData] = useState({ name: '', email: '', phone: '' });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const [regError, setRegError] = useState<string | null>(null);
 
     useEffect(() => {
         fetchAllCounts();
@@ -152,6 +161,7 @@ export default function EventsContent() {
         e.preventDefault();
         if (!activeEvent) return;
         setIsSubmitting(true);
+        setRegError(null);
 
         try {
             const { error } = await supabase
@@ -159,9 +169,9 @@ export default function EventsContent() {
                 .insert([
                     {
                         event_id: activeEvent.id,
-                        name: regData.name,
-                        email: regData.email,
-                        phone: regData.phone,
+                        name: regData.name.trim(),
+                        email: regData.email.trim().toLowerCase(),
+                        phone: regData.phone.trim(),
                     },
                 ]);
 
@@ -174,9 +184,14 @@ export default function EventsContent() {
                 setIsSuccess(false);
                 setRegData({ name: '', email: '', phone: '' });
             }, 3000);
-        } catch (err) {
+        } catch (err: any) {
             console.error('Error registering:', err);
-            alert('Something went wrong. Please try again.');
+            // Postgres unique_violation
+            if (err?.code === '23505') {
+                setRegError('This email is already registered for this event.');
+            } else {
+                setRegError('Something went wrong. Please try again.');
+            }
         } finally {
             setIsSubmitting(false);
         }
@@ -322,6 +337,10 @@ export default function EventsContent() {
                                             />
                                         </div>
 
+                                        {regError && (
+                                            <p className="text-red-400 text-sm font-body">{regError}</p>
+                                        )}
+
                                         <button
                                             type="submit"
                                             disabled={isSubmitting}
@@ -378,19 +397,19 @@ function FeaturedEventSection({
 
                         <div className="space-y-4! mb-10!">
                             <div className="flex items-center gap-4 text-ink/80">
-                                <div className="w-10 h-10 rounded-full bg-blue/10 flex items-center justify-center text-blue">
+                                <div className="w-10 h-10 rounded-full bg-blue/10 flex-shrink-0 flex items-center justify-center text-blue">
                                     <MapPin size={18} />
                                 </div>
                                 <span className="font-display font-semibold">{event.location}</span>
                             </div>
                             <div className="flex items-center gap-4 text-ink/80">
-                                <div className="w-10 h-10 rounded-full bg-blue/10 flex items-center justify-center text-blue">
+                                <div className="w-10 h-10 rounded-full bg-blue/10 flex-shrink-0 flex items-center justify-center text-blue">
                                     <Clock size={18} />
                                 </div>
                                 <span className="font-display font-semibold">{event.date}</span>
                             </div>
                             <div className="flex items-center gap-4 text-ink/80">
-                                <div className="w-10 h-10 rounded-full bg-blue/10 flex items-center justify-center text-blue">
+                                <div className="w-10 h-10 rounded-full bg-blue/10 flex-shrink-0 flex items-center justify-center text-blue">
                                     <Users size={18} />
                                 </div>
                                 <span className="font-display font-semibold">{event.participantsLabel}</span>
@@ -486,8 +505,85 @@ function FeaturedEventSection({
                         </div>
                     </motion.div>
                 </div>
+
+                <EventCommentForm event={event} />
             </MaxWidthWrapper>
         </section>
+    );
+}
+
+function EventCommentForm({ event }: { event: OpenEvent }) {
+    const isPast = new Date() > new Date(event.eventDateTime);
+    const kind: 'comment' | 'feedback' = isPast ? 'feedback' : 'comment';
+
+    const [name, setName] = useState('');
+    const [message, setMessage] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setSubmitError(null);
+        setIsSubmitting(true);
+        try {
+            const { error } = await supabase.from('event_comments').insert([{
+                event_id: event.id,
+                name: name.trim(),
+                message: message.trim(),
+                kind,
+            }]);
+            if (error) throw error;
+            setName('');
+            setMessage('');
+            setIsSuccess(true);
+            setTimeout(() => setIsSuccess(false), 4000);
+        } catch {
+            setSubmitError('Something went wrong. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    return (
+        <div className="mt-16! pt-12! border-t border-ink/10">
+            <h3 className="font-display font-black uppercase text-2xl md:text-3xl text-ink mb-2!">
+                {isPast ? 'Share Your Feedback' : 'Comments & Thoughts'}
+            </h3>
+            <p className="font-body text-ink/60 mb-8! max-w-2xl">
+                {isPast
+                    ? 'This event has wrapped up — tell us how it went.'
+                    : 'Got a question or something on your mind before the event? Drop it below.'}
+            </p>
+
+            <form onSubmit={handleSubmit} className="bg-ink/5 border border-ink/10 rounded-2xl p-6! md:p-8! space-y-4! max-w-2xl">
+                <input
+                    required
+                    type="text"
+                    placeholder="Your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full bg-canvas border border-ink/10 rounded-xl py-3! px-4! text-ink focus:outline-none focus:border-blue/50 transition-all"
+                />
+                <textarea
+                    required
+                    rows={3}
+                    placeholder={isPast ? 'Share your feedback about the event...' : 'Share your thoughts or questions...'}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="w-full bg-canvas border border-ink/10 rounded-xl py-3! px-4! text-ink focus:outline-none focus:border-blue/50 transition-all resize-none"
+                />
+                {submitError && <p className="text-red-400 text-sm font-body">{submitError}</p>}
+                {isSuccess && <p className="text-green-500 text-sm font-body">Submitted successfully!</p>}
+                <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-ink text-canvas hover:bg-blue transition-all duration-300 px-6! py-3! rounded-full font-display font-black uppercase tracking-wider text-sm disabled:opacity-50"
+                >
+                    {isSubmitting ? 'Submitting...' : isPast ? 'Submit Feedback' : 'Post Comment'}
+                </button>
+            </form>
+        </div>
     );
 }
 
