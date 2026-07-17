@@ -262,7 +262,7 @@ export default function TechPath() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
-                                className="font-body text-canvas/60 text-center text-sm md:text-lg max-w-6xl mx-auto leading-relaxed"
+                                className="font-body text-canvas/90 text-center text-sm md:text-lg max-w-6xl mx-auto leading-relaxed"
                             >
                                 TechPath translates your current background into practical opportunities in tech, digital work, and modern career growth. No matter where you're starting from, there's a clear path forward.
                             </motion.p>
