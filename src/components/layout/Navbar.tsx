@@ -26,7 +26,7 @@ function Logo() {
             src="/assets/logos/The Prof Logo-01.jpg"
             alt="Prof Logo"
             onClick={handleLogoClick}
-            className="w-[150px] h-auto md:w-[200px] rounded-lg shadow-sm cursor-pointer"
+            className="w-[250px] h-auto md:w-[300px] rounded-lg shadow-sm cursor-pointer"
         />
     );
 }
