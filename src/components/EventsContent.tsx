@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-    Calendar, ArrowRight, Code2, Cpu, Palette, BriefcaseBusiness,
+    Calendar, ArrowRight, Code2, Cpu, Palette, BriefcaseBusiness, Fingerprint,
     type LucideIcon,
     User,
     Phone,
@@ -69,7 +69,7 @@ const events: EventItem[] = [
         id: 'pm-seminar-july-2026',
         status: 'coming-soon',
         eyebrow: 'Coming Soon',
-        title: 'Product Management Seminar',
+        title: 'Product Management',
         description:
             "Master the art of building what people actually use. We're breaking down the exact frameworks used by top-tier PMs to scope, build, and ship products that scale.",
         icon: BriefcaseBusiness,
@@ -80,7 +80,7 @@ const events: EventItem[] = [
         id: 'web-dev-session',
         status: 'coming-soon',
         eyebrow: 'Coming Soon',
-        title: 'Web Development Session',
+        title: 'Web Development',
         description:
             'From markup to deployed product — a hands-on session for anyone ready to build for the web. Dates and registration open soon.',
         icon: Code2,
@@ -99,13 +99,24 @@ const events: EventItem[] = [
         notifyLink: 'https://chat.whatsapp.com/FC0z0jih9b032oLHQmmDAC',
     },
     {
-        id: 'graphics-brand-identity',
+        id: 'graphics-design',
         status: 'coming-soon',
         eyebrow: 'Coming Soon',
-        title: 'Graphics & Brand Identity',
+        title: 'Graphic Design',
         description:
-            'Learn how to craft visual identities that stick. From logo systems to brand guidelines, this session covers the full spectrum of professional design thinking.',
+            'Master the tools and principles behind compelling visuals. From typography to layout, learn how to communicate ideas through design that actually works.',
         icon: Palette,
+        notifyLabel: 'Get Notified',
+        notifyLink: 'https://chat.whatsapp.com/FC0z0jih9b032oLHQmmDAC',
+    },
+    {
+        id: 'brand-identity',
+        status: 'coming-soon',
+        eyebrow: 'Coming Soon',
+        title: 'Brand Identity',
+        description:
+            'Learn how to build brand systems that last. From logo logic to brand voice and guidelines, this session covers what it takes to make a brand unforgettable.',
+        icon: Fingerprint,
         notifyLabel: 'Get Notified',
         notifyLink: 'https://chat.whatsapp.com/FC0z0jih9b032oLHQmmDAC',
     },
@@ -272,13 +283,18 @@ export default function EventsContent() {
                             <p className="font-display font-bold uppercase tracking-[0.15em] text-blue text-xs mb-3!">
                                 On The Horizon
                             </p>
-                            <h2 className="font-display font-black uppercase text-3xl md:text-4xl text-ink">
-                                What's Coming Next
+                            <h2 className="font-display text-center font-black uppercase text-lg md:text-2xl lg:text-4xl text-ink">
+                                The Prof ASAP (African Skill Acquisition Programme)
                             </h2>
                         </motion.div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6!">
                             {comingSoonEvents.map((event, i) => (
-                                <ComingSoonCard key={event.id} event={event} index={i} />
+                                <ComingSoonCard
+                                    key={event.id}
+                                    event={event}
+                                    index={i}
+                                    spanFull={comingSoonEvents.length % 2 !== 0 && i === comingSoonEvents.length - 1}
+                                />
                             ))}
                         </div>
                     </MaxWidthWrapper>
@@ -628,13 +644,14 @@ function EventCommentForm({ event }: { event: OpenEvent }) {
     );
 }
 
-function ComingSoonCard({ event, index }: { event: ComingSoonEvent; index: number }) {
+function ComingSoonCard({ event, index, spanFull }: { event: ComingSoonEvent; index: number; spanFull?: boolean }) {
     const Icon = event.icon ?? Code2;
     const accents = [
         { bg: 'bg-blue/10', border: 'border-blue/20', text: 'text-blue', glow: 'bg-blue/10' },
         { bg: 'bg-orange/10', border: 'border-orange/20', text: 'text-orange', glow: 'bg-orange/10' },
         { bg: 'bg-purple-500/10', border: 'border-purple-500/20', text: 'text-purple-400', glow: 'bg-purple-500/10' },
         { bg: 'bg-green-500/10', border: 'border-green-500/20', text: 'text-green-400', glow: 'bg-green-500/10' },
+        { bg: 'bg-pink-500/10', border: 'border-pink-500/20', text: 'text-pink-400', glow: 'bg-pink-500/10' },
     ];
     const accent = accents[index % accents.length];
 
@@ -644,7 +661,9 @@ function ComingSoonCard({ event, index }: { event: ComingSoonEvent; index: numbe
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.1 }}
-            className="relative overflow-hidden rounded-2xl bg-ink border border-white/8 flex flex-col p-8! group hover:border-white/20 transition-colors duration-500"
+            className={`relative overflow-hidden rounded-2xl bg-ink border border-white/8 flex flex-col p-8! group hover:border-white/20 transition-colors duration-500${
+                spanFull ? ' md:col-span-2' : ''
+            }`}
         >
             {/* Glow blob */}
             <div className={`absolute -top-16 -right-16 w-48 h-48 ${accent.glow} rounded-full blur-[80px] pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-500`} />
