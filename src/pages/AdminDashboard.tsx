@@ -127,8 +127,10 @@ export default function AdminDashboard() {
             if (error) throw error;
             setLeads(data ?? []);
             setLeadsTotal(count ?? 0);
-        } catch {
-            setLeadsError('Failed to load leads.');
+        } catch (err: any) {
+            console.error('Leads fetch error:', err);
+            console.log("Leads error:", err)
+            setLeadsError(err?.message ?? 'Failed to load leads.');
         } finally {
             setLeadsLoading(false);
         }
@@ -147,8 +149,9 @@ export default function AdminDashboard() {
             if (error) throw error;
             setRegistrations(data ?? []);
             setRegsTotal(count ?? 0);
-        } catch {
-            setRegsError('Failed to load registrations.');
+        } catch (err: any) {
+            console.error('Registrations fetch error:', err);
+            setRegsError(err?.message ?? 'Failed to load registrations.');
         } finally {
             setRegsLoading(false);
         }
@@ -167,8 +170,9 @@ export default function AdminDashboard() {
             if (error) throw error;
             setComments(data ?? []);
             setCommentsTotal(count ?? 0);
-        } catch {
-            setCommentsError('Failed to load comments.');
+        } catch (err: any) {
+            console.error('Comments fetch error:', err);
+            setCommentsError(err?.message ?? 'Failed to load comments.');
         } finally {
             setCommentsLoading(false);
         }
@@ -192,7 +196,7 @@ export default function AdminDashboard() {
 
             <main className="flex-grow w-full">
                 {/* Header */}
-                <section className="relative pt-10! md:pt-14! pb-10! overflow-hidden">
+                <section className="relative pt-5! pb-10! overflow-hidden">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue/10 rounded-full blur-[120px] pointer-events-none" />
                     <MaxWidthWrapper className="relative z-10">
                         <div className="inline-flex items-center gap-2 bg-blue/10 border border-blue/20 rounded-full px-4! py-1.5! mb-6!">
