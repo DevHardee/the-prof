@@ -162,7 +162,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="lg:hidden! bg-ink! border-b! border-border-solid overflow-hidden!"
+                        className="lg:hidden! bg-ink! overflow-hidden!"
                     >
                         <div className="flex! flex-col! items-center! py-8! px-6! gap-6!">
                             {navLinks.map((link) => (

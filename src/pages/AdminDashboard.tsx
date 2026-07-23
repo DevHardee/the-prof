@@ -239,7 +239,7 @@ export default function AdminDashboard() {
                     </div>
 
                     {/* Table Panel */}
-                    <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+                    <div className="bg-white/5 border border-white/10 rounded-2xl overflow-x-auto">
                         {/* Leads */}
                         {activeTab === 'leads' && (
                             <div className="p-4! md:p-6!">
@@ -247,14 +247,14 @@ export default function AdminDashboard() {
                                     <ErrorState message={leadsError} onRetry={() => fetchLeads(leadsPage)} />
                                 ) : (
                                     <>
-                                        <div className="overflow-x-auto">
-                                            <table className="w-full text-sm md:text-lg">
+                                        <div className="overflow-x-auto -mx-4 md:-mx-6">
+                                            <table className="min-w-full text-sm">
                                                 <thead>
                                                     <tr className="border-b border-white/10">
-                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs md:text-base">Name</th>
-                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs md:text-base">Email</th>
-                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs md:text-base hidden md:table-cell">Field of Study</th>
-                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs md:text-base hidden lg:table-cell">Date</th>
+                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs whitespace-nowrap">Name</th>
+                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs whitespace-nowrap">Email</th>
+                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs whitespace-nowrap">Field of Study</th>
+                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs whitespace-nowrap">Date</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody className="divide-y divide-white/5">
@@ -264,10 +264,10 @@ export default function AdminDashboard() {
                                                         ? null
                                                         : leads.map((lead) => (
                                                             <tr key={lead.id} className="hover:bg-white/5 transition-colors">
-                                                                <td className="px-4! py-3! font-body text-canvas">{lead.name}</td>
-                                                                <td className="px-4! py-3! font-body text-canvas/70 text-xs md:text-base">{lead.email}</td>
-                                                                <td className="px-4! py-3! font-body text-canvas/70 hidden md:table-cell">{lead.field_of_study}</td>
-                                                                <td className="px-4! py-3! font-body text-canvas/40 text-xs hidden lg:table-cell">{formatDate(lead.created_at)}</td>
+                                                                <td className="px-4! py-3! font-body text-canvas whitespace-nowrap">{lead.name}</td>
+                                                                <td className="px-4! py-3! font-body text-canvas/70 whitespace-nowrap">{lead.email}</td>
+                                                                <td className="px-4! py-3! font-body text-canvas/70 whitespace-nowrap">{lead.field_of_study}</td>
+                                                                <td className="px-4! py-3! font-body text-canvas/40 whitespace-nowrap">{formatDate(lead.created_at)}</td>
                                                             </tr>
                                                         ))
                                                     }
@@ -293,15 +293,15 @@ export default function AdminDashboard() {
                                     <ErrorState message={regsError} onRetry={() => fetchRegistrations(regsPage)} />
                                 ) : (
                                     <>
-                                        <div className="overflow-x-auto">
-                                            <table className="w-full text-sm md:text-lg">
+                                        <div className="overflow-x-auto -mx-4 md:-mx-6">
+                                            <table className="min-w-full text-sm">
                                                 <thead>
                                                     <tr className="border-b border-white/10">
-                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs md:text-base">Name</th>
-                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs md:text-base">Email</th>
-                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs md:text-base hidden md:table-cell">Phone</th>
-                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs md:text-base hidden md:table-cell">Event</th>
-                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs md:text-base hidden lg:table-cell">Date</th>
+                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs whitespace-nowrap">Name</th>
+                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs whitespace-nowrap">Email</th>
+                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs whitespace-nowrap">Phone</th>
+                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs whitespace-nowrap">Event</th>
+                                                        <th className="text-left px-4! py-3! font-display font-bold uppercase tracking-wider text-canvas/40 text-xs whitespace-nowrap">Date</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody className="divide-y divide-white/5">
@@ -311,15 +311,15 @@ export default function AdminDashboard() {
                                                         ? null
                                                         : registrations.map((reg) => (
                                                             <tr key={reg.id} className="hover:bg-white/5 transition-colors">
-                                                                <td className="px-4! py-3! font-body text-canvas">{reg.name}</td>
-                                                                <td className="px-4! py-3! font-body text-canvas/70 text-xs">{reg.email}</td>
-                                                                <td className="px-4! py-3! font-body text-canvas/70 hidden md:table-cell">{reg.phone}</td>
-                                                                <td className="px-4! py-3! hidden md:table-cell">
+                                                                <td className="px-4! py-3! font-body text-canvas whitespace-nowrap">{reg.name}</td>
+                                                                <td className="px-4! py-3! font-body text-canvas/70 whitespace-nowrap">{reg.email}</td>
+                                                                <td className="px-4! py-3! font-body text-canvas/70 whitespace-nowrap">{reg.phone}</td>
+                                                                <td className="px-4! py-3! whitespace-nowrap">
                                                                     <span className="font-display font-bold uppercase text-[10px] tracking-wider text-blue bg-blue/10 border border-blue/20 px-2 py-0.5 rounded-full">
                                                                         {reg.event_id}
                                                                     </span>
                                                                 </td>
-                                                                <td className="px-4! py-3! font-body text-canvas/40 text-xs hidden lg:table-cell">{formatDate(reg.created_at)}</td>
+                                                                <td className="px-4! py-3! font-body text-canvas/40 whitespace-nowrap">{formatDate(reg.created_at)}</td>
                                                             </tr>
                                                         ))
                                                     }
